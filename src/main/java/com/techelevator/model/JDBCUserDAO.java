@@ -1,16 +1,11 @@
 package com.techelevator.model;
 
-import java.util.List;
-
 import javax.sql.DataSource;
-
 import org.bouncycastle.util.encoders.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
-
-import com.techelevator.model.User;
 import com.techelevator.security.PasswordHasher;
 
 @Component
@@ -31,7 +26,7 @@ public class JDBCUserDAO implements UserDAO {
 		String hashedPassword = hashMaster.computeHash(password, salt);
 		String saltString = new String(Base64.encode(salt));
 		
-		jdbcTemplate.update("INSERT INTO app_user(user_name, password, salt) VALUES (?, ?, ?)",
+		jdbcTemplate.update("INSERT INTO user_info(user_name, password, salt) VALUES (?, ?, ?)",
 				userName, hashedPassword, saltString);
 	}
 
@@ -54,14 +49,14 @@ public class JDBCUserDAO implements UserDAO {
 
 	@Override
 	public void updatePassword(String userName, String password) {
-		jdbcTemplate.update("UPDATE app_user SET password = ? WHERE user_name = ?", password, userName);
+		jdbcTemplate.update("UPDATE user_info SET password = ? WHERE user_name = ?", password, userName);
 	}
 
 	@Override
 	public Object getUserByUserName(String userName) {
 		String sqlSearchForUsername ="SELECT * "+
 		"FROM user_info "+
-		"WHERE (user_name) = ? ";
+		"WHERE user_name = ? ";
 
 		SqlRowSet user = jdbcTemplate.queryForRowSet(sqlSearchForUsername, userName); 
 		User thisUser = null;
@@ -77,10 +72,17 @@ public class JDBCUserDAO implements UserDAO {
 	@Override
 	public User getUserProfileByUserName(String userName) {
 		String sqlProfileByUserName = "select * from user_info " + 
-				"where user_name = ?";
-		SqlRowSet userProfile = jdbcTemplate.queryForRowSet(sqlProfileByUserName, userName);
+									  "where user_name = ?";
+		SqlRowSet result = jdbcTemplate.queryForRowSet(sqlProfileByUserName, userName);
 		
-		return mapRowToUser(userProfile);
+		User user = new User();
+		
+		while(result.next()) 
+		{
+			user = mapRowToUser(result);
+		}
+		
+		return user;
 	}
 	
 	private User mapRowToUser(SqlRowSet results) {
@@ -91,7 +93,5 @@ public class JDBCUserDAO implements UserDAO {
 		user.setBio(results.getString("bio"));
 		
 		return user;
-	}
-	
-
+	}	
 }

@@ -2,6 +2,7 @@ package com.techelevator.controller;
 
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,11 +49,13 @@ public class UserController {
 	}
 	
 	@RequestMapping(path="/users/sensei/{userName}", method=RequestMethod.GET)
-	public String senseiProfile(Map<String, Object> model, @PathVariable String userName) {
+	public String senseiProfile(Map<String, Object> model, HttpServletRequest request, @PathVariable String userName) {
 		model.put("profile", userDAO.getUserProfileByUserName(userName));
+		
+		String selectedUser = request.getParameter("userName");
+		User user = userDAO.getUserProfileByUserName(selectedUser);
+		request.setAttribute("user", user);
 		
 		return "senseiProfilePage";
 	}
-	
-	
 }
