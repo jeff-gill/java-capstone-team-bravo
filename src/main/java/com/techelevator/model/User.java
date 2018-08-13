@@ -15,6 +15,43 @@ public class User {
 	private String role;
 	
 	private String confirmPassword;
+	private String firstName;
+	private String lastName;
+	private String bio;
+	private int rating;
+	private String picFilePath;
+	
+	
+	public String getFirstName() {
+		return firstName;
+	}
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+	public String getLastName() {
+		return lastName;
+	}
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+	public String getBio() {
+		return bio;
+	}
+	public void setBio(String bio) {
+		this.bio = bio;
+	}
+	public int getRating() {
+		return rating;
+	}
+	public void setRating(int rating) {
+		this.rating = rating;
+	}
+	public String getPicFilePath() {
+		return picFilePath;
+	}
+	public void setPicFilePath(String picFilePath) {
+		this.picFilePath = picFilePath;
+	}
 	public String getUserName() {
 		return userName;
 	}

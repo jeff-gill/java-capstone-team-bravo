@@ -1,5 +1,7 @@
 package com.techelevator.model;
 
+import java.util.List;
+
 import javax.sql.DataSource;
 
 import org.bouncycastle.util.encoders.Base64;
@@ -36,7 +38,7 @@ public class JDBCUserDAO implements UserDAO {
 	@Override
 	public boolean searchForUsernameAndPassword(String userName, String password) {
 		String sqlSearchForUser = "SELECT * "+
-							      "FROM app_user "+
+							      "FROM user_info "+
 							      "WHERE UPPER(user_name) = ? ";
 		
 		SqlRowSet user = jdbcTemplate.queryForRowSet(sqlSearchForUser, userName.toUpperCase());
@@ -58,10 +60,10 @@ public class JDBCUserDAO implements UserDAO {
 	@Override
 	public Object getUserByUserName(String userName) {
 		String sqlSearchForUsername ="SELECT * "+
-		"FROM app_user "+
-		"WHERE UPPER(user_name) = ? ";
+		"FROM user_info "+
+		"WHERE (user_name) = ? ";
 
-		SqlRowSet user = jdbcTemplate.queryForRowSet(sqlSearchForUsername, userName.toUpperCase()); 
+		SqlRowSet user = jdbcTemplate.queryForRowSet(sqlSearchForUsername, userName); 
 		User thisUser = null;
 		if(user.next()) {
 			thisUser = new User();
@@ -71,5 +73,25 @@ public class JDBCUserDAO implements UserDAO {
 
 		return thisUser;
 	}
+
+	@Override
+	public User getUserProfileByUserName(String userName) {
+		String sqlProfileByUserName = "select * from user_info " + 
+				"where user_name = ?";
+		SqlRowSet userProfile = jdbcTemplate.queryForRowSet(sqlProfileByUserName, userName);
+		
+		return mapRowToUser(userProfile);
+	}
+	
+	private User mapRowToUser(SqlRowSet results) {
+		User user = new User();
+		user.setUserName(results.getString("user_name"));
+		user.setFirstName(results.getString("first_name"));
+		user.setLastName(results.getString("last_name"));
+		user.setBio(results.getString("bio"));
+		
+		return user;
+	}
+	
 
 }
