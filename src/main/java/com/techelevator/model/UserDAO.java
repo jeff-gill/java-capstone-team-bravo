@@ -10,8 +10,8 @@ public interface UserDAO {
 
 	public Object getUserByUserName(String userName);
 	
-	public User getUserProfileByUserName(String userName);
+	public User getSenseiProfileByUserName(String userName);
 	
-	
+	public User getGHProfileByUserName(String userName);
 
 }

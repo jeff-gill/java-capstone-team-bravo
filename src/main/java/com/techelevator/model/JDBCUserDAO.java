@@ -71,9 +71,26 @@ public class JDBCUserDAO implements UserDAO {
 
 	//Changed some stuff in here
 	@Override
-	public User getUserProfileByUserName(String userName) {
+	public User getSenseiProfileByUserName(String userName) {
 		String sqlProfileByUserName = "select * from user_info " + 
-									  "where user_name = ?";
+									  "where user_name = ? and is_sensei = true";
+		SqlRowSet result = jdbcTemplate.queryForRowSet(sqlProfileByUserName, userName);
+		
+		User user = new User();
+		
+		while(result.next()) 
+		{
+			user = mapRowToUser(result);
+		}
+		
+		return user;
+	}
+	
+	//Added this
+	@Override
+	public User getGHProfileByUserName(String userName) {
+		String sqlProfileByUserName = "select * from user_info " + 
+									  "where user_name = ? and is_sensei = false";
 		SqlRowSet result = jdbcTemplate.queryForRowSet(sqlProfileByUserName, userName);
 		
 		User user = new User();

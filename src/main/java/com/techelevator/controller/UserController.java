@@ -50,13 +50,17 @@ public class UserController {
 	
 	//Changed some stuff in here
 	@RequestMapping(path="/users/sensei/{userName}", method=RequestMethod.GET)
-	public String senseiProfile(Map<String, Object> model, HttpServletRequest request, @PathVariable String userName) {
-		model.put("profile", userDAO.getUserProfileByUserName(userName));
-		
-		String selectedUser = request.getParameter("userName");
-		User user = userDAO.getUserProfileByUserName(selectedUser);
-		request.setAttribute("user", user);
+	public String senseiProfile(Map<String, Object> model, @PathVariable String userName) {
+		model.put("profile", userDAO.getSenseiProfileByUserName(userName));
 		
 		return "senseiProfilePage";
+	}
+	
+	//Added this
+	@RequestMapping(path="/users/gh/{userName}", method=RequestMethod.GET)
+	public String ghProfile(Map<String, Object> model, @PathVariable String userName) {
+		model.put("profile", userDAO.getGHProfileByUserName(userName));
+		
+		return "ghProfilePage";
 	}
 }
