@@ -19,7 +19,7 @@ public class User {
 	private String bio;
 	private int rating;
 	private boolean isSensei;
-	private String picFilePath;
+	private String profileImage;
 	private String salt;
 	
 	//Added isSensei and salt getters and setters
@@ -60,11 +60,11 @@ public class User {
 	public void setRating(int rating) {
 		this.rating = rating;
 	}
-	public String getPicFilePath() {
-		return picFilePath;
+	public String getProfileImage() {
+		return profileImage;
 	}
-	public void setPicFilePath(String picFilePath) {
-		this.picFilePath = picFilePath;
+	public void setProfileImage(String profileImage) {
+		this.profileImage = profileImage;
 	}
 	public String getUserName() {
 		return userName;
