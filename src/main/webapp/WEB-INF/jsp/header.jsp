@@ -3,15 +3,14 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Critter</title>
+		<title>Sensei</title>
 		<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 	    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
 	    <script src="http://cdn.jsdelivr.net/jquery.validation/1.15.0/jquery.validate.min.js"></script>
 	    <script src="http://cdn.jsdelivr.net/jquery.validation/1.15.0/additional-methods.js "></script>
 	    <script src="https://cdn.jsdelivr.net/jquery.timeago/1.4.1/jquery.timeago.min.js"></script>
 	    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-	    <c:url var="cssHref" value="/site.css" />
-		<link rel="stylesheet" type="text/css" href="${cssHref}">
+		<link rel="stylesheet" href="../../css/site.css">
 		
 		<script type="text/javascript">
 			$(document).ready(function() {
@@ -29,11 +28,27 @@
 			
 		</script>
 		
+		
 	</head>
 	<body>
 		<header>
 			<c:url var="homePageHref" value="/" />
-			<c:url var="imgSrc" value="/img/logo.png" />
+			<div class = "container-fluid">
+				<div class="row">
+					<div class="col-md-2" id="senseiPic">
+					<img src="../../img/SenseiMaster.jpg" />
+					</div>
+					<div class="col-md-4">
+					<h1 id="senseiTitle">Sensei</h1>
+					</div>				
+					<div class="col-md-1"></div>
+					<div class="col-md-5">
+					<h1 id="sensaiMotto">wonder. learn. connect. teach. repeat.</h1>
+					</div>
+				</div>
+			</div>
+			
+			
 			<a href="${homePageHref}"><img src="${imgSrc}" class="img-responsive" /></a>
 		</header>
 		<nav class="navbar navbar-default">
@@ -41,6 +56,7 @@
 				<ul class="nav navbar-nav">
 					<c:url var="homePageHref" value="/" />
 					<li><a href="${homePageHref}">Home</a></li>
+					<li><a href="${homePageHref}">Search</a></li>	
 					<c:if test="${not empty currentUser}">
 						<c:url var="dashboardHref" value="/users/${currentUser}" />
 						<li><a href="${dashboardHref}">Private Messages</a></li>
@@ -59,6 +75,8 @@
 							<li><a href="${newUserHref}">Sign Up</a></li>
 							<c:url var="loginHref" value="/login" />
 							<li><a href="${loginHref}">Log In</a></li>
+							<c:url var="loginHref" value="/login" />
+							<li><a href="${loginHref}">Log Out</a></li>
 						</c:when>
 						<c:otherwise>
 							<c:url var="logoutAction" value="/logout" />

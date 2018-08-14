@@ -1,0 +1,21 @@
+/* header */
+
+#senseiPic img {
+	width: 100%; 
+}
+
+#senseiTitle {
+	font-size: 8vw;
+	padding-top: 5%;
+}
+
+#sensaiMotto {
+	padding-top: 15%;
+    font-size: 2vw;
+    font-style: italic;
+    font-weight: bold;
+}
+
+.glyphicon {
+	font-size: 1vw;
+}
