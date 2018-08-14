@@ -13,15 +13,22 @@ public class User {
 	})
 	private String password;
 	private String role;
-	
 	private String confirmPassword;
 	private String firstName;
 	private String lastName;
 	private String bio;
 	private int rating;
+	private boolean isSensei;
 	private String picFilePath;
 	
+	//Added isSensei getters and setters
 	
+	public boolean isSensei() {
+		return isSensei;
+	}
+	public void setSensei(boolean isSensei) {
+		this.isSensei = isSensei;
+	}
 	public String getFirstName() {
 		return firstName;
 	}

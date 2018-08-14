@@ -48,6 +48,7 @@ public class UserController {
 		return "redirect:/login";
 	}
 	
+	//Changed some stuff in here
 	@RequestMapping(path="/users/sensei/{userName}", method=RequestMethod.GET)
 	public String senseiProfile(Map<String, Object> model, HttpServletRequest request, @PathVariable String userName) {
 		model.put("profile", userDAO.getUserProfileByUserName(userName));

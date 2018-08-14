@@ -5,7 +5,7 @@
 
 	<c:out value = "random gibberish" />
 
-	<c:forEach var = "user" items = "${profile}">
+	<c:forEach var = "user" items = "${user}">
 		<c:out value = "${user.userName}"/>
 		<c:out value = "${user.bio}"/>
 		<c:out value = "${user.firstName} ${user.lastName}"/>

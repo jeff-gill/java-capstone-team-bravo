@@ -69,6 +69,7 @@ public class JDBCUserDAO implements UserDAO {
 		return thisUser;
 	}
 
+	//Changed some stuff in here
 	@Override
 	public User getUserProfileByUserName(String userName) {
 		String sqlProfileByUserName = "select * from user_info " + 
@@ -85,12 +86,16 @@ public class JDBCUserDAO implements UserDAO {
 		return user;
 	}
 	
+	//Added to this
 	private User mapRowToUser(SqlRowSet results) {
 		User user = new User();
 		user.setUserName(results.getString("user_name"));
+		user.setPassword(results.getString("password"));
 		user.setFirstName(results.getString("first_name"));
 		user.setLastName(results.getString("last_name"));
 		user.setBio(results.getString("bio"));
+		user.setRating(results.getInt("ratings"));
+		user.setSensei(results.getBoolean("is_sensei"));
 		
 		return user;
 	}	
