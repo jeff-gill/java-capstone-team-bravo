@@ -108,6 +108,7 @@ public class JDBCUserDAO implements UserDAO {
 		user.setRating(results.getInt("ratings"));
 		user.setSensei(results.getBoolean("is_sensei"));
 		
+		
 		return user;
 	}	
 }
