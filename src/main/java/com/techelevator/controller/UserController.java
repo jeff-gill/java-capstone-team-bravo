@@ -2,7 +2,6 @@ package com.techelevator.controller;
 
 import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,7 +47,6 @@ public class UserController {
 		return "redirect:/login";
 	}
 	
-	//Changed some stuff in here
 	@RequestMapping(path="/users/sensei/{userName}", method=RequestMethod.GET)
 	public String senseiProfile(Map<String, Object> model, @PathVariable String userName) {
 		model.put("profile", userDAO.getSenseiProfileByUserName(userName));
@@ -56,7 +54,6 @@ public class UserController {
 		return "senseiProfilePage";
 	}
 	
-	//Added this
 	@RequestMapping(path="/users/gh/{userName}", method=RequestMethod.GET)
 	public String ghProfile(Map<String, Object> model, @PathVariable String userName) {
 		model.put("profile", userDAO.getGHProfileByUserName(userName));
