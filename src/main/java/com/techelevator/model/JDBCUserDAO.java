@@ -69,19 +69,16 @@ public class JDBCUserDAO implements UserDAO {
 		return thisUser;
 	}
 
-	//Changed some stuff in here
 	@Override
 	public User getSenseiProfileByUserName(String userName) {
 		return getProfileByUserName(userName, true);
 	}
 	
-	//Added this
 	@Override
 	public User getGHProfileByUserName(String userName) {
 		return getProfileByUserName(userName, false);
 	}
 	
-	//Added this
 	private User getProfileByUserName(String userName, boolean isSensei) {
 		String sqlProfileByUserName = "select * from user_info " + 
 									  "where user_name = ? and is_sensei = ?";
@@ -107,7 +104,7 @@ public class JDBCUserDAO implements UserDAO {
 		user.setBio(results.getString("bio"));
 		user.setRating(results.getInt("ratings"));
 		user.setSensei(results.getBoolean("is_sensei"));
-		
+//		user.setSalt(results.getString("salt"));
 		
 		return user;
 	}	

@@ -20,9 +20,16 @@ public class User {
 	private int rating;
 	private boolean isSensei;
 	private String picFilePath;
+	private String salt;
 	
-	//Added isSensei getters and setters
+	//Added isSensei and salt getters and setters
 	
+	public String getSalt() {
+		return salt;
+	}
+	public void setSalt(String salt) {
+		this.salt = salt;
+	}
 	public boolean isSensei() {
 		return isSensei;
 	}
