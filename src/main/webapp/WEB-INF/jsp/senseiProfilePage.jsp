@@ -31,22 +31,82 @@
 				</c:forEach>
 			</div>
 			<div class="col-md-7">
+			
+			
+			<div class="modal fade" id="modalRegisterForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header text-center">
+                <h4 class="modal-title w-100 font-weight-bold">Schedule a Class</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body mx-3">
+                <div class="md-form mb-5">
+                    <input type="text" id="orangeForm-name" class="form-control validate">
+                    <label data-error="wrong" data-success="right" for="orangeForm-name">Class Name</label>
+                </div>
+                <br/>
+                <div class="md-form mb-5">
+                    <input type="email" id="orangeForm-email" class="form-control validate">
+                    <label data-error="wrong" data-success="right" for="orangeForm-email">Class Location</label>
+                </div>
+				 <br/>
+                <div class="md-form mb-4">
+                    <input type="password" id="orangeForm-pass" class="form-control validate">
+                    <label data-error="wrong" data-success="right" for="orangeForm-pass">Class Date</label>
+                </div>
+                 <br/>
+                 <div class="md-form mb-4">
+                    <input type="password" id="orangeForm-pass" class="form-control validate">
+                    <label data-error="wrong" data-success="right" for="orangeForm-pass">Class Time</label>
+                </div>
+                 <br/>
+                 <div class="md-form mb-4">
+                    <input type="password" id="orangeForm-pass" class="form-control validate">
+                    <label data-error="wrong" data-success="right" for="orangeForm-pass">Class Cost</label>
+                </div>
+                 <br/>
+                 <div class="md-form mb-4">
+                    <input type="password" id="orangeForm-pass" class="form-control validate">
+                    <label data-error="wrong" data-success="right" for="orangeForm-pass">Available Slots</label>
+                </div>
+                 <br/>
+                 <div class="md-form mb-4">
+                    <input type="password" id="orangeForm-pass" class="form-control validate">
+                    <label data-error="wrong" data-success="right" for="orangeForm-pass">Class Description</label>
+                </div>
+
+            </div>
+            <div class="modal-footer d-flex justify-content-center">
+                <button class="btn btn-deep-orange">LET'S DO IT!!</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="text-center">
+    <a href="" class="btn btn-default btn-rounded mb-4" data-toggle="modal" data-target="#modalRegisterForm">Update Your Class Schedule!!</a>
+</div>
+<br/>
+
 				<table>
 					<tr>
 						<th>Name</th>
+						<th>Location</th>
 						<th>Date</th>
 						<th>Time</th>
 						<th>Cost</th>
-						<th>Location</th>
 						<th>Available Slots</th>
 						<th>Class Description</th>
 					</tr>
 					<tr>
 						<td>Sword Fighting</td>
-						<td>Oct. 25th</td>
-						<td>10:00am - 11:00am</td>
-						<td>$25</td>
 						<td>Goodale Park</td>
+						<td>10/25/2018</td>
+						<td>10:00-11:00</td>
+						<td>$25</td>
 						<td>4</td>
 						<td>Learn to slash zombies</td>
 					</tr>

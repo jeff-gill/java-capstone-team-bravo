@@ -56,7 +56,9 @@ create table class (
 	subject_name varchar(35) not null,
 	location varchar(50) not null,
 	event_date date not null,
-	event_time time not null,
+	event_start_time time not null,
+	event_end_time time not null,
+	cost float not null,
 	available_slots integer not null,
 	description varchar(360) not null,
 	
