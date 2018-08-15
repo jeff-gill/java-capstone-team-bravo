@@ -37,8 +37,10 @@ create table user_info (
     constraint pk_user_name primary key (user_name)
 );
 
+create sequence seq_subject_id;
+
 create table subjects (
-	subject_id serial, 
+	subject_id integer default nextval('seq_subject_id'), 
 	subject_name varchar(35) not null,
 	
 	constraint pk_subject_id primary key (subject_id)
@@ -46,17 +48,17 @@ create table subjects (
 
 create table user_subjects (
 	user_name varchar(35) not null,
-	subject_name varchar(35) not null,
+	subject_id integer not null,
 	
 	constraint fk_user_name foreign key (user_name) references user_info (user_name),
-	constraint fk_subject_name foreign key (subject_name) references subjects (subject_name)
+	constraint fk_subject_id foreign key (subject_id) references subjects (subject_id)
 );
 
 create sequence seq_class_id;
 
 create table class (
 	class_id integer default nextval('seq_class_id'),
-	subject_name varchar(35) not null,
+	subject_id integer not null,
 	location varchar(50) not null,
 	event_date date not null,
 	event_start_time varchar(10) not null,
@@ -66,7 +68,7 @@ create table class (
 	description varchar(360) not null,
 	
 	constraint pk_class_id primary key (class_id),
-	constraint fk_subject_name foreign key (subject_name) references subjects (subject_name)
+	constraint fk_subject_id foreign key (subject_id) references subjects (subject_id)
 );
 
 create table user_class (
