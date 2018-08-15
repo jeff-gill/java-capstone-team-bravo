@@ -39,7 +39,7 @@
 		<c:url var="homePageHref" value="/" />
 		<div class="container-fluid">
 			<div class="row">
-				<div class="col-md-2" id="senseiPic">
+				<div class="col-md-2 senseiPic" id="senseiPic">
 					<img src="../../img/SenseiMaster.jpg" />
 				</div>
 				<div class="col-md-4">
