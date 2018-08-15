@@ -2,7 +2,7 @@ package com.techelevator.model;
 
 import java.util.Date;
 
-public class Class {
+public class Subject {
 	
 	private int classId;
 	private String className;

@@ -78,6 +78,11 @@ public class JDBCUserDAO implements UserDAO {
 	public User getGHProfileByUserName(String userName) {
 		return getProfileByUserName(userName, false);
 	}
+
+	@Override
+	public void updateImageName(String userName, String imageName) {
+		jdbcTemplate.update("update user_info set profile_image = ? where user_name = ?", imageName, userName);
+	}	
 	
 	private User getProfileByUserName(String userName, boolean isSensei) {
 		String sqlProfileByUserName = "select * from user_info " + 
@@ -108,5 +113,5 @@ public class JDBCUserDAO implements UserDAO {
 //		user.setSalt(results.getString("salt"));
 		
 		return user;
-	}	
+	}
 }

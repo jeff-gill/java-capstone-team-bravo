@@ -13,5 +13,7 @@ public interface UserDAO {
 	public User getSenseiProfileByUserName(String userName);
 	
 	public User getGHProfileByUserName(String userName);
+	
+	public void updateImageName(String userName, String imageName);
 
 }
