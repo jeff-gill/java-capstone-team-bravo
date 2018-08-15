@@ -44,6 +44,10 @@
 					<div class="col-md-1"></div>
 					<div class="col-md-5">
 					<h1 id="sensaiMotto">wonder. learn. connect. teach. repeat.</h1>
+					<div id="navSearchBar">
+					<input type="text" name="navSearch" id="navSearchText" placeholder="Search for subjects..." />
+					<input class="formSubmitButton" type="submit" value="searchWords" />
+					</div>
 					</div>
 				</div>
 			</div>
