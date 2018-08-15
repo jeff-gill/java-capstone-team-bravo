@@ -25,7 +25,7 @@
 			<div class="col-md-12"></div>
 		</div>
 		<div class="row">
-			<div class="col-md-5">
+			<div class="col-md-5" id="profilePic">
 				<img class="profilePic" src="../../img/${profile.profileImage}.jpg "
 					alt="place holder" />
 			</div>
@@ -83,8 +83,8 @@
 		<div class="row">
 			<div class="col-md-5">
 				<div class="text-right">
-					<a href="" class="btn btn-default btn-rounded mb-4"
-						id="updateButton" data-toggle="modal"
+					<a href="" class="btn btn-rounded mb-4 updateButton"
+					 data-toggle="modal"
 						data-target="#modalProfileInfoForm">Update Profile Info!</a>
 				</div>
 				<div class="modal fade" id="modalProfileInfoForm" tabindex="-1"

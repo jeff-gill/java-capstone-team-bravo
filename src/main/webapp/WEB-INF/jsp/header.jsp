@@ -42,8 +42,8 @@
 				<div class="col-md-2 senseiPic" id="senseiPic">
 					<img src="../../img/SenseiMaster.jpg" />
 				</div>
-				<div class="col-md-4" >
-					<h1><font size="100">Sensei</font></h1>
+				<div class="col-md-4" id="senseiTitle">
+					<h1>Sensei</h1>
 				</div>
 				<div class="col-md-1"></div>
 				<div class="col-md-5" id="mottoContainer">
