@@ -82,7 +82,7 @@ public class JDBCSubjectDAO implements SubjectDAO {
 		subject.setEndTime(results.getString("event_end_time"));
 		subject.setCost(results.getFloat("cost"));
 		subject.setAvailableSlots(results.getInt("available_slots"));
-		subject.setDescription(results.getString("desription"));
+		subject.setDescription(results.getString("description"));
 		
 		return subject;
 	}
