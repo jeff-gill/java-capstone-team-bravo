@@ -41,11 +41,11 @@ public class JDBCSubjectDAO implements SubjectDAO {
 
 	//Added to this
 	@Override
-	public void updateSubject(Subject subject, String userName) {
+	public void updateSubject(Subject subject, int classId) {
 		String updateSql = "update class set subject_name = ?, location = ? , event_date = ? , event_start_time = ?, "
-						 + "event_end_time = ?, cost = ?, available_slots = ?, description = ? WHERE user_name = ?";
+						 + "event_end_time = ?, cost = ?, available_slots = ?, description = ? where class_id = ?";
 		jdbcTemplate.update(updateSql, subject.getClassName(), subject.getLocation(), subject.getDate(), subject.getStartTime(), 
-							subject.getEndTime(), subject.getCost(), subject.getAvailableSlots(), subject.getDescription(), userName);
+							subject.getEndTime(), subject.getCost(), subject.getAvailableSlots(), subject.getDescription(), classId);
 		
 	}
 
@@ -55,11 +55,26 @@ public class JDBCSubjectDAO implements SubjectDAO {
 		
 	}
 	
+	@Override
+	public Subject getSubjectById(int id) 
+	{
+		Subject subjects = null;
+		String sqlFindIdOfSubject = "select class_id, subject_name from class where class_id = ?";
+		SqlRowSet result = jdbcTemplate.queryForRowSet(sqlFindIdOfSubject, id);
+		
+		while (result.next())
+		{
+			subjects = mapRowToSubject(result);
+		}
+		
+		return subjects;
+	}
+	
 	//Added this
 	private Subject mapRowToSubject(SqlRowSet results) 
 	{
 		Subject subject = new Subject();
-		
+		subject.setClassId(results.getInt("class_id"));
 		subject.setClassName(results.getString("subject_name").toUpperCase());
 		subject.setLocation(results.getString("location"));
 		subject.setDate(results.getDate("event_date"));
@@ -71,4 +86,19 @@ public class JDBCSubjectDAO implements SubjectDAO {
 		
 		return subject;
 	}
+	
+	private long getNextSubjectId()
+	{
+		SqlRowSet nextIdResult = jdbcTemplate.queryForRowSet("select nextval('seq_class_id')");
+		
+		if (nextIdResult.next())
+		{
+			return nextIdResult.getLong(1);
+		}
+		else
+		{
+			throw new RuntimeException("An error occured while getting the id for the class.");
+		}
+	}
+	
 }

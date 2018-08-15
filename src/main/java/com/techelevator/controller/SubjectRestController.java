@@ -16,16 +16,16 @@ public class SubjectRestController
 	private SubjectDAO subjectDao;
 	
 	@RequestMapping(path="/users/sensei/{userName}/updateSubject", method=RequestMethod.POST)
-	public String updateSenseiSubject(@ModelAttribute Subject subject, @RequestParam String userName)
+	public String updateSenseiSubject(@ModelAttribute Subject subject, @RequestParam int classId)
 	{
-		subjectDao.updateSubject(subject, userName);
+		subjectDao.updateSubject(subject, classId);
 		return "redirect:/users/sensei/{userName}";
 	}
 	
 	@RequestMapping(path="/users/gh/{userName}/updateSubject", method=RequestMethod.POST)
-	public String updateGHSubject(@ModelAttribute Subject subject, @RequestParam String userName)
+	public String updateGHSubject(@ModelAttribute Subject subject, @RequestParam int classId)
 	{
-		subjectDao.updateSubject(subject, userName);
+		subjectDao.updateSubject(subject, classId);
 		return "redirect:/users/gh/{userName}";
 	}
 }

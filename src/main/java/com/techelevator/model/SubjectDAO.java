@@ -8,10 +8,10 @@ public interface SubjectDAO {
 	
 	public List<Subject> searchSubject(String className);
 	
-	public void updateSubject(Subject subject, String userName);
+	public void updateSubject(Subject subject, int classId);
 	
 	public void deleteSubject(String userName, int classId);
 		
-	
+	public Subject getSubjectById(int id) ;
 
 }
