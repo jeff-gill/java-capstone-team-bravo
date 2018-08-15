@@ -42,11 +42,12 @@
 				<div class="col-md-2 senseiPic" id="senseiPic">
 					<img src="../../img/SenseiMaster.jpg" />
 				</div>
-				<div class="col-md-4">
-					<h1 id="senseiTitle">Sensei</h1>
+				<div class="col-md-4" >
+					<h1><font size="100">Sensei</font></h1>
 				</div>
 				<div class="col-md-1"></div>
-				<div class="col-md-5">
+				<div class="col-md-5" id="mottoContainer">
+
 					<h1 id="sensaiMotto">wonder. learn. connect. teach. repeat.</h1>
 					<div id="navSearchBar">
 						<input type="text" name="navSearch" id="navSearchText"
@@ -63,7 +64,7 @@
 	</header>
 	<nav class="navbar navbar-default">
 		<div class="container-fluid">
-			<ul class="nav navbar-nav">
+			<%-- <ul class="nav navbar-nav">
 
 				<c:if test="${not empty currentUser}">
 					<c:url var="dashboardHref" value="/users/${currentUser}" />
@@ -78,7 +79,7 @@
 						value="/users/${currentUser}/changePassword" />
 					<li><a href="${changePasswordHref}">Change Password</a></li>
 				</c:if>
-			</ul>
+			</ul> --%>
 			<ul class="nav navbar-nav navbar-right">
 				<c:choose>
 					<c:when test="${empty currentUser}">
