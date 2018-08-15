@@ -15,5 +15,8 @@ public interface UserDAO {
 	public User getGHProfileByUserName(String userName);
 	
 	public void updateImageName(String userName, String imageName);
+	
+	public void updateProfile(User user);
+	
 
 }
