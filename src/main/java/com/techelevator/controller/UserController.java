@@ -66,6 +66,27 @@ public class UserController {
 		return "senseiProfilePage";
 	}
 	
+//	@RequestMapping(path="/users/sensei/{userName}", method=RequestMethod.POST)
+//	public String updateProfile(@PathVariable String userName,
+//								@RequestParam String firstName,
+//								@RequestParam String lastName,
+//								@RequestParam String bio,
+//								@RequestParam String email,
+//								@RequestParam String phone,
+//								@RequestParam String profileImage) {
+//		User user = new User();
+//		user.setFirstName(firstName);
+//		user.setLastName(lastName);
+//		user.setBio(bio);
+//		user.setEmail(email);
+//		user.setPhone(phone);
+//		user.setProfileImage(profileImage);
+//		
+//		userDAO.updateProfile(user);
+//		
+//		return "redirect:/users/sensei/"+userName;
+//	}
+	
 	@RequestMapping(path="/users/gh/{userName}", method=RequestMethod.GET)
 	public String ghProfile(Map<String, User> model, @PathVariable String userName) {
 		model.put("profile", userDAO.getGHProfileByUserName(userName));
