@@ -27,11 +27,18 @@
 		</div>
 		<div class="row">
 			<div class="col-md-5">
-				<c:out value="Name: ${profile.firstName} ${profile.lastName}" />
+				<c:out value="${profile.firstName} ${profile.lastName}" />
 				<br/>
+				<c:out value="${profile.email}" />
+				<br/>
+				<c:out value="${profile.phone}" />
+				<br/>
+				<h4>Panda Rating:</h4>
 				<c:forEach begin="1" end="${profile.rating}">
 					<img class="panda" src="../../img/rating.png" width="6%">
 				</c:forEach>
+				<br/>
+				
 			</div>
 			<div class="col-md-7">
 			

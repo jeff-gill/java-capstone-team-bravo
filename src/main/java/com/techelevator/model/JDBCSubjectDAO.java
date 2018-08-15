@@ -45,7 +45,7 @@ public class JDBCSubjectDAO implements SubjectDAO {
 		String updateSql = "update class set subject_name = ?, location = ? , event_date = ? , event_start_time = ?, "
 						 + "event_end_time = ?, cost = ?, available_slots = ?, description = ? WHERE user_name = ?";
 		jdbcTemplate.update(updateSql, subject.getClassName(), subject.getLocation(), subject.getDate(), subject.getStartTime(), 
-							subject.getEndTime(), subject.getCost(), subject.getAvailableSlots(), subject.getDescription());
+							subject.getEndTime(), subject.getCost(), subject.getAvailableSlots(), subject.getDescription(), userName);
 		
 	}
 

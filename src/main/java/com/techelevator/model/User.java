@@ -21,9 +21,23 @@ public class User {
 	private boolean isSensei;
 	private String profileImage;
 	private String salt;
+	private String email;
+	private String phone;
 	
 	//Added isSensei and salt getters and setters
 	
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	public String getPhone() {
+		return phone;
+	}
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
 	public String getSalt() {
 		return salt;
 	}
