@@ -18,6 +18,10 @@ public class Subject {
 		return classId;
 	}
 	
+	public void setClassId(int classId) {
+		this.classId = classId;
+	}
+
 	public String getClassName() {
 		return className;
 	}
