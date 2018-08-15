@@ -40,7 +40,7 @@
 		<div class="container-fluid">
 			<div class="row">
 				<div class="col-md-2 senseiPic" id="senseiPic">
-					<img src="../../img/SenseiMaster.jpg" />
+					<img src="../../img/SenseiMaster.jpg">
 				</div>
 				<div class="col-md-4" id="senseiTitle">
 					<h1>Sensei</h1>

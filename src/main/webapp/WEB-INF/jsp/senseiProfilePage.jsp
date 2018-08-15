@@ -49,7 +49,7 @@
 				<br />
 				<h4>Panda Rating:</h4>
 				<c:forEach begin="1" end="${profile.rating}">
-					<img class="panda" src="../../img/rating.png" width="6%">
+					<img class="panda" src="../img/rating.png" width="6%">
 				</c:forEach>
 				<br />
 
