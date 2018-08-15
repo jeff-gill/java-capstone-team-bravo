@@ -3,26 +3,39 @@
 	width: 100%;
 }
 
+.img-responsive{
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
 #senseiTitle {
 	font-size: 8vw;
 	padding-top: 5%;
 }
 
 #sensaiMotto {
-	padding-top: 15%;
-	font-size: 2vw;
-	font-style: italic;
-	font-weight: bold;
+    padding-top: 5%;
+    font-size: 2vw;
+    font-style: italic;
+    font-weight: bold;
+    text-align: right;
 }
 
-#navSearchText {
+input[type=submit] {
 	background-color: #bab758;
 	font-color: #ffffff;
 	font-weight: bold;
+	align-item: right;
 }
 
 input[type=submit]:hover {
 	background-color: #7d7b3b;
 	font-color: #ffffff;
 	font-weight: bold;
+	align-item: right;
+}
+
+#navSearchBar {
+	text-align: right;
 }
