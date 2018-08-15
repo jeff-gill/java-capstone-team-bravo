@@ -70,14 +70,14 @@ public class UserController {
 		return "senseiProfilePage";
 	}
 	
-	@RequestMapping(path="/users/sensei/{userName}/updateSubject", method=RequestMethod.POST)
+	@RequestMapping(path="usuers/sensei/{userName}/updateSubject", method=RequestMethod.POST)
 	public String updateSenseiSubject(@ModelAttribute Subject subject, @RequestParam int classId)
 	{
 		subjectDAO.updateSubject(subject, classId);
 		return "redirect:/users/sensei/{userName}";
 	}
 	
-	@RequestMapping(path="/users/gh/{userName}/updateSubject", method=RequestMethod.POST)
+	@RequestMapping(path="/gh/updateSubject", method=RequestMethod.POST)
 	public String updateGHSubject(@ModelAttribute Subject subject, @RequestParam int classId)
 	{
 		subjectDAO.updateSubject(subject, classId);
