@@ -100,6 +100,7 @@
 								</button>
 							</div>
 							<form id="ajax-profile-info" method="post">
+							<input type="hidden" name="CSRF_TOKEN" value="${CSRF_TOKEN}">
 								<div class="modal-body mx-3">
 									<div class="md-form mb-5">
 										<input type="text" id="orangeForm-name" name="firstName"
@@ -165,6 +166,7 @@
 							</div>
 							
 							<form id="ajax-class-schedule" method="post">
+							<input type="hidden" name="CSRF_TOKEN" value="${CSRF_TOKEN}">
 								<div class="modal-body mx-3">
 									<div class="md-form mb-5">
 										<input type="text" id="orangeForm-name" name="className"

@@ -23,12 +23,16 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.techelevator.model.Subject;
+import com.techelevator.model.SubjectDAO;
 import com.techelevator.model.User;
 import com.techelevator.model.UserDAO;
 
 @Controller
 public class UserController {
 
+	@Autowired
+	private SubjectDAO subjectDAO;
 	private UserDAO userDAO;
 	
 	@Autowired
@@ -64,6 +68,20 @@ public class UserController {
 		model.put("profile", userDAO.getSenseiProfileByUserName(userName));
 		
 		return "senseiProfilePage";
+	}
+	
+	@RequestMapping(path="/users/sensei/{userName}/updateSubject", method=RequestMethod.POST)
+	public String updateSenseiSubject(@ModelAttribute Subject subject, @RequestParam int classId)
+	{
+		subjectDAO.updateSubject(subject, classId);
+		return "redirect:/users/sensei/{userName}";
+	}
+	
+	@RequestMapping(path="/users/gh/{userName}/updateSubject", method=RequestMethod.POST)
+	public String updateGHSubject(@ModelAttribute Subject subject, @RequestParam int classId)
+	{
+		subjectDAO.updateSubject(subject, classId);
+		return "redirect:/users/gh/{userName}";
 	}
 	
 	@RequestMapping(path="/users/gh/{userName}", method=RequestMethod.GET)

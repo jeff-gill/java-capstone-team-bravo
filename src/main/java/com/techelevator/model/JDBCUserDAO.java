@@ -119,11 +119,9 @@ public class JDBCUserDAO implements UserDAO {
 
 	@Override
 	public void updateProfile(User user) {
-		jdbcTemplate.update("update user_info " + 
+		String updateProfile = "update user_info " + 
 				"set first_name = ?, last_name = ?, bio = ?, email = ?, phone = ?, profile_image = ? " + 
-				"where user_name = ?");
-		SqlRowSet result = jdbcTemplate.queryForRowSet(user.getUserName());
-		
-		
+				"where user_name = ?";
+		 jdbcTemplate.queryForRowSet(updateProfile, user.getFirstName(), user.getLastName(), user.getBio(), user.getEmail(), user.getPhone(), user.getProfileImage());	
 	}
 }
