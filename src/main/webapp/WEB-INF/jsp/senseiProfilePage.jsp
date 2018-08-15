@@ -19,9 +19,14 @@
 <section class="myContainer">
 	<div class="container-fluid">
 		<div class="row">
+			<div class="col-md-12">Sensei Profile Page</div>
+		</div>
+		<div class="row">
+		<div class="col-md-12"></div>
+		</div>
+		<div class="row">
 			<div class="col-md-5">
-				<img class="profilePic" src="src/main/ProfileImages/sensei"
-					alt="place holder" />
+				<img class="profilePic" src="../../img/${profile.profileImage}.jpg " alt="place holder" />
 			</div>
 			<div class="col-md-7">
 				<c:out value="Bio: ${profile.bio}" />
@@ -109,9 +114,8 @@
 											Last Name</label>
 									</div>
 									<div class="md-form mb-5">
-										<input type="email" id="orangeForm-email"
-					name="email" class="form-control validate">
-					 <label
+										<input type="email" id="orangeForm-email" name="email"
+											class="form-control validate"> <label
 											data-error="wrong" data-success="right"
 											for="orangeForm-email">Primary Email Address</label>
 									</div>
@@ -141,9 +145,9 @@
 
 			<div class="col-md-7">
 				<div class="text-center">
-					<a href="" id="updateButton" class="btn btn-default btn-rounded mb-4"
-						data-toggle="modal" data-target="#modalRegisterForm">Update
-						Your Class Schedule!!</a>
+					<a href="" id="updateButton"
+						class="btn btn-default btn-rounded mb-4" data-toggle="modal"
+						data-target="#modalRegisterForm">Update Your Class Schedule!!</a>
 				</div>
 
 
@@ -162,7 +166,7 @@
 							<form id="ajax-class-schedule" method="post">
 								<div class="modal-body mx-3">
 									<div class="md-form mb-5">
-										<input type="text" id="orangeForm-name" name="className" 
+										<input type="text" id="orangeForm-name" name="className"
 											class="form-control validate"> <label
 											data-error="wrong" data-success="right" for="orangeForm-name">Class
 											Name</label>
@@ -197,10 +201,10 @@
 									</div>
 									<br />
 									<div class="md-form mb-4">
-										<input type="password" id="orangeForm-pass" name="availableSlots"
-											class="form-control validate"> <label
-											data-error="wrong" data-success="right" for="orangeForm-pass">Available
-											Slots</label>
+										<input type="password" id="orangeForm-pass"
+											name="availableSlots" class="form-control validate">
+										<label data-error="wrong" data-success="right"
+											for="orangeForm-pass">Available Slots</label>
 									</div>
 									<br />
 									<div class="md-form mb-4">
@@ -221,7 +225,6 @@
 				</div>
 			</div>
 		</div>
-	</div>
 	</div>
 </section>
 
