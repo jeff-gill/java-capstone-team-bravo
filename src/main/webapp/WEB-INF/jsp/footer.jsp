@@ -6,8 +6,9 @@
 				<span class="glyphicon glyphicon-copyright-mark" id="icons"
 					aria-hidden="true"></span> Copyright 2018 Sensei Inc.
 			</div>
-			<div class="col-md-6" id="senseiMottoFooter">wonder. learn. connect.
+			<div class="col-md-5" id="senseiMottoFooter">wonder. learn. connect.
 				teach. repeat.</div>
+				<div class="col-md-1"></div>
 		</div>
 	</div>
 </footer>
