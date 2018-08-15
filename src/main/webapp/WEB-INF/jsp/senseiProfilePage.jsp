@@ -20,7 +20,7 @@
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-md-5">
-				<img class="profilePic" src="src/main/ProfileImages/sensei.jpg"
+				<img class="profilePic" src="src/main/ProfileImages/sensei"
 					alt="place holder" />
 			</div>
 			<div class="col-md-7">

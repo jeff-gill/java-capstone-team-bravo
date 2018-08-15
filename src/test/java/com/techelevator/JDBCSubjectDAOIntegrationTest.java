@@ -5,24 +5,31 @@ import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertNotNull;
 
 import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
+
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.SingleConnectionDataSource;
+
 import com.techelevator.model.JDBCSubjectDAO;
 import com.techelevator.model.Subject;
-import com.techelevator.model.User;
 
 public class JDBCSubjectDAOIntegrationTest 
 {
 	private static final String SUBJECT_NAME = "SWORD FIGHTING";
-	private static final int TEST_ID = 4;
+	private static final int TEST_ID = 2;
 
 	private static SingleConnectionDataSource dataSource;
+	
+	@Autowired
 	private JDBCSubjectDAO subjectDAO;
 
 	@BeforeClass
@@ -58,32 +65,45 @@ public class JDBCSubjectDAOIntegrationTest
 	}
 	
 	@Test
-	public void test_save_subject()
+	public void test_save_class() throws ParseException
 	{
-		Date date = new Date(10, 10, 2018);
-		Subject newSubject = getSubject(TEST_ID, SUBJECT_NAME, "Nowhere special", date, "1:00", "2:00", 12.00f, 4, "All I want for Christmas is my two front teeth");
+		DateFormat formatter = new SimpleDateFormat("MM-dd-yyyy");
+		Date date = formatter.parse("10-10-2018");
+		Subject subjects = getClass(TEST_ID, SUBJECT_NAME, "Nowhere special", date, "1:00", "2:00", 12.00f, 4, "All I want for Christmas is my two front teeth");
 		
-//		subjectDAO.saveSubject(newSubject);
+		subjectDAO.saveClass(subjects);
 		
-		assertNotEquals(null, newSubject.getClassId());
+		assertNotEquals(null, subjects.getClassId());
 	}
 	
 	@Test
-	public void update_subject()
+	public void test_save_subject() throws ParseException
 	{
-		Date date = new Date(10, 10, 2018);
-		Subject newSubject = getSubject(TEST_ID, SUBJECT_NAME, "Nowhere special", date, "1:00", "2:00", 12.00f, 4, "All I want for Christmas is my two front teeth");
-		subjectDAO.saveSubject(newSubject);
-		subjectDAO.updateSubject(newSubject, TEST_ID);
-		assertEquals(SUBJECT_NAME, newSubject.getClassName());
-	}
-	
-	@Test
-	public void test_get_subject_by_id()
-	{
-		Date date = new Date(10, 10, 2018);
-		Subject subjects = getSubject(TEST_ID, SUBJECT_NAME, "Nowhere special", date, "1:00", "2:00", 12.00f, 4, "All I want for Christmas is my two front teeth");
+		Subject subjects = getSubject(SUBJECT_NAME);
+		
 		subjectDAO.saveSubject(subjects);
+		
+		assertEquals(SUBJECT_NAME, subjects.getClassName());
+	}
+	
+	@Test
+	public void update_subject() throws ParseException
+	{
+		DateFormat formatter = new SimpleDateFormat("MM-dd-yyyy");
+		Date date = formatter.parse("10-10-2018");
+		Subject subjects = getClass(TEST_ID, SUBJECT_NAME, "Nowhere special", date, "1:00", "2:00", 12.00f, 4, "All I want for Christmas is my two front teeth");
+		subjectDAO.saveClass(subjects);
+		subjectDAO.updateSubject(subjects, TEST_ID);
+		assertEquals(SUBJECT_NAME, subjects.getClassName());
+	}
+	
+	@Test
+	public void test_get_subject_by_id() throws ParseException
+	{
+		DateFormat formatter = new SimpleDateFormat("MM-dd-yyyy");
+		Date date = formatter.parse("10-10-2018");
+		Subject subjects = getClass(TEST_ID, SUBJECT_NAME, "Nowhere special", date, "1:00", "2:00", 12.00f, 4, "All I want for Christmas is my two front teeth");
+		subjectDAO.saveClass(subjects);
 		
 		Subject sub = subjectDAO.getSubjectById(TEST_ID);
 		
@@ -99,11 +119,11 @@ public class JDBCSubjectDAOIntegrationTest
 		assertEquals(expected.getDate(), actual.getDate());
 		assertEquals(expected.getStartTime(), actual.getStartTime());
 		assertEquals(expected.getEndTime(), actual.getEndTime());
-		assertEquals(expected.getCost(), actual.getCost());
+		assertEquals(expected.getCost(), actual.getCost(), 0.01);
 		assertEquals(expected.getDescription(), actual.getDescription());
 	}
 	
-	private Subject getSubject(int id, String subjectName, String location, Date date, String startTime, String endTime, float cost, int availableSlots, String description) 
+	private Subject getClass(int id, String subjectName, String location, Date date, String startTime, String endTime, float cost, int availableSlots, String description) 
 	{
 		Subject subjects = new Subject();
 		subjects.setClassId(id);
@@ -116,6 +136,14 @@ public class JDBCSubjectDAOIntegrationTest
 		subjects.setAvailableSlots(availableSlots);
 		subjects.setDescription(description);
 	
+		return subjects;
+	}
+	
+	private Subject getSubject(String className)
+	{
+		Subject subjects = new Subject();
+		subjects.setClassName(className);
+		
 		return subjects;
 	}
 }
