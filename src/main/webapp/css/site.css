@@ -47,7 +47,7 @@ input[type=submit] {
 
 input[type=submit]:hover {
 	background-color: #7d7b3b;
-	font-color: #ffffff;
+	color: #ffffff;
 	font-weight: bold;
 	align-item: right;
 }
@@ -67,6 +67,22 @@ input[type=submit]:hover {
     background-color: #f5f5f5;
 }
 
-/* #senseiMottoFooter {
+#senseiMottoFooter {
 	text-align: right;	
-} */
+}
+
+/* profile modal */
+
+#updateButton :hover {
+	background-color: #7d7b3b;
+	color: #ffffff;
+	font-weight: bold;
+}
+
+#updateButton {
+	background-color: #bab758;
+	color: black;
+	font-weight: bold;
+}
+
+md-form mb-5
