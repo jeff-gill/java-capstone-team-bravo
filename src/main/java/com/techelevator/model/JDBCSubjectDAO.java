@@ -1,7 +1,5 @@
 package com.techelevator.model;
 
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.util.List;
 
 import javax.sql.DataSource;
@@ -36,7 +34,7 @@ public class JDBCSubjectDAO implements SubjectDAO {
 	//Added this
 	@Override
 	public void saveSubject(Subject subject) {
-		Subject sub = new Subject();
+		Subject sub = getSubject(subject.getClassName());
 		
 		if (sub.getClassName().toUpperCase().equals(subject.getClassName().toUpperCase()))
 		{
@@ -45,7 +43,7 @@ public class JDBCSubjectDAO implements SubjectDAO {
 		else
 		{	
 			String sqlSaveSubject = "insert into subjects (subject_name) values (?)";
-			jdbcTemplate.update(sqlSaveSubject, subject.getClassName().toUpperCase());
+			jdbcTemplate.update(sqlSaveSubject, subject.getClassName());
 		}
 
 	}
@@ -103,6 +101,20 @@ public class JDBCSubjectDAO implements SubjectDAO {
 		subject.setDescription(results.getString("description"));
 		
 		return subject;
+	}
+	
+	private Subject getSubject(String subjectName)
+	{
+		Subject subjects = null;
+		String sqlFindIdOfSubject = "select * from class where subject_name = ?";
+		SqlRowSet result = jdbcTemplate.queryForRowSet(sqlFindIdOfSubject, subjectName);
+		
+		while (result.next())
+		{
+			subjects = mapRowToSubject(result);
+		}
+		
+		return subjects;
 	}
 //	
 //	//Added this
