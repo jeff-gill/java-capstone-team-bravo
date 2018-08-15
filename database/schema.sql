@@ -29,8 +29,9 @@ create table user_info (
     last_name varchar (35) not null,
     bio varchar (360) not null,
     ratings int, 
-    profile_image varchar(35) not null,
     is_sensei boolean not null,
+    email varchar(35) not null,
+    phone varchar(20),
 
     constraint pk_user_name primary key (user_name)
 );
@@ -56,8 +57,8 @@ create table class (
 	subject_name varchar(35) not null,
 	location varchar(50) not null,
 	event_date date not null,
-	event_start_time time not null,
-	event_end_time time not null,
+	event_start_time varchar(10) not null,
+	event_end_time varchar(10) not null,
 	cost float not null,
 	available_slots integer not null,
 	description varchar(360) not null,
