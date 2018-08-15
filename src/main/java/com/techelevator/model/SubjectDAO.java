@@ -4,6 +4,8 @@ import java.util.List;
 
 public interface SubjectDAO {
 	
+	public void saveClass(Subject subject);
+	
 	public void saveSubject(Subject subject);
 	
 	public List<Subject> searchSubject(String className);
