@@ -38,9 +38,10 @@ create table user_info (
 );
 
 create table subjects (
-	subject_name varchar(35) not null unique,
+	subject_id serial, 
+	subject_name varchar(35) not null,
 	
-	constraint pk_subject_name primary key (subject_name)
+	constraint pk_subject_id primary key (subject_id)
 );
 
 create table user_subjects (

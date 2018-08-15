@@ -45,6 +45,7 @@
 				<br />
 
 			</div>
+			
 			<div class="col-md-7">
 
 
@@ -60,6 +61,7 @@
 									<span aria-hidden="true">&times;</span>
 								</button>
 							</div>
+							
 							<form id="ajax-class-schedule" method="post">
 								<div class="modal-body mx-3">
 									<div class="md-form mb-5">
