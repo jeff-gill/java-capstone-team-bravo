@@ -98,7 +98,7 @@
 						</div>
 					</div>
 					<div>
-						<div class="text-center">
+						<div class="text-right">
 							<a href="" id="updateButton" class="btn btn-rounded mb-4"
 								id="updateButton" data-toggle="modal"
 								data-target="#modalRegisterForm">Update Your Class
