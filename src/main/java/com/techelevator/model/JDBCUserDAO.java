@@ -29,7 +29,7 @@ public class JDBCUserDAO implements UserDAO {
 		String hashedPassword = hashMaster.computeHash(password, salt);
 		//String saltString = new String(Base64.encode(salt));
 		
-		jdbcTemplate.update("INSERT INTO user_info(user_name, password) VALUES (?, ?)",
+		jdbcTemplate.update("INSERT INTO user_info(user_name, password, first_name, last_name, bio, is_sensei) VALUES (?, ?, ?, ?, ?, ?)",
 				userName, hashedPassword);
 	}
 
