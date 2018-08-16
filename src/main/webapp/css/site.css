@@ -44,7 +44,6 @@
 
 input[type=submit] {
 	background-color: #bab758;
-	font-color: #ffffff;
 	font-weight: bold;
 	align-item: right;
 }
@@ -85,26 +84,24 @@ input[type=submit]:hover {
 
 /* profile modal */
 
-.updateButton :hover {
-	background-color: #7d7b3b;
-	color: #ffffff;
-	font-weight: bold;
-}
-
-.updateButton {
-	background-color: #bab758;
-	color: black;
-	font-weight: bold;
+.updateProfileButton {
+	background-color: #bab758 !important;
+	color: #000000  !important;
+	font-weight: bold  !important;
+	align-text: center  !important;
 }
 
 /* profile page info */
 #profilePic {
-    display: inline-block;
-  position: relative;
-  width: 300px;
-  height: 300px;
-  overflow: hidden;
-  border-radius: 50%;
+  display: inline-block;
+    position: relative;
+    width: 300px;
+    height: 300px;
+    overflow: hidden;
+    border-radius: 50%;
+    border-width: 10px;
+    border-style: outset;
+    border-color: #bab758;
 }
 #profilePic img {
 	 width: auto;
@@ -132,3 +129,47 @@ input[type=submit]:hover {
 	     }
 	}
 }
+
+.profileName {
+	font-size: 42px;
+}
+
+.userSections {
+	display: flex;
+	align-items: center;
+	padding: 20px;
+	 border-width:1px;  
+    border-style: outset;
+    border-color: #bab758;
+
+}
+
+.userInfoLabels {
+	padding-right: 15px;
+	min-width:130px;
+	font-size: 16px;
+}
+
+.bioRow {
+	padding-bottom: 30px;
+}
+.classSections {
+	align-items: center;
+	padding: 20px;
+	 border-width:1px;  
+    border-style: outset;
+    border-color: #bab758;
+    user-select: none;
+	text-decoration: none;
+
+}
+
+.classInfoLabels {
+	padding-right: 15px;
+	min-width:75px;
+}	
+
+#classContent {
+ padding: 0;
+ min-height: 50px;
+ }

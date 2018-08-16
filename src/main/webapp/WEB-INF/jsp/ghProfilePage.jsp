@@ -19,73 +19,24 @@
 <section class="myContainer">
 	<div class="container-fluid">
 		<div class="row">
-			<div class="col-md-12">Grasshopper Profile Page</div>
-		</div>
-		<div class="row">
-			<div class="col-md-12"></div>
-		</div>
-		<div class="row">
-			<div class="col-md-5" id="profilePic">
-				<img class="profilePic" src="../../img/${profile.profileImage}.jpg "
-					alt="place holder" />
-			</div>
-			<div class="col-md-7">
-				<c:out value="Bio: ${profile.bio}" />
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-md-12"></div>
-		</div>
-		<div class="row">
-			<div class="col-md-5">
-				<div>
+			<div class="col-md-12">
+				<h2 class="profileName">
 					<c:out value="${profile.firstName} ${profile.lastName}" />
-				</div>
-
-
-
-				<c:out value="${profile.email}" />
-				<br />
-				<c:out value="${profile.phone}" />
-				<br />
-				<h4>Panda Rating:</h4>
-				<c:forEach begin="1" end="${profile.rating}">
-					<img class="panda" src="../../img/rating.png" width="6%">
-				</c:forEach>
-				<br />
-
-			</div>
-
-
-
-			<br />
-			<div class="col-md-7">
-				<table>
-					<tr>
-						<th>Name</th>
-						<th>Location</th>
-						<th>Date</th>
-						<th>Time</th>
-						<th>Cost</th>
-						<th>Class Description</th>
-					</tr>
-					<tr>
-						<td>Sword Fighting</td>
-						<td>Goodale Park</td>
-						<td>10/25/2018</td>
-						<td>10:00-11:00</td>
-						<td>$25</td>
-						<td>Learn to slash zombies</td>
-					</tr>
-				</table>
+				</h2>
 			</div>
 		</div>
 		<div class="row">
+			<div class="col-md-12"></div>
+		</div>
+		<div class="row bioRow">
 			<div class="col-md-5">
+				<div id="profilePic">
+				<img src="../../img/${profile.profileImage}.jpg " alt="place holder" /></div>
+				<div class="updateButton">
 				<div class="text-right">
-					<a href="" class="btn btn-rounded mb-4 updateButton"
-					 data-toggle="modal"
-						data-target="#modalProfileInfoForm">Update Profile Info!</a>
+					<a href="" class="btn btn-rounded mb-4 updateProfileButton" 
+						data-toggle="modal" data-target="#modalProfileInfoForm">Update
+						Profile Info!</a>
 				</div>
 				<div class="modal fade" id="modalProfileInfoForm" tabindex="-1"
 					role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -99,6 +50,7 @@
 								</button>
 							</div>
 							<form id="ajax-profile-info" method="post">
+								<input type="hidden" name="CSRF_TOKEN" value="${CSRF_TOKEN}">
 								<div class="modal-body mx-3">
 									<div class="md-form mb-5">
 										<input type="text" id="orangeForm-name" name="firstName"
@@ -141,10 +93,86 @@
 					</div>
 				</div>
 			</div>
+			</div>
+			<div class="col-md-1"></div>
+			<div class="col-md-6">
+				<div class="userSections">
+					<div class="userInfoLabels">
+						<b>Bio Info:</b>
+					</div>
+					<div>
+						<c:out value="${profile.bio}" />
+					</div>
+				</div>
+				<div class="userSections">
+					<div class="userInfoLabels">
+						<b>Email:</b>
+					</div>
 
+					<div>
+						<c:out value="${profile.email}" />
+					</div>
+				</div>
+				<div class="userSections">
+					<div class="userInfoLabels">
+						<b>Phone #: </b>
+					</div>
+					<div>
+						<c:out value="${profile.phone}" />
+					</div>
+				</div>
+				<div class="userSections">
+					<div class="userInfoLabels">
+						<b>Panda Rating: </b>
+					</div>
+					<div class="pandaFaces">
+						<c:forEach begin="1" end="${profile.rating}">
+							<img class="panda" src="../../img/rating.png" width="6%">
+						</c:forEach>
+						<a>&emsp;(out of 5)</a>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-4" id="classContent">
+				<div class="classSections">
+					<p>
+						<a class="classInfoLabels"> <b>Subject:</b></a> placeholder
+						<%-- ${class.subjectName} --%>
+					</p>
+					<p>
+						<a class="classInfoLabels"> <b>Location:</b></a> placeholder
+						<%-- ${class.location} --%>
+					</p>
+					<p>
+						<a class="classInfoLabels"> <b>Date:</b></a> placeholder
+						<%-- ${class.date} --%>
+					</p>
+				</div>
+			</div>
+			<div class="col-md-4" id="classContent">
+				<div class="classSections">
+					<p>
+						<a class="classInfoLabels"> <b>Time:</b></a> placeholder
+						<%-- ${class.time} --%>
+					</p>
+					<p>
+						<a class="classInfoLabels"> <b>Cost:</b></a>placeholder
+						<%-- ${class.cost} --%>
+					</p>
+				</div>
+			</div>
+			<div class="col-md-4" id="classContent">
+				<div class="classSections">
+					<p>
+						<a class="classInfoLabels"> <b>Class Description:</b></a>placeholder
+						<%-- ${class.description} --%>
+					</p>
+				</div>
+			</div>
 		</div>
 	</div>
-	
 </section>
 
 <c:import url="/WEB-INF/jsp/footer.jsp" />
