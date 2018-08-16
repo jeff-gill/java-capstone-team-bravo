@@ -22,16 +22,19 @@
 	       min-width: 5%;
 	     }
 	}
-
+#mottoContainer {
+	    padding-top: 4%;
+}
 #senseiTitle h1{
 	font-size: 100px;
-    padding-top: 5%;
+    padding-top: 10%;
 }
 
 #sensaiMotto {
     font-style: italic;
     font-weight: bold;
     text-align: right;
+   
 }
 
 .glyphicon {
@@ -57,6 +60,7 @@ input[type=submit]:hover {
 
 #navSearchBar {
 	text-align: right;
+	    vertical-align: middle;
 }
 
 /* /* footer */
