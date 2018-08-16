@@ -84,8 +84,6 @@
 				<c:choose>
 					<c:when test="${empty currentUser}">
 						<c:url var="loginHref" value="/login" />
-						<li><a href="${loginHref}">Log In</a></li>
-						<c:url var="loginHref" value="/login" />
 						<li><a href="${loginHref}">Log Out</a></li>
 					</c:when>
 					<c:otherwise>
