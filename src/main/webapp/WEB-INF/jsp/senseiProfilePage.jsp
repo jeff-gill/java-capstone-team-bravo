@@ -15,6 +15,8 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
 <script
 	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+	
+	<c:url var="formAction" value="/users/sensei/${currentUser.userName}" />
 
 <section class="myContainer">
 	<div class="container-fluid">
@@ -52,7 +54,7 @@
 										<span aria-hidden="true">&times;</span>
 									</button>
 								</div>
-								<form id="ajax-profile-info" method="post">
+								<form action = "${formAction}" method = "POST">
 									<input type="hidden" name="CSRF_TOKEN" value="${CSRF_TOKEN}">
 									<div class="modal-body mx-3">
 										<div class="md-form mb-5">

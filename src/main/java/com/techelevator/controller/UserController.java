@@ -9,6 +9,7 @@ import java.util.Map;
 import java.util.UUID;
 
 import javax.servlet.ServletContext;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -68,6 +69,31 @@ public class UserController {
 		model.put("profile", userDAO.getSenseiProfileByUserName(userName));
 		
 		return "senseiProfilePage";
+	}
+	
+	@RequestMapping(path="/users/sensei/{userName}", method=RequestMethod.POST)
+	public String updateProfile(@PathVariable String userName,
+								@RequestParam String firstName,
+								@RequestParam String lastName,
+								@RequestParam String bio,
+								@RequestParam String email,
+							//	@RequestParam String profileImage,
+								@RequestParam String phone,
+								HttpSession session
+								) {
+		User user = new User();
+		user.setFirstName(firstName);
+		user.setLastName(lastName);
+		user.setBio(bio);
+		user.setEmail(email);
+		user.setPhone(phone);
+//		user.setProfileImage(profileImage);
+		
+		userDAO.updateProfile(user, userName);
+		
+		session.setAttribute("currentUser", user);
+		
+		return "redirect:/users/sensei/"+userName;
 	}
 	
 	@RequestMapping(path="users/sensei/{userName}/updateSubject", method=RequestMethod.POST)
