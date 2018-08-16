@@ -1,6 +1,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 
-<!DOCTYPE html>
 <html>
 <head>
 <title>Sensei</title>
@@ -16,11 +16,26 @@
 	src="https://cdn.jsdelivr.net/jquery.timeago/1.4.1/jquery.timeago.min.js"></script>
 <script
 	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-<link rel="stylesheet" href="../../css/site.css">
-</head>
-<h2 cssClass="error">${error}</h2>
+<link rel="stylesheet" href="css/site.css">
 
-<script type="text/javascript">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script defer
+	src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"
+	integrity="sha384-4oV5EgaV02iISL2ban6c/RmotsABqE4yZxZLcYMAdG7FAPsyHYAPpywE9PJo+Khy"
+	crossorigin="anonymous"></script>
+<link rel="stylesheet"
+	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+<link rel="stylesheet" href="style.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+<script
+	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+<c:url var="formAction" value="/users/sensei/${currentUser.userName}" />
+
+
+<!-- <script type="text/javascript">
 	$(document).ready(function () {
 		$.validator.addMethod('capitals', function(thing){
 			return thing.match(/[A-Z]/);
@@ -53,34 +68,35 @@
 			errorClass : "error"
 		});
 	});
-</script>
+</script> -->
 
 <section class="myContainer">
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-sm-6">
-				<div class="col-md-2 senseiPic" id="senseiPic">
+				<div class="col-md-2 senseiPicHome" id="senseiPicHome">
 					<img src="../../img/SenseiMaster.jpg">
+				</div><br>
+				<div class="senseiMottoHome">
+				wonder. learn. connect. teach. repeat.</div>
+				<div>
+					<c:url var="formAction" value="/login" />
+					<form method="POST" action="${formAction}">
+						<input type="hidden" name="destination"
+							value="${param.destination}" /> <input type="hidden"
+							name="CSRF_TOKEN" value="${CSRF_TOKEN}" />
+						<div class="form-group">
+							<label for="userName">User Name: </label> <input type="text"
+								id="userName" name="userName" placeHolder="User Name"
+								class="form-control" />
+						</div>
+						<div class="form-group">
+							<label for="password">Password: </label> <input type="password"
+								id="password" name="password" placeHolder="Password"
+								class="form-control" />
+						</div>
+						<button type="submit" class="btn btn-default">Login</button>
 				</div>
-				<div class="senseiMottoHome">wonder. learn. connect. teach.
-					repeat.</div>
-				<c:url var="formAction" value="/login" />
-				<form method="POST" action="${formAction}">
-					<input type="hidden" name="destination"
-						value="${param.destination}" /> <input type="hidden"
-						name="CSRF_TOKEN" value="${CSRF_TOKEN}" />
-					<div class="form-group">
-						<label for="userName">User Name: </label> <input type="text"
-							id="userName" name="userName" placeHolder="User Name"
-							class="form-control" />
-					</div>
-					<div class="form-group">
-						<label for="password">Password: </label> <input type="password"
-							id="password" name="password" placeHolder="Password"
-							class="form-control" />
-					</div>
-					<button type="submit" class="btn btn-default">Login</button>
-				</form>
 			</div>
 			<div class="col-sm-6">
 				<c:url var="formAct" value="/" />
@@ -127,8 +143,7 @@
 				</div>	
 		</div>	
 	</div>	
->>>>>>> fb20bf952b1773687948309d85c7e99224d73816
+
 </section>
-
-
-<c:import url="/WEB-INF/jsp/footer.jsp" />
+</body>
+</html>
