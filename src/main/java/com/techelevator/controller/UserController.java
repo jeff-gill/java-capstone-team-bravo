@@ -70,7 +70,7 @@ public class UserController {
 		return "senseiProfilePage";
 	}
 	
-	@RequestMapping(path="usuers/sensei/{userName}/updateSubject", method=RequestMethod.POST)
+	@RequestMapping(path="users/sensei/{userName}/updateSubject", method=RequestMethod.POST)
 	public String updateSenseiSubject(@ModelAttribute Subject subject, @RequestParam int classId)
 	{
 		subjectDAO.updateSubject(subject, classId);
