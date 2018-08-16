@@ -1,5 +1,7 @@
 package com.techelevator.model;
 
+import java.util.List;
+
 import javax.sql.DataSource;
 import org.bouncycastle.util.encoders.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,10 +26,10 @@ public class JDBCUserDAO implements UserDAO {
 	public void saveUser(String userName, String password) {
 		byte[] salt = hashMaster.generateRandomSalt();
 		String hashedPassword = hashMaster.computeHash(password, salt);
-		String saltString = new String(Base64.encode(salt));
+		//String saltString = new String(Base64.encode(salt));
 		
-		jdbcTemplate.update("INSERT INTO user_info(user_name, password, salt) VALUES (?, ?, ?)",
-				userName, hashedPassword, saltString);
+		jdbcTemplate.update("INSERT INTO user_info(user_name, password) VALUES (?, ?)",
+				userName, hashedPassword);
 	}
 
 	@Override
@@ -36,12 +38,12 @@ public class JDBCUserDAO implements UserDAO {
 							      "FROM user_info "+
 							      "WHERE (user_name) = ? ";
 		
-		SqlRowSet user = jdbcTemplate.queryForRowSet(sqlSearchForUser, userName.toUpperCase());
+		SqlRowSet user = jdbcTemplate.queryForRowSet(sqlSearchForUser, userName);
 		if(user.next()) {
-			String dbSalt = user.getString("salt");
+//			String dbSalt = user.getString("salt");
 			String dbHashedPassword = user.getString("password");
-			String givenPassword = hashMaster.computeHash(password, Base64.decode(dbSalt));
-			return dbHashedPassword.equals(givenPassword);
+//			String givenPassword = hashMaster.computeHash(password, Base64.decode(dbSalt));
+			return dbHashedPassword.equals(password);
 		} else {
 			return false;
 		}
@@ -53,17 +55,15 @@ public class JDBCUserDAO implements UserDAO {
 	}
 
 	@Override
-	public Object getUserByUserName(String userName) {
+	public User getUserByUserName(String userName) {
 		String sqlSearchForUsername ="SELECT * "+
 		"FROM user_info "+
 		"WHERE user_name = ? ";
 
 		SqlRowSet user = jdbcTemplate.queryForRowSet(sqlSearchForUsername, userName); 
-		User thisUser = null;
+		User thisUser = new User();
 		if(user.next()) {
-			thisUser = new User();
-			thisUser.setUserName(user.getString("user_name"));
-			thisUser.setPassword(user.getString("password"));
+			thisUser = mapRowToUser(user);
 		}
 
 		return thisUser;
@@ -123,5 +123,14 @@ public class JDBCUserDAO implements UserDAO {
 				"set first_name = ?, last_name = ?, bio = ?, email = ?, phone = ?, profile_image = ? " + 
 				"where user_name = ?";
 		 jdbcTemplate.queryForRowSet(updateProfile, user.getFirstName(), user.getLastName(), user.getBio(), user.getEmail(), user.getPhone(), user.getProfileImage());	
+	}
+
+	@Override
+	public List getSenseisBySubject(String className) {
+		String sqlProfileBySubject = "Select subject_name, user_info.user_name from user_info " + 
+				"join user_subjects on user_info.user_name = user_subjects.user_name " + 
+				"join subjects on user_subjects.subject_id = subjects.subject_id " + 
+				"where is_sensei = true and subject_name = ?";
+		return null;
 	}
 }

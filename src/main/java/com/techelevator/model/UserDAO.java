@@ -1,5 +1,7 @@
 package com.techelevator.model;
 
+import java.util.List;
+
 public interface UserDAO {
 
 	public void saveUser(String userName, String password);
@@ -8,7 +10,7 @@ public interface UserDAO {
 
 	public void updatePassword(String userName, String password);
 
-	public Object getUserByUserName(String userName);
+	public User getUserByUserName(String userName);
 	
 	public User getSenseiProfileByUserName(String userName);
 	
@@ -17,6 +19,9 @@ public interface UserDAO {
 	public void updateImageName(String userName, String imageName);
 	
 	public void updateProfile(User user);
+	
+	public List getSenseisBySubject(String className);
+	
 	
 
 }
