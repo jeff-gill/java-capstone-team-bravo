@@ -1,6 +1,9 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 
 <c:import url="/WEB-INF/jsp/header.jsp" />
+
+<h2 cssClass="error">${error}</h2>
 
 <script type="text/javascript">
 	$(document).ready(function () {
@@ -56,46 +59,48 @@
 						<button type="submit" class="btn btn-default">Login</button>
 					</form>
 				</div>
-		<div class="col-sm-6">
-			<c:url var="formAction" value="/users" />
-				<form method="POST" action="${formAction}">
-					<input type="hidden" name="CSRF_TOKEN" value="${CSRF_TOKEN}"/>
-					<div class="form-group">
-						<label for="userName">User Name: </label>
-						<input type="text" id="userName" name="userName" placeHolder="User Name" class="form-control" />
-					</div>
-					<div class="form-group">
-						<label for="password">Password: </label>
-						<input type="password" id="password" name="password" placeHolder="Password" class="form-control" />									</div>
+				<div class="col-sm-6">
+					<c:url var="formAction" value="/users" />
+					<form method="POST" action="${formAction}">
+						<input type="hidden" name="CSRF_TOKEN" value="${CSRF_TOKEN}"/>
 						<div class="form-group">
-							<label for="confirmPassword">Confirm Password: </label>
-							<input type="password" id="confirmPassword" name="confirmPassword" placeHolder="Re-Type Password" class="form-control" />	
+							<label for="userName">User Name: </label>
+							<input type="text" id="userName" name="userName" placeHolder="User Name" class="form-control" />
 						</div>
 						<div class="form-group">
-							<label for="firstName">First Name: </label>
-							<input type="text" id="firstName" name="firstName" placeHolder="First Name" class="form-control" />
-						</div>
-						<div class="form-group">
-							<label for="lastName">Last Name: </label>
-							<input type="text" id="lastName" name="lastName" placeHolder="Last Name" class="form-control" />
-						</div>
-						<div class="form-group">
-							<label for="firstName">First Name: </label>
-							<input type="text" id="firstName" name="firstName" placeHolder="First Name" class="form-control" />
-						</div>
-						<div class="form-group">
-							<label for="bio">Bio: </label>
-							<input type="text" id="bio" name="bio" placeHolder="Bio" class="form-control" />
-						</div>
-						<div class="form-group">
-							<label for="email">Email: </label>
-							<input type="text" id="email" name="email" placeHolder="Email" class="form-control" />
-						</div>
-						<button type="submit" class="btn btn-default">Create User</button>
+							<label for="password">Password: </label>
+							<input type="password" id="password" name="password" placeHolder="Password" class="form-control" />									</div>
+							<div class="form-group">
+								<label for="confirmPassword">Confirm Password: </label>
+								<input type="password" id="confirmPassword" name="confirmPassword" placeHolder="Re-Type Password" class="form-control" />	
+							</div>
+							<div class="form-group">
+								<label for="firstName">First Name: </label>
+								<input type="text" id="firstName" name="firstName" placeHolder="First Name" class="form-control" />
+							</div>
+							<div class="form-group">
+								<label for="lastName">Last Name: </label>
+								<input type="text" id="lastName" name="lastName" placeHolder="Last Name" class="form-control" />
+							</div>
+							<div class="form-group">
+								<label for="bio">Bio: </label>
+								<input type="text" id="bio" name="bio" placeHolder="Bio" class="form-control" />
+							</div>
+							<div class="form-group">
+								<label for="email">Email: </label>
+								<input type="text" id="email" name="email" placeHolder="Email" class="form-control" />
+							</div>
+							<label for="isSensei">Choose Sensei or Grasshopper: </label>
+							<div class="form-group">
+								<form:radiobutton path="isSensei" value="true" name="isSensei" />Sensei
+								<form:radiobutton path="isSensei" value="false" name="isSensei" />Grasshopper
+								<form:errors path="activityLevel" cssClass="error" />
+							</div>
+							<button type="submit" class="btn btn-default">Create User</button>
 					</form>
 				</div>	
-			</div>	
 		</div>	
+	</div>	
 </section>
 
 
