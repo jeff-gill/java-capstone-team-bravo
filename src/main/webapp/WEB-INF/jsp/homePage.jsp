@@ -116,35 +116,34 @@
 								<label for="confirmPassword">Confirm Password: </label>
 								<input type="password" id="confirmPassword" name="confirmPassword" placeHolder="Re-Type Password" class="form-control" />	
 							</div> -->
-					<div class="form-group">
-						<label for="firstName">First Name: </label> <input type="text"
-							id="firstName" name="firstName" placeHolder="First Name"
-							class="form-control" />
-					</div>
-					<div class="form-group">
-						<label for="lastName">Last Name: </label> <input type="text"
-							id="lastName" name="lastName" placeHolder="Last Name"
-							class="form-control" />
-					</div>
-					<div class="form-group">
-						<label for="bio">Bio: </label> <input type="text" id="bio"
-							name="bio" placeHolder="Bio" class="form-control" />
-					</div>
-					<div class="form-group">
-						<label for="email">Email: </label> <input type="text" id="email"
-							name="email" placeHolder="Email" class="form-control" />
-					</div>
-					<label for="isSensei">Choose Sensei or Grasshopper: </label>
-					<div class="form-group">
-						<input type="radio" value="true" name="isSensei" /> Sensei <input
-							type="radio" value="false" name="isSensei" /> Grasshopper
-						<%-- <form:errors path="activityLevel" cssClass="error" /> --%>
-					</div>
-					<button type="submit" class="btn btn-default">Create User</button>
-				</form>
-			</div>
-		</div>
-	</div>
+							<div class="form-group">
+								<label for="firstName">First Name: </label>
+								<input type="text" id="firstName" name="firstName" placeHolder="First Name" class="form-control" />
+							</div>
+							<div class="form-group">
+								<label for="lastName">Last Name: </label>
+								<input type="text" id="lastName" name="lastName" placeHolder="Last Name" class="form-control" />
+							</div>
+							<div class="form-group">
+								<label for="bio">Bio: </label>
+								<input type="text" id="bio" name="bio" placeHolder="Bio" class="form-control" />
+							</div>
+							<div class="form-group">
+								<label for="email">Email: </label>
+								<input type="text" id="email" name="email" placeHolder="Email" class="form-control" />
+							</div>
+							<label for="isSensei">Choose Sensei or Grasshopper: </label>
+							<div class="form-group">
+								<input type="radio" value="true" name="sensei" /> Sensei
+								<input type="radio" value="false" name="sensei" /> Grasshopper
+								<form:errors path="activityLevel" cssClass="error" />
+							</div>
+							<button type="submit" class="btn btn-default">Create User</button>
+					</form>
+				</div>	
+		</div>	
+	</div>	
+
 </section>
 </body>
 </html>

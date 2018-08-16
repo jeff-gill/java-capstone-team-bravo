@@ -3,6 +3,8 @@ package com.techelevator.model;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
+import org.hibernate.validator.constraints.NotBlank;
+
 public class User {
 	private String userName;
 	
@@ -11,6 +13,7 @@ public class User {
 		@Pattern(regexp=".*[a-z].*", message="Must have a lower case"),
 		@Pattern(regexp=".*[A-Z].*", message="Must have a capital")
 	})
+
 	private String password;
 	private String role;
 	private String confirmPassword;

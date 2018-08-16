@@ -36,8 +36,7 @@ public class UserController {
 	private SubjectDAO subjectDAO;
 	private UserDAO userDAO;
 	
-	@Autowired
-	ServletContext servletContext;
+
 
 	@Autowired
 	public UserController(UserDAO userDAO) {
@@ -173,62 +172,4 @@ public class UserController {
 		
 		return "ghProfilePage";
 	}
-	
-	@RequestMapping(path="/uploadFile", method=RequestMethod.POST)
-	public String handleFileUpload(@RequestParam MultipartFile file, ModelMap map, @RequestParam String userName) 
-	{	
-		File imagePath = getImageFilePath();
-		UUID guid = UUID.randomUUID();
-		String imageName = imagePath + File.separator + guid.toString();
-		userDAO.updateImageName(userName, imageName);
-		
-		if (file.isEmpty()) 
-		{
-			map.addAttribute("message", "File Object empty");
-		} 
-		else 
-		{
-			createImage(file, imageName);
-		}
-		
-		map.addAttribute("message", "uploaded to: " + imageName);
-		
-		return "showFile";
-	}
-	
-	private File getImageFilePath() 
-	{
-		String serverPath = getServerContextPath();
-		File filePath = new File(serverPath);
-		
-		if (!filePath.exists()) 
-		{
-			filePath.mkdirs();
-		}
-		
-		return filePath;
-	}
-	
-	private String getServerContextPath() 
-	{
-		return servletContext.getRealPath("/capstone/src/main/ProfileImages/");
-	}
-	
-	private void createImage(MultipartFile file, String name) 
-	{
-		File image = new File(name);
-		try (BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(image))) 
-		{
-			stream.write(file.getBytes());
-		
-		} 
-		catch (FileNotFoundException e) 
-		{
-			e.printStackTrace();
-		} 
-		catch (IOException e) 
-		{
-			e.printStackTrace();
-		}
-	}
-}
+}	
