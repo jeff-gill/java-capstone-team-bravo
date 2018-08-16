@@ -3,7 +3,7 @@
 
 <c:import url="/WEB-INF/jsp/header.jsp" />
 
-<h2 cssClass="error">${error}</h2>
+<%-- <h2 cssClass="error">${error}</h2> --%>
 
 <script type="text/javascript">
 	$(document).ready(function () {
@@ -70,10 +70,10 @@
 						<div class="form-group">
 							<label for="password">Password: </label>
 							<input type="password" id="password" name="password" placeHolder="Password" class="form-control" />									</div>
-<!-- 							<div class="form-group">
+							<div class="form-group">
 								<label for="confirmPassword">Confirm Password: </label>
 								<input type="password" id="confirmPassword" name="confirmPassword" placeHolder="Re-Type Password" class="form-control" />	
-							</div> -->
+							</div>
 							<div class="form-group">
 								<label for="firstName">First Name: </label>
 								<input type="text" id="firstName" name="firstName" placeHolder="First Name" class="form-control" />
