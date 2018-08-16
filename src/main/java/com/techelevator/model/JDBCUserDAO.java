@@ -38,12 +38,12 @@ public class JDBCUserDAO implements UserDAO {
 							      "FROM user_info "+
 							      "WHERE (user_name) = ? ";
 		
-		SqlRowSet user = jdbcTemplate.queryForRowSet(sqlSearchForUser, userName.toUpperCase());
+		SqlRowSet user = jdbcTemplate.queryForRowSet(sqlSearchForUser, userName);
 		if(user.next()) {
-			String dbSalt = user.getString("salt");
+//			String dbSalt = user.getString("salt");
 			String dbHashedPassword = user.getString("password");
-			String givenPassword = hashMaster.computeHash(password, Base64.decode(dbSalt));
-			return dbHashedPassword.equals(givenPassword);
+//			String givenPassword = hashMaster.computeHash(password, Base64.decode(dbSalt));
+			return dbHashedPassword.equals(password);
 		} else {
 			return false;
 		}
@@ -55,17 +55,15 @@ public class JDBCUserDAO implements UserDAO {
 	}
 
 	@Override
-	public Object getUserByUserName(String userName) {
+	public User getUserByUserName(String userName) {
 		String sqlSearchForUsername ="SELECT * "+
 		"FROM user_info "+
 		"WHERE user_name = ? ";
 
 		SqlRowSet user = jdbcTemplate.queryForRowSet(sqlSearchForUsername, userName); 
-		User thisUser = null;
+		User thisUser = new User();
 		if(user.next()) {
-			thisUser = new User();
-			thisUser.setUserName(user.getString("user_name"));
-			thisUser.setPassword(user.getString("password"));
+			thisUser = mapRowToUser(user);
 		}
 
 		return thisUser;

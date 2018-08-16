@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.techelevator.model.User;
 import com.techelevator.model.UserDAO;
 
 @Controller
@@ -32,12 +33,16 @@ public class AuthenticationController {
 						@RequestParam(required=false) String destination,
 						HttpSession session) {
 		if(userDAO.searchForUsernameAndPassword(userName, password)) {
-			session.setAttribute("currentUser", userDAO.getUserByUserName(userName));
-			
-			if(destination != null && ! destination.isEmpty()) {
-				return "redirect:" + destination;
-			} else {
-				return "redirect:/users/"+userName;
+			User user = userDAO.getUserByUserName(userName);
+			session.setAttribute("currentUser", user);
+//			if(destination != null && ! destination.isEmpty()) {
+//				return "redirect:" + destination;
+//			} else 
+			if (user.isSensei()){
+				return "redirect:/users/sensei/"+userName;
+			}
+			else {
+				return "redirect:/users/gh/"+userName;
 			}
 		} else {
 			return "redirect:/login";
