@@ -18,7 +18,7 @@ public class User {
 	private String lastName;
 	private String bio;
 	private int rating;
-	private boolean isSensei;
+	private boolean sensei;
 	private String profileImage;
 	private String salt;
 	private String email;
@@ -52,10 +52,10 @@ public class User {
 		this.salt = salt;
 	}
 	public boolean isSensei() {
-		return isSensei;
+		return sensei;
 	}
-	public void setSensei(boolean isSensei) {
-		this.isSensei = isSensei;
+	public void setSensei(boolean sensei) {
+		this.sensei = sensei;
 	}
 	public String getFirstName() {
 		return firstName;
