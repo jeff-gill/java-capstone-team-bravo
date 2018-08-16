@@ -4,7 +4,7 @@ import java.util.List;
 
 public interface UserDAO {
 
-	public void saveUser(String userName, String password);
+	public void saveUser(User user);
 
 	public boolean searchForUsernameAndPassword(String userName, String password);
 

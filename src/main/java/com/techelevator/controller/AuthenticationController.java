@@ -56,6 +56,6 @@ public class AuthenticationController {
 	public String logout(ModelMap model, HttpSession session) {
 		model.remove("currentUser");
 		session.invalidate();
-		return "redirect:/";
+		return "redirect:/users/homePage";
 	}
 }
