@@ -20,24 +20,5 @@ public class UserRestController
 	
 
 	
-	@RequestMapping(path="/users/sensei/{userName}", method=RequestMethod.POST)
-	public String updateProfile(@PathVariable String userName,
-								@RequestParam String firstName,
-								@RequestParam String lastName,
-								@RequestParam String bio,
-								@RequestParam String email,
-								@RequestParam String phone,
-								@RequestParam String profileImage) {
-		User user = new User();
-		user.setFirstName(firstName);
-		user.setLastName(lastName);
-		user.setBio(bio);
-		user.setEmail(email);
-		user.setPhone(phone);
-		user.setProfileImage(profileImage);
-		
-		userDao.updateProfile(user);
-		
-		return "redirect:/users/sensei/"+userName;
-	}
+
 }

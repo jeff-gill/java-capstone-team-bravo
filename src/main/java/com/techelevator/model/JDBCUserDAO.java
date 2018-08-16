@@ -1,5 +1,6 @@
 package com.techelevator.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.sql.DataSource;
@@ -111,7 +112,7 @@ public class JDBCUserDAO implements UserDAO {
 		user.setSensei(results.getBoolean("is_sensei"));
 		user.setEmail(results.getString("email"));
 		user.setPhone(results.getString("phone"));
-		user.setProfileImage(results.getString("profile_image"));
+//		user.setProfileImage(results.getString("profile_image"));
 //		user.setSalt(results.getString("salt"));
 		
 		return user;
@@ -120,17 +121,27 @@ public class JDBCUserDAO implements UserDAO {
 	@Override
 	public void updateProfile(User user) {
 		String updateProfile = "update user_info " + 
-				"set first_name = ?, last_name = ?, bio = ?, email = ?, phone = ?, profile_image = ? " + 
+				"set first_name = ?, last_name = ?, bio = ?, email = ?, phone = ?" + 
 				"where user_name = ?";
-		 jdbcTemplate.queryForRowSet(updateProfile, user.getFirstName(), user.getLastName(), user.getBio(), user.getEmail(), user.getPhone(), user.getProfileImage());	
+		 jdbcTemplate.queryForRowSet(updateProfile, user.getFirstName(), user.getLastName(), user.getBio(), user.getEmail(), user.getPhone());	
 	}
 
 	@Override
-	public List getSenseisBySubject(String className) {
+	public List<User> getSenseisBySubject(String className) {
 		String sqlProfileBySubject = "Select subject_name, user_info.user_name from user_info " + 
 				"join user_subjects on user_info.user_name = user_subjects.user_name " + 
 				"join subjects on user_subjects.subject_id = subjects.subject_id " + 
 				"where is_sensei = true and subject_name = ?";
-		return null;
+		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlProfileBySubject, className);
+		
+		return mapRowSetToUser(results);
+	}
+	
+	private List<User> mapRowSetToUser(SqlRowSet results){
+		List<User> userList = new ArrayList<User>();
+		while(results.next()) {
+			userList.add(mapRowToUser(results));
+		}
+		return userList;
 	}
 }

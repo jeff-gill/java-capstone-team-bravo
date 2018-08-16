@@ -70,6 +70,28 @@ public class UserController {
 		return "senseiProfilePage";
 	}
 	
+	@RequestMapping(path="/users/sensei/{userName}", method=RequestMethod.POST)
+	public String updateProfile(@PathVariable String userName,
+								@RequestParam String firstName,
+								@RequestParam String lastName,
+								@RequestParam String bio,
+								@RequestParam String email,
+							//	@RequestParam String profileImage,
+								@RequestParam String phone
+								) {
+		User user = new User();
+		user.setFirstName(firstName);
+		user.setLastName(lastName);
+		user.setBio(bio);
+		user.setEmail(email);
+		user.setPhone(phone);
+//		user.setProfileImage(profileImage);
+		
+		userDAO.updateProfile(user);
+		
+		return "redirect:/users/sensei/"+userName;
+	}
+	
 	@RequestMapping(path="users/sensei/{userName}/updateSubject", method=RequestMethod.POST)
 	public String updateSenseiSubject(@ModelAttribute Subject subject, @RequestParam int classId)
 	{
