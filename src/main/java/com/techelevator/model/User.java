@@ -23,9 +23,16 @@ public class User {
 	private String salt;
 	private String email;
 	private String phone;
+	private String interests;
 	
 	//Added isSensei and salt getters and setters
 	
+	public String getInterests() {
+		return interests;
+	}
+	public void setInterests(String interests) {
+		this.interests = interests;
+	}
 	public String getEmail() {
 		return email;
 	}
