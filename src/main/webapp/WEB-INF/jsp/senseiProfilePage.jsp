@@ -39,7 +39,7 @@
 				<div>
 					<div class="text-right button">
 						<a href="" class="btn btn-rounded mb-4 updateButton"
-							type="button" data-toggle="modal" data-target="#modalProfileInfoForm">Update
+							 data-toggle="modal" data-target="#modalProfileInfoForm">Update
 							Profile Info!</a>
 					</div>
 					<div class="modal fade" id="modalProfileInfoForm" tabindex="-1"
