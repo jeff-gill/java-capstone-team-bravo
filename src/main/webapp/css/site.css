@@ -84,7 +84,7 @@ input[type=submit]:hover {
 
 /* profile modal */
 
-.updateProfileButton {
+.updateButton {
 	background-color: #bab758 !important;
 	color: #000000  !important;
 	font-weight: bold  !important;
@@ -138,9 +138,12 @@ input[type=submit]:hover {
 	display: flex;
 	align-items: center;
 	padding: 20px;
-	 border-width:1px;  
+	 border-width:2px;  
     border-style: outset;
     border-color: #bab758;
+border-radius: 5px;
+    margin-bottom: 2px;
+    background-color: #f7f7f7;
 
 }
 
@@ -161,15 +164,24 @@ input[type=submit]:hover {
     border-color: #bab758;
     user-select: none;
 	text-decoration: none;
-
+	border-radius: 5px;
+    margin-right: 2px;
+    background-color: #eaeaea;
 }
 
 .classInfoLabels {
 	padding-right: 15px;
 	min-width:75px;
+	
 }	
 
 #classContent {
  padding: 0;
  min-height: 50px;
  }
+
+ a {
+    text-decoration: none !important;
+}
+
+.updateButton
