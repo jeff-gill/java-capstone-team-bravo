@@ -1,5 +1,7 @@
 package com.techelevator.model;
 
+import java.util.List;
+
 import javax.sql.DataSource;
 import org.bouncycastle.util.encoders.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -121,5 +123,11 @@ public class JDBCUserDAO implements UserDAO {
 				"set first_name = ?, last_name = ?, bio = ?, email = ?, phone = ?, profile_image = ? " + 
 				"where user_name = ?";
 		 jdbcTemplate.queryForRowSet(updateProfile, user.getFirstName(), user.getLastName(), user.getBio(), user.getEmail(), user.getPhone(), user.getProfileImage());	
+	}
+
+	@Override
+	public List getSenseisBySubject(String className) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }
