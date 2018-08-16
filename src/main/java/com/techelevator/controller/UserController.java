@@ -43,6 +43,11 @@ public class UserController {
 	public UserController(UserDAO userDAO) {
 		this.userDAO = userDAO;
 	}
+	
+	@RequestMapping(value= {"/", "/users/homePage"}, method=RequestMethod.GET)
+	public String displayHomePage() {
+		return "homePage";
+	}
 
 	@RequestMapping(path="/users/new", method=RequestMethod.GET)
 	public String displayNewUserForm(ModelMap modelHolder) {
