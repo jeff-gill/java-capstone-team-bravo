@@ -132,4 +132,10 @@ public class JDBCSubjectDAO implements SubjectDAO {
 //		}
 //	}
 //	
+
+	@Override
+	public void deleteClass(String userName, int classId) {
+		// TODO Auto-generated method stub
+		
+	}
 }

@@ -15,5 +15,7 @@ public interface SubjectDAO {
 	public void deleteSubject(String userName, int classId);
 		
 	public Subject getSubjectById(int id) ;
+	
+	public void deleteClass(String userName, int classId);
 
 }
