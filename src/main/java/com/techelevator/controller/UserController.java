@@ -60,26 +60,37 @@ public class UserController {
 	
 	@RequestMapping(path= {"/", "/users/homePage"}, method=RequestMethod.POST)
 	public String createUser(@Valid @ModelAttribute User user, BindingResult result, RedirectAttributes flash, HttpSession session) {
-		if(result.hasErrors()) {
-			flash.addFlashAttribute("user", user);
-			flash.addFlashAttribute(BindingResult.MODEL_KEY_PREFIX + "user", result);
-			return "redirect:/users/new";
-		}
+//		if(result.hasErrors()) {
+//			flash.addFlashAttribute("user", user);
+//			flash.addFlashAttribute(BindingResult.MODEL_KEY_PREFIX + "user", result);
+//			return "redirect:/users/new";
+//		}
 		
-		userDAO.saveUser(user.getUserName(), user.getPassword());
+		User newUser = new User();
+		newUser.setFirstName(user.getFirstName());
+		newUser.setLastName(user.getLastName());
+		newUser.setBio(user.getBio());
+		newUser.setEmail(user.getEmail());
+		newUser.setUserName(user.getUserName());
+		newUser.setPassword(user.getPassword());
 		
-		User newUser = userDAO.getUserByUserName(user.getUserName());
-		session.setAttribute("currentUser", newUser);
-
-		if (newUser.isSensei())
+		if (user.isSensei())
 		{
-			return "redirect:/users/sensei/"+newUser.getUserName();
+			newUser.isSensei();
 		}
 		
-			return "redirect:/users/gh/"+newUser.getUserName();
+		userDAO.saveUser(newUser);
 		
+		User newU = userDAO.getUserByUserName(user.getUserName());
+		session.setAttribute("currentUser", newU);
+
+		if (newU.isSensei())
+		{
+			return "redirect:/users/sensei/"+newU.getUserName();
+		}
 		
-		
+			return "redirect:/users/gh/"+newU.getUserName();
+	
 	}
 	
 	@RequestMapping(path="/users/sensei/{userName}", method=RequestMethod.GET)

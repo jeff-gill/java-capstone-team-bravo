@@ -60,8 +60,8 @@
 					</form>
 				</div>
 				<div class="col-sm-6">
-					<c:url var="formAction" value="/users" />
-					<form method="POST" action="${formAction}">
+					<c:url var="formAct" value="/" />
+					<form method="POST" action="${formAct}">
 						<input type="hidden" name="CSRF_TOKEN" value="${CSRF_TOKEN}"/>
 						<div class="form-group">
 							<label for="userName">User Name: </label>
@@ -70,10 +70,10 @@
 						<div class="form-group">
 							<label for="password">Password: </label>
 							<input type="password" id="password" name="password" placeHolder="Password" class="form-control" />									</div>
-							<div class="form-group">
+<!-- 							<div class="form-group">
 								<label for="confirmPassword">Confirm Password: </label>
 								<input type="password" id="confirmPassword" name="confirmPassword" placeHolder="Re-Type Password" class="form-control" />	
-							</div>
+							</div> -->
 							<div class="form-group">
 								<label for="firstName">First Name: </label>
 								<input type="text" id="firstName" name="firstName" placeHolder="First Name" class="form-control" />
@@ -92,8 +92,8 @@
 							</div>
 							<label for="isSensei">Choose Sensei or Grasshopper: </label>
 							<div class="form-group">
-								<input type="radio" id="true" name="isSensei" /> Sensei
-								<input type="radio" id="false" name="isSensei" /> Grasshopper
+								<input type="radio" value="true" name="isSensei" /> Sensei
+								<input type="radio" value="false" name="isSensei" /> Grasshopper
 								<%-- <form:errors path="activityLevel" cssClass="error" /> --%>
 							</div>
 							<button type="submit" class="btn btn-default">Create User</button>
