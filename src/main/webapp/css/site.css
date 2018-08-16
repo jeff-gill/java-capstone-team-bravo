@@ -78,6 +78,10 @@ div.senseiMottoHome {
 	text-align: right;
 }
 
+div.senseiPicHome {
+	width: 100%;
+	align-items: center
+	
 }
 
 /* /* footer */
