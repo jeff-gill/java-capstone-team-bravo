@@ -112,7 +112,7 @@ public class JDBCUserDAO implements UserDAO {
 		user.setSensei(results.getBoolean("is_sensei"));
 		user.setEmail(results.getString("email"));
 		user.setPhone(results.getString("phone"));
-//		user.setProfileImage(results.getString("profile_image"));
+		user.setProfileImage(results.getString("profile_image"));
 //		user.setSalt(results.getString("salt"));
 		
 		return user;
