@@ -35,7 +35,34 @@
 				<div id="profilePic">
 				<img src="../../img/${profile.profileImage}.jpg " alt="place holder" /></div>
 				<div class="updateButton">
-				<div class="text-right">
+					<div class="modal fade" id="modalProfileInfoForm" tabindex="-1"
+					role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+						<div class="modal-dialog" role="document">
+							<div class="modal-content">
+								<div class="modal-header text-center">
+									<h4 class="modal-title w-100 font-weight-bold">Edit Profile Image</h4>
+									<button type="button" class="close" data-dismiss="modal"
+										aria-label="Close">
+										<span aria-hidden="true">&times;</span>
+									</button>
+								</div>
+								<form method="POST" action="uploadFile" enctype="multipart/form-data">
+									File to upload: <input type="file" name="file" >
+									<br />
+									<br />
+									<input type="submit" value="Upload">
+										<div class="modal-footer d-flex justify-content-center">
+											<button class="btn btn-deep-orange" type="submit">LET'S DO IT!!</button>
+										</div>
+									</form>
+									<c:if test="${not empty message}">
+									${message}
+									</c:if>
+							</div>
+						</div>
+						</div>
+					<div class="text-right">
+					
 					<a href="" class="btn btn-rounded mb-4 updateProfileButton" 
 						data-toggle="modal" data-target="#modalProfileInfoForm">Update
 						Profile Info!</a>
