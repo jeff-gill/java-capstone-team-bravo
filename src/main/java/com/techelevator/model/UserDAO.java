@@ -18,5 +18,6 @@ public interface UserDAO {
 	
 	public void updateProfile(User user);
 	
+	
 
 }
