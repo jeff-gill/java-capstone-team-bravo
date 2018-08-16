@@ -35,16 +35,9 @@ public class JDBCSubjectDAO implements SubjectDAO {
 	@Override
 	public void saveSubject(Subject subject) {
 		Subject sub = getSubject(subject.getClassName());
-		
-		if (sub.getClassName().toUpperCase().equals(subject.getClassName().toUpperCase()))
-		{
-			throw new DuplicateKeyException("Duplicate subject name");
-		}
-		else
-		{	
+
 			String sqlSaveSubject = "insert into subjects (subject_name) values (?)";
 			jdbcTemplate.update(sqlSaveSubject, subject.getClassName());
-		}
 
 	}
 

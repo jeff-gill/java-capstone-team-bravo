@@ -77,7 +77,7 @@ public class UserController {
 								@RequestParam String lastName,
 								@RequestParam String bio,
 								@RequestParam String email,
-							//	@RequestParam String profileImage,
+								@RequestParam String profileImage,
 								@RequestParam String phone,
 								HttpSession session
 								) {
@@ -87,7 +87,7 @@ public class UserController {
 		user.setBio(bio);
 		user.setEmail(email);
 		user.setPhone(phone);
-//		user.setProfileImage(profileImage);
+		user.setProfileImage(profileImage);
 		
 		userDAO.updateProfile(user, userName);
 		
