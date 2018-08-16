@@ -73,6 +73,7 @@ public class UserController {
 		newUser.setEmail(user.getEmail());
 		newUser.setUserName(user.getUserName());
 		newUser.setPassword(user.getPassword());
+		newUser.setSensei(user.isSensei());
 		
 		if (user.isSensei())
 		{

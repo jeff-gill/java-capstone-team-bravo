@@ -5,7 +5,7 @@
 
 <h2 cssClass="error">${error}</h2>
 
-<!-- <script type="text/javascript">
+<script type="text/javascript">
 	$(document).ready(function () {
 		$.validator.addMethod('capitals', function(thing){
 			return thing.match(/[A-Z]/);
@@ -38,7 +38,7 @@
 			errorClass : "error"
 		});
 	});
-</script> -->
+</script>
 
 <section class="myContainer">
 	<div class="container-fluid">
@@ -92,9 +92,9 @@
 							</div>
 							<label for="isSensei">Choose Sensei or Grasshopper: </label>
 							<div class="form-group">
-								<input type="radio" value="true" name="isSensei" /> Sensei
-								<input type="radio" value="false" name="isSensei" /> Grasshopper
-								<%-- <form:errors path="activityLevel" cssClass="error" /> --%>
+								<input type="radio" value="true" name="sensei" /> Sensei
+								<input type="radio" value="false" name="sensei" /> Grasshopper
+								<form:errors path="activityLevel" cssClass="error" />
 							</div>
 							<button type="submit" class="btn btn-default">Create User</button>
 					</form>
