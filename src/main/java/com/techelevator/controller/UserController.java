@@ -48,6 +48,7 @@ public class UserController {
 	public String displayHomePage() {
 		return "homePage";
 	}
+	
 
 	@RequestMapping(path="/users/new", method=RequestMethod.GET)
 	public String displayNewUserForm(ModelMap modelHolder) {
@@ -57,8 +58,8 @@ public class UserController {
 		return "newUser";
 	}
 	
-	@RequestMapping(path="/users", method=RequestMethod.POST)
-	public String createUser(@Valid @ModelAttribute User user, BindingResult result, RedirectAttributes flash) {
+	@RequestMapping(path= {"/", "/users/homePage"}, method=RequestMethod.POST)
+	public String createUser(@Valid @ModelAttribute User user, BindingResult result, RedirectAttributes flash, HttpSession session) {
 		if(result.hasErrors()) {
 			flash.addFlashAttribute("user", user);
 			flash.addFlashAttribute(BindingResult.MODEL_KEY_PREFIX + "user", result);
@@ -66,7 +67,19 @@ public class UserController {
 		}
 		
 		userDAO.saveUser(user.getUserName(), user.getPassword());
-		return "redirect:/login";
+		
+		User newUser = userDAO.getUserByUserName(user.getUserName());
+		session.setAttribute("currentUser", newUser);
+
+		if (newUser.isSensei())
+		{
+			return "redirect:/users/sensei/"+newUser.getUserName();
+		}
+		
+			return "redirect:/users/gh/"+newUser.getUserName();
+		
+		
+		
 	}
 	
 	@RequestMapping(path="/users/sensei/{userName}", method=RequestMethod.GET)
