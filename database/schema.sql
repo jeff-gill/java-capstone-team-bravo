@@ -33,6 +33,7 @@ create table user_info (
     email varchar(35) not null,
     phone varchar(20),
     profile_image varchar(20),
+    interests varchar (320), 
 
     constraint pk_user_name primary key (user_name)
 );
