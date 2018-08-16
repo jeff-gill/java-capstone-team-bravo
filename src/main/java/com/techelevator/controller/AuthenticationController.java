@@ -32,19 +32,22 @@ public class AuthenticationController {
 						@RequestParam String password, 
 						@RequestParam(required=false) String destination,
 						HttpSession session) {
-		if(userDAO.searchForUsernameAndPassword(userName, password)) {
+		if(userDAO.searchForUsernameAndPassword(userName, password)) 
+		{
 			User user = userDAO.getUserByUserName(userName);
 			session.setAttribute("currentUser", user);
-//			if(destination != null && ! destination.isEmpty()) {
-//				return "redirect:" + destination;
-//			} else 
-			if (user.isSensei()){
+
+			if (user.isSensei())
+			{
 				return "redirect:/users/sensei/"+userName;
 			}
-			else {
+			else 
+			{
 				return "redirect:/users/gh/"+userName;
 			}
-		} else {
+		} 
+		else 
+		{
 			return "redirect:/login";
 		}
 	}
