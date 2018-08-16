@@ -50,8 +50,8 @@ create table user_subjects (
 	user_name varchar(35) not null,
 	subject_id integer not null,
 	
-	constraint fk_user_name foreign key (user_name) references user_info (user_name),
-	constraint fk_subject_id foreign key (subject_id) references subjects (subject_id)
+	constraint fk_user_name foreign key (user_name) references user_info (user_name) on delete cascade,
+	constraint fk_subject_id foreign key (subject_id) references subjects (subject_id) on delete cascade
 );
 
 create sequence seq_class_id;
@@ -68,15 +68,15 @@ create table class (
 	description varchar(360) not null,
 	
 	constraint pk_class_id primary key (class_id),
-	constraint fk_subject_id foreign key (subject_id) references subjects (subject_id)
+	constraint fk_subject_id foreign key (subject_id) references subjects (subject_id) on delete cascade
 );
 
 create table user_class (
 	class_id integer not null,
 	user_name varchar(35) not null,
 	
-	constraint fk_class_id foreign key (class_id) references class (class_id),
-	constraint fk_user_name foreign key (user_name) references user_info (user_name)
+	constraint fk_class_id foreign key (class_id) references class (class_id) on delete cascade,
+	constraint fk_user_name foreign key (user_name) references user_info (user_name) on delete cascade
 );
 
 COMMIT;
