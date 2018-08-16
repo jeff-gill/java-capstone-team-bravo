@@ -127,7 +127,10 @@ public class JDBCUserDAO implements UserDAO {
 
 	@Override
 	public List getSenseisBySubject(String className) {
-		// TODO Auto-generated method stub
+		String sqlProfileBySubject = "Select subject_name, user_info.user_name from user_info " + 
+				"join user_subjects on user_info.user_name = user_subjects.user_name " + 
+				"join subjects on user_subjects.subject_id = subjects.subject_id " + 
+				"where is_sensei = true and subject_name = ?";
 		return null;
 	}
 }
