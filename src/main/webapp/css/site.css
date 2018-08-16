@@ -1,48 +1,57 @@
 /* header */
+.col-md-2 senseiPic {
+	align: center;
+}
+
 #senseiPic img {
-	width: 100%;
+	width: 70%;
+	align-items: center;
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
 }
+
 @media screen and (max-width: 991px) {
-	     #senseiPic img{
-	       max-width: 20%;
-	       min-width:15%;
-	     }
+	#senseiPic img {
+		max-width: 20%;
+		min-width: 15%;
 	}
-	
-	@media screen and (max-width: 767px) {
-	     #senseiPic img {
-	       max-width: 15%;
-	       min-width: 10%;
-	     }
-	}
-	
-	@media screen and (max-width: 479px) {
-	     #senseiPic img{
-	       max-width: 10%;
-	       min-width: 5%;
-	     }
-	}
-#mottoContainer {
-	    padding-top: 4%;
 }
-#senseiTitle h1{
+
+@media screen and (max-width: 767px) {
+	#senseiPic img {
+		max-width: 15%;
+		min-width: 10%;
+	}
+}
+
+@media screen and (max-width: 479px) {
+	#senseiPic img {
+		max-width: 10%;
+		min-width: 5%;
+	}
+}
+
+#mottoContainer {
+	
+}
+
+#senseiTitle h1 {
 	font-size: 100px;
-    padding-top: 10%;
 }
 
 #sensaiMotto {
-    font-style: italic;
-    font-weight: bold;
-    text-align: right;
-   
+	font-style: italic;
+	font-weight: bold;
+	text-align: right;
 }
 
 .glyphicon {
 	font-size: 34px;
 }
+
 .iconContainer {
 	text-align: right;
-	
 }
 
 input[type=submit] {
@@ -60,80 +69,84 @@ input[type=submit]:hover {
 
 #navSearchBar {
 	text-align: right;
-	    vertical-align: middle;
+	vertical-align: middle;
 }
 
 /* /* footer */
-
 #icons {
 	font-size: 14px;
 }
+
 .footer {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    height: 60px;
-    line-height: 60px;
-    background-color: #f5f5f5;
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+	height: 60px;
+	line-height: 60px;
+	background-color: #f5f5f5;
 }
 
 #copyright {
 	font-size: 14px;
 	text-align: right !important;
 }
+
 #senseiMottoFooter {
 	text-align: left;
-	font-size: 24px;	
-} */
+	font-size: 24px;
+}
 
-/* profile modal */
+* /
+	/* profile modal */ 
 
-.updateButton {
+.btn [type=button]  {
 	background-color: #bab758 !important;
-	color: #000000  !important;
-	font-weight: bold  !important;
-	align-text: center  !important;
+	color: #000000 !important;
+	font-weight: bold !important;
+	align-text: center !important;
 }
 
 /* profile page info */
 #profilePic {
-  display: inline-block;
-    position: relative;
-    width: 300px;
-    height: 300px;
-    overflow: hidden;
-    border-radius: 50%;
-    border-width: 10px;
-    border-style: outset;
-    border-color: #bab758;
+	display: inline-block;
+	position: relative;
+	width: 300px;
+	height: 300px;
+	overflow: hidden;
+	border-radius: 50%;
+	border-width: 10px;
+	border-style: outset;
+	border-color: #bab758;
 }
+
 #profilePic img {
-	 width: auto;
-  height: 100%;
-  margin-left: -45%;
+	width: auto;
+	height: 100%;
+	margin-left: -45%;
 }
+
 @media screen and (max-width: 991px) {
-	     .profilePic {
-	     max-width: 50%;
-	       min-width: 40%;
-	     }
-	}
-	
-	@media screen and (max-width: 767px) {
-	     .profilePic {
-	     max-width: 40%;
-	       min-width: 30%;
-	     }
-	}
-	
-	@media screen and (max-width: 479px) {
-	     .profilePic {
-	     max-width: 30%;
-	       min-width: 20%;
-	     }
+	.profilePic {
+		max-width: 50%;
+		min-width: 40%;
 	}
 }
 
+@media screen and (max-width: 767px) {
+	.profilePic {
+		max-width: 40%;
+		min-width: 30%;
+	}
+}
+
+@media screen and (max-width: 479px) {
+	.profilePic {
+		max-width: 30%;
+		min-width: 20%;
+	}
+}
+
+}
 .profileName {
 	font-size: 42px;
 }
@@ -142,50 +155,48 @@ input[type=submit]:hover {
 	display: flex;
 	align-items: center;
 	padding: 20px;
-	 border-width:2px;  
-    border-style: outset;
-    border-color: #bab758;
-border-radius: 5px;
-    margin-bottom: 2px;
-    background-color: #f7f7f7;
-
+	border-width: 2px;
+	border-style: outset;
+	border-color: #bab758;
+	border-radius: 5px;
+	margin-bottom: 2px;
+	background-color: #f7f7f7;
 }
 
 .userInfoLabels {
 	padding-right: 15px;
-	min-width:130px;
+	min-width: 130px;
 	font-size: 16px;
 }
 
 .bioRow {
 	padding-bottom: 30px;
 }
+
 .classSections {
 	align-items: center;
 	padding: 20px;
-	 border-width:1px;  
-    border-style: outset;
-    border-color: #bab758;
-    user-select: none;
+	border-width: 1px;
+	border-style: outset;
+	border-color: #bab758;
+	user-select: none;
 	text-decoration: none;
 	border-radius: 5px;
-    margin-right: 2px;
-    background-color: #eaeaea;
+	margin-right: 2px;
+	background-color: #eaeaea;
 }
 
 .classInfoLabels {
 	padding-right: 15px;
-	min-width:75px;
-	
-}	
-
-#classContent {
- padding: 0;
- min-height: 50px;
- }
-
- a {
-    text-decoration: none !important;
+	min-width: 75px;
 }
 
+#classContent {
+	padding: 0;
+	min-height: 50px;
+}
+
+a {
+	text-decoration: none !important;
+}
 .updateButton
