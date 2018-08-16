@@ -113,6 +113,7 @@ public class JDBCUserDAO implements UserDAO {
 		user.setEmail(results.getString("email"));
 		user.setPhone(results.getString("phone"));
 		user.setProfileImage(results.getString("profile_image"));
+		user.setInterests(results.getString("interests"));
 //		user.setSalt(results.getString("salt"));
 		
 		return user;
@@ -121,9 +122,9 @@ public class JDBCUserDAO implements UserDAO {
 	@Override
 	public void updateProfile(User user, String userName) {
 		String updateProfile = "update user_info " + 
-				"set first_name = ?, last_name = ?, bio = ?, email = ?, phone = ?" + 
+				"set first_name = ?, last_name = ?, bio = ?, email = ?, phone = ?, interests = ?" + 
 				" where user_name = ?";
-		 jdbcTemplate.update(updateProfile, user.getFirstName(), user.getLastName(), user.getBio(), user.getEmail(), user.getPhone(), userName);	
+		 jdbcTemplate.update(updateProfile, user.getFirstName(), user.getLastName(), user.getBio(), user.getEmail(), user.getPhone(), user.getInterests(), userName);	
 	}
 
 	@Override
