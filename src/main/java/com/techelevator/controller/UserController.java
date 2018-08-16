@@ -9,6 +9,7 @@ import java.util.Map;
 import java.util.UUID;
 
 import javax.servlet.ServletContext;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -77,7 +78,8 @@ public class UserController {
 								@RequestParam String bio,
 								@RequestParam String email,
 							//	@RequestParam String profileImage,
-								@RequestParam String phone
+								@RequestParam String phone,
+								HttpSession session
 								) {
 		User user = new User();
 		user.setFirstName(firstName);
@@ -87,7 +89,9 @@ public class UserController {
 		user.setPhone(phone);
 //		user.setProfileImage(profileImage);
 		
-		userDAO.updateProfile(user);
+		userDAO.updateProfile(user, userName);
+		
+		session.setAttribute("currentUser", user);
 		
 		return "redirect:/users/sensei/"+userName;
 	}
