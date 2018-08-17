@@ -228,6 +228,9 @@
 											for="orangeForm-name"> Subject:</label> <input type="text"
 											id="orangeForm-name" name="subject"
 											class="form-control validate">
+											
+											 <%-- value="${g.subjectName} --%>
+											
 									</div>
 									<div class="md-form mb-5">
 										<label data-error="wrong" data-success="right"
