@@ -46,18 +46,18 @@ public class UserController {
 	public UserController(UserDAO userDAO) {
 		this.userDAO = userDAO;
 	}
-	
+//	
+//	@RequestMapping(path="/", method=RequestMethod.GET)
+//	public String displayHomePage() {
+//		return "homePage";
+//	}
+//	
 	@RequestMapping(path="/", method=RequestMethod.GET)
-	public String displayHomePage() {
-		return "homePage";
-	}
-	
-	@RequestMapping(path="/users/new", method=RequestMethod.GET)
 	public String displayNewUserForm(ModelMap modelHolder) {
 		if( ! modelHolder.containsAttribute("user")) {
 			modelHolder.addAttribute("user", new User());
 		}
-		return "newUser";
+		return "homePage";
 	}
 	
 	@RequestMapping(path="/uploadGHFile", method=RequestMethod.POST)
@@ -155,13 +155,8 @@ public class UserController {
 		}
 	}
 	
-	@RequestMapping(path="/", method=RequestMethod.POST)
+	@RequestMapping(path= "/", method=RequestMethod.POST)
 	public String createUser(@Valid @ModelAttribute User user, BindingResult result, RedirectAttributes flash, HttpSession session) {
-		if(result.hasErrors()) {
-			flash.addFlashAttribute("user", user);
-			flash.addFlashAttribute(BindingResult.MODEL_KEY_PREFIX + "user", result);
-			return "redirect:/";
-		}
 		
 		User newUser = new User();
 		newUser.setFirstName(user.getFirstName());
