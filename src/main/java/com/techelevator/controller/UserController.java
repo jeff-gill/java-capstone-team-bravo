@@ -47,7 +47,7 @@ public class UserController {
 		this.userDAO = userDAO;
 	}
 	
-	@RequestMapping(value= {"/", "/users/homePage"}, method=RequestMethod.GET)
+	@RequestMapping(path="/", method=RequestMethod.GET)
 	public String displayHomePage() {
 		return "homePage";
 	}
@@ -155,7 +155,7 @@ public class UserController {
 		}
 	}
 	
-	@RequestMapping(path= {"/", "/users/homePage"}, method=RequestMethod.POST)
+	@RequestMapping(path="/", method=RequestMethod.POST)
 	public String createUser(@Valid @ModelAttribute User user, BindingResult result, RedirectAttributes flash, HttpSession session) {
 		if(result.hasErrors()) {
 			flash.addFlashAttribute("user", user);
@@ -247,7 +247,7 @@ public class UserController {
 	}
 	
 	@RequestMapping(path="/users/sensei/updateSubject", method=RequestMethod.POST)
-	public String createClass(@PathVariable String userName,
+	public String createSenseiClass(@PathVariable String userName,
 								@RequestParam String subjectName,
 								@RequestParam String location,
 								@RequestParam Date date,
@@ -271,9 +271,37 @@ public class UserController {
 		subjectDAO.saveSubject(subject);
 		
 		session.setAttribute("currentUser", userName);
-		
-									
+										
 		return "redirect:/users/sensei/"+userName;
+	}
+	
+	@RequestMapping(path="/users/gh/updateSubject", method=RequestMethod.POST)
+	public String createGHClass(@PathVariable String userName,
+								@RequestParam String subjectName,
+								@RequestParam String location,
+								@RequestParam Date date,
+								@RequestParam String startTime,
+								@RequestParam String endTime,
+								@RequestParam Float cost,
+								@RequestParam int availableSlots,
+								@RequestParam String description,
+								HttpSession session) {
+		
+		Subject subject = new Subject();
+		subject.setSubjectName(subjectName);
+		subject.setLocation(location);
+		subject.setDate(date);
+		subject.setStartTime(startTime);
+		subject.setEndTime(endTime);
+		subject.setCost(cost);
+		subject.setAvailableSlots(availableSlots);
+		subject.setDescription(description);
+		
+		subjectDAO.saveSubject(subject);
+		
+		session.setAttribute("currentUser", userName);
+										
+		return "redirect:/users/gh/"+userName;
 	}
 	
 	@RequestMapping(path="users/sensei/{userName}/updateSubject", method=RequestMethod.POST)
