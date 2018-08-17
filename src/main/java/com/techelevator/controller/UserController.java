@@ -153,36 +153,36 @@ public class UserController {
 		return "redirect:/users/gh/"+userName;
 	}
 	
-	@RequestMapping(path="/users/sensei/{userName}", method=RequestMethod.POST)
-	public String createClass(@PathVariable String userName,
-								@RequestParam String subjectName,
-								@RequestParam String location,
-								@RequestParam Date date,
-								@RequestParam String startTime,
-								@RequestParam String endTime,
-								@RequestParam Float cost,
-								@RequestParam int availableSlots,
-								@RequestParam String description,
-								HttpSession session) {
-		
-		Subject subject = new Subject();
-		subject.setSubjectName(subjectName);
-		subject.setLocation(location);
-		subject.setDate(date);
-		subject.setStartTime(startTime);
-		subject.setEndTime(endTime);
-		subject.setCost(cost);
-		subject.setAvailableSlots(availableSlots);
-		subject.setDescription(description);
-		
-		subjectDAO.saveSubject(subject);
-		
-		session.setAttribute("currentUser", userName);
-		
-									
-		return "redirect:/users/sensei/"+userName;
-	}
-	
+//	@RequestMapping(path="/users/sensei/{userName}", method=RequestMethod.POST)
+//	public String createClass(@PathVariable String userName,
+//								@RequestParam String subjectName,
+//								@RequestParam String location,
+//								@RequestParam Date date,
+//								@RequestParam String startTime,
+//								@RequestParam String endTime,
+//								@RequestParam Float cost,
+//								@RequestParam int availableSlots,
+//								@RequestParam String description,
+//								HttpSession session) {
+//		
+//		Subject subject = new Subject();
+//		subject.setSubjectName(subjectName);
+//		subject.setLocation(location);
+//		subject.setDate(date);
+//		subject.setStartTime(startTime);
+//		subject.setEndTime(endTime);
+//		subject.setCost(cost);
+//		subject.setAvailableSlots(availableSlots);
+//		subject.setDescription(description);
+//		
+//		subjectDAO.saveSubject(subject);
+//		
+//		session.setAttribute("currentUser", userName);
+//		
+//									
+//		return "redirect:/users/sensei/"+userName;
+//	}
+//	
 	@RequestMapping(path="users/sensei/{userName}/updateSubject", method=RequestMethod.POST)
 	public String updateSenseiSubject(@ModelAttribute Subject subject, @RequestParam int classId)
 	{
