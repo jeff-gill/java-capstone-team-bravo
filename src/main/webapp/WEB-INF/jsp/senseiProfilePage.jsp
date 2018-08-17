@@ -18,6 +18,7 @@
 
 <c:url var="formAction" value="/users/sensei/${currentUser.userName}" />
 <c:url var="form" value="/uploadSenseiFile" />
+<c:url var="formA" value="/users/sensei/${currentUser.userName}/updateSubject" />
 
 <section class="myContainer">
 	<div class="container-fluid">
@@ -156,7 +157,7 @@
 										</button>
 									</div>
 
-									<form id="ajax-class-schedule" method="post">
+									<form action="${formA}" method="POST">
 										<input type="hidden" name="CSRF_TOKEN" value="${CSRF_TOKEN}">
 										<div class="modal-body mx-3">
 											<div class="md-form mb-5">
@@ -169,35 +170,35 @@
 											<div class="md-form mb-5">
 												<label data-error="wrong" data-success="right"
 													for="orangeForm-email">Class Location:</label><input
-													type="email" id="orangeForm-email" name="location"
+													type="text" id="orangeForm-email" name="location"
 													class="form-control validate">
 											</div>
 											<br />
-											<div class="md-form mb-4">
+											<div class="md-form mb-5">
 												<label data-error="wrong" data-success="right"
-													for="orangeForm-pass">Class Date:</label><input
-													type="password" id="orangeForm-pass" name="date"
+													for="orangeForm-email">Date:</label><input
+													type="date" id="orangeForm-email" name="date"
 													class="form-control validate">
 											</div>
 											<br />
 											<div class="md-form mb-4">
 												<label data-error="wrong" data-success="right"
 													for="orangeForm-pass">Class Time:</label><input
-													type="password" id="orangeForm-pass"
+													type="text" id="orangeForm-pass"
 													class="form-control validate">
 											</div>
 											<br />
 											<div class="md-form mb-4">
 												<label data-error="wrong" data-success="right"
 													for="orangeForm-pass">Class Cost:</label><input
-													type="password" id="orangeForm-pass" name="cost"
+													type="text" id="orangeForm-pass" name="cost"
 													class="form-control validate">
 											</div>
 											<br />
 											<div class="md-form mb-4">
 												<label data-error="wrong" data-success="right"
 													for="orangeForm-pass">Available Slots:</label><input
-													type="password" id="orangeForm-pass" name="availableSlots"
+													type="text" id="orangeForm-pass" name="availableSlots"
 													class="form-control validate">
 
 											</div>
@@ -205,7 +206,7 @@
 											<div class="md-form mb-4">
 												<label data-error="wrong" data-success="right"
 													for="orangeForm-pass">Class Description:</label><input
-													type="password" id="orangeForm-pass" name="description"
+													type="text" id="orangeForm-pass" name="description"
 													class="form-control validate">
 											</div>
 

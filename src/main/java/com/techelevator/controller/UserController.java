@@ -246,7 +246,7 @@ public class UserController {
 		return "redirect:/users/gh/"+userName;
 	}
 	
-	@RequestMapping(path="/users/sensei/updateSubject", method=RequestMethod.POST)
+	@RequestMapping(path="/users/sensei/{userName}/updateSubject", method=RequestMethod.POST)
 	public String createSenseiClass(@PathVariable String userName,
 								@RequestParam String subjectName,
 								@RequestParam String location,
@@ -275,7 +275,7 @@ public class UserController {
 		return "redirect:/users/sensei/"+userName;
 	}
 	
-	@RequestMapping(path="/users/gh/updateSubject", method=RequestMethod.POST)
+	@RequestMapping(path="/users/gh/{userName}/updateSubject", method=RequestMethod.POST)
 	public String createGHClass(@PathVariable String userName,
 								@RequestParam String subjectName,
 								@RequestParam String location,
@@ -304,19 +304,19 @@ public class UserController {
 		return "redirect:/users/gh/"+userName;
 	}
 	
-	@RequestMapping(path="users/sensei/{userName}/updateSubject", method=RequestMethod.POST)
-	public String updateSenseiSubject(@ModelAttribute Subject subject, @RequestParam int classId)
-	{
-		subjectDAO.updateSubject(subject, classId);
-		return "redirect:/users/sensei/{userName}";
-	}
-	
-	@RequestMapping(path="/gh/updateSubject", method=RequestMethod.POST)
-	public String updateGHSubject(@ModelAttribute Subject subject, @RequestParam int classId)
-	{
-		subjectDAO.updateSubject(subject, classId);
-		return "redirect:/users/gh/{userName}";
-	}
+//	@RequestMapping(path="users/sensei/{userName}/updateSubject", method=RequestMethod.POST)
+//	public String updateSenseiSubject(@ModelAttribute Subject subject, @RequestParam int classId)
+//	{
+//		subjectDAO.updateSubject(subject, classId);
+//		return "redirect:/users/sensei/{userName}";
+//	}
+//	
+//	@RequestMapping(path="/gh/updateSubject", method=RequestMethod.POST)
+//	public String updateGHSubject(@ModelAttribute Subject subject, @RequestParam int classId)
+//	{
+//		subjectDAO.updateSubject(subject, classId);
+//		return "redirect:/users/gh/{userName}";
+//	}
 	
 	@RequestMapping(path="/users/gh/{userName}", method=RequestMethod.GET)
 	public String ghProfile(Map<String, User> model, @PathVariable String userName) {
