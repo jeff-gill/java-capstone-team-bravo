@@ -99,8 +99,7 @@ public class JDBCUserDAO implements UserDAO {
 		
 		return user;
 	}
-	
-	//Added to this
+
 	private User mapRowToUser(SqlRowSet results) {
 		User user = new User();
 		user.setUserName(results.getString("user_name"));
@@ -113,8 +112,7 @@ public class JDBCUserDAO implements UserDAO {
 		user.setEmail(results.getString("email"));
 		user.setPhone(results.getString("phone"));
 		user.setProfileImage(results.getString("profile_image"));
-//		user.setInterests(results.getString("interests"));
-//		user.setSalt(results.getString("salt"));
+		user.setInterests(results.getString("interests"));
 		
 		return user;
 	}
