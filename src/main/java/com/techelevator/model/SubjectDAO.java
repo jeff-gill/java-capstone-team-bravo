@@ -10,7 +10,7 @@ public interface SubjectDAO {
 	
 	public void updateSubject(Subject subject, int classId);
 	
-	public void deleteSubject(String userName, int classId);
+	public void deleteSubject(int classId);
 		
 	public Subject getSubjectById(int id) ;
 

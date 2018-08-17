@@ -23,10 +23,11 @@ public class JDBCSubjectDAO implements SubjectDAO
 	public void saveSubject(Subject subject) 
 	{
 		String sqlSaveSubject = "insert into subjects (subject_name, location, event_date, event_start_time, event_end_time, cost, available_slots, description) "
-							  + "values (?, ?, ?, ?, ?, ?, ?, ?)";
+							  + "values (?, ?, ?, ?, ?, ?, ?, ?) returning class_id";
 
-		jdbcTemplate.update(sqlSaveSubject, subject.getClassId(), subject.getLocation(), subject.getDate(), subject.getStartTime(), 
-		subject.getEndTime(), subject.getCost(), subject.getAvailableSlots(), subject.getDescription());
+		int classId = jdbcTemplate.queryForObject(sqlSaveSubject, Integer.class, subject.getSubjectName(), subject.getLocation(), subject.getDate(),
+				subject.getStartTime(), subject.getEndTime(), subject.getCost(), subject.getAvailableSlots(), subject.getDescription());
+		subject.setClassId(classId);
 	}
 
 
@@ -48,18 +49,18 @@ public class JDBCSubjectDAO implements SubjectDAO
 	@Override
 	public void updateSubject(Subject subject, int classId) 
 	{
-		String updateSql = "update subjects set subject_name, location = ? , event_date = ? , event_start_time = ?, "
+		String sqlUpdateSubject = "update subjects set subject_name = ?, location = ? , event_date = ? , event_start_time = ?, "
 						 + "event_end_time = ?, cost = ?, available_slots = ?, description = ? where class_id = ?";
 
-		jdbcTemplate.update(updateSql, subject.getSubjectName(), subject.getLocation(), subject.getDate(), subject.getStartTime(), 
+		jdbcTemplate.update(sqlUpdateSubject, subject.getSubjectName(), subject.getLocation(), subject.getDate(), subject.getStartTime(), 
 							subject.getEndTime(), subject.getCost(), subject.getAvailableSlots(), subject.getDescription(), classId);	
 	}
 
 	@Override
-	public void deleteSubject(String userName, int classId) 
+	public void deleteSubject(int classId) 
 	{
-		// TODO Auto-generated method stub
-		
+		String sqlDeleteSubject = "delete from subjects where class_id = ?";
+		jdbcTemplate.update(sqlDeleteSubject, classId);	
 	}
 	
 	@Override
