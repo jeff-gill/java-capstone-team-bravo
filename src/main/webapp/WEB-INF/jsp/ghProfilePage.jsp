@@ -42,12 +42,12 @@
 				<div class="text-right">
 
 					<a href="" class="btn btn-rounded mb-4 updateProfileButton"
-						data-toggle="modal" data-target="#modalProfileInfoForm">Update
+						data-toggle="modal" data-target="#modalProfilePicForm">Update
 						Profile Image!</a>
 				</div>
 				<div class="updateButton">
 					<div>
-						<div class="modal fade" id="modalProfileInfoForm" tabindex="-1"
+						<div class="modal fade" id="modalProfilePicForm" tabindex="-1"
 							role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 							<div class="modal-dialog" role="document">
 								<div class="modal-content">
@@ -96,9 +96,9 @@
 									<div class="modal-body mx-3">
 										<div class="md-form mb-5">
 											<input type="text" id="orangeForm-name" name="firstName"
-												class="form-control validate"> <label
+												class="form-control validate"  value="${profile.firstName}"> <label
 												data-error="wrong" data-success="right"
-												for="orangeForm-name"> First Name</label>
+												for="orangeForm-name""> First Name</label>
 										</div>
 										<div class="md-form mb-5">
 											<input type="text" id="orangeForm-name" name="lastName"
