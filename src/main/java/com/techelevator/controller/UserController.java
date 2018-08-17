@@ -24,6 +24,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -33,6 +34,7 @@ import com.techelevator.model.User;
 import com.techelevator.model.UserDAO;
 
 @Controller
+@SessionAttributes("currentUser")
 public class UserController {
 
 	@Autowired
@@ -183,10 +185,17 @@ public class UserController {
 	}
 	
 	@RequestMapping(path="/users/sensei/{userName}", method=RequestMethod.GET)
-	public String senseiProfile(Map<String, User> model, @PathVariable String userName) {
+	public String senseiProfile(Map<String, User> model, @PathVariable String userName, HttpSession session) {
 		model.put("profile", userDAO.getSenseiProfileByUserName(userName));
 		
 		return "senseiProfilePage";
+	}
+	
+	@RequestMapping(path="/users/gh/{userName}", method=RequestMethod.GET)
+	public String ghProfile(Map<String, User> model, @PathVariable String userName, HttpSession session) {
+		model.put("profile", userDAO.getGHProfileByUserName(userName));
+		model.put("subject",subjectDAO.getSubjectById(classId));
+		return "ghProfilePage";
 	}
 	
 	@RequestMapping(path="/users/sensei/{userName}", method=RequestMethod.POST)
@@ -308,11 +317,4 @@ public class UserController {
 //		subjectDAO.updateSubject(subject, classId);
 //		return "redirect:/users/gh/{userName}";
 //	}
-	
-	@RequestMapping(path="/users/gh/{userName}", method=RequestMethod.GET)
-	public String ghProfile(Map<String, User> model, @PathVariable String userName) {
-		model.put("profile", userDAO.getGHProfileByUserName(userName));
-		
-		return "ghProfilePage";
-	}
 }	
