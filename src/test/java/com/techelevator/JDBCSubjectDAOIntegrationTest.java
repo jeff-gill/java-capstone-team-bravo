@@ -1,20 +1,17 @@
 package com.techelevator;
 
-import static org.hamcrest.CoreMatchers.equalTo;
-import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 
 import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -23,13 +20,13 @@ import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.SingleConnectionDataSource;
+
 import com.techelevator.model.JDBCSubjectDAO;
 import com.techelevator.model.Subject;
 
 public class JDBCSubjectDAOIntegrationTest 
 {
 	private static final String SUBJECT_NAME = "SWORD FIGHTING";
-	private static final int TEST_ID = 2;
 
 	private static SingleConnectionDataSource dataSource;
 	

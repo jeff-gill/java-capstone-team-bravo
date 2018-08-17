@@ -6,6 +6,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.util.Date;
 import java.util.Map;
 import java.util.UUID;
 
@@ -46,7 +47,7 @@ public class UserController {
 		this.userDAO = userDAO;
 	}
 	
-	@RequestMapping(value= {"/", "/users/homePage"}, method=RequestMethod.GET)
+	@RequestMapping(path="/", method=RequestMethod.GET)
 	public String displayHomePage() {
 		return "homePage";
 	}
@@ -60,7 +61,7 @@ public class UserController {
 	}
 	
 	@RequestMapping(path="/uploadGHFile", method=RequestMethod.POST)
-	public String handleFileUpload(@RequestParam MultipartFile file, ModelMap map, HttpSession session) 
+	public String handleGHFileUpload(@RequestParam MultipartFile file, ModelMap map, HttpSession session) 
 	{	
 		File imagePath = getImageFilePath();
 		UUID guid = UUID.randomUUID();
@@ -82,6 +83,29 @@ public class UserController {
 		return "redirect:/users/gh/"+user.getUserName();
 	}
 	
+	@RequestMapping(path="/uploadSenseiFile", method=RequestMethod.POST)
+	public String handleSenseiFileUpload(@RequestParam MultipartFile file, ModelMap map, HttpSession session) 
+	{	
+		File imagePath = getImageFilePath();
+		UUID guid = UUID.randomUUID();
+		String imageName = imagePath + File.separator + guid.toString();
+		User user = (User) session.getAttribute("currentUser");
+		userDAO.updateImageName(user.getUserName(), guid.toString());
+		
+		if (file.isEmpty()) 
+		{
+			map.addAttribute("message", "File Object empty");
+		} 
+		else 
+		{
+			createImage(file, imageName);
+		}
+		
+		map.addAttribute("message", "uploaded to: " + imageName);
+		
+		return "redirect:/users/sensei/"+user.getUserName();
+	}
+	
 	@RequestMapping(path="/image/{imageName}", method=RequestMethod.GET)
 	@ResponseBody
 	public byte[] getImage(@PathVariable(value="imageName") String imageName) {
@@ -90,11 +114,9 @@ public class UserController {
 		try {
 			return Files.readAllBytes(image.toPath());
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return null;
-		}
-		
+		}	
 	}
 	
 	private File getImageFilePath() 
@@ -133,13 +155,13 @@ public class UserController {
 		}
 	}
 	
-	@RequestMapping(path= {"/", "/users/homePage"}, method=RequestMethod.POST)
+	@RequestMapping(path="/", method=RequestMethod.POST)
 	public String createUser(@Valid @ModelAttribute User user, BindingResult result, RedirectAttributes flash, HttpSession session) {
-//		if(result.hasErrors()) {
-//			flash.addFlashAttribute("user", user);
-//			flash.addFlashAttribute(BindingResult.MODEL_KEY_PREFIX + "user", result);
-//			return "redirect:/users/new";
-//		}
+		if(result.hasErrors()) {
+			flash.addFlashAttribute("user", user);
+			flash.addFlashAttribute(BindingResult.MODEL_KEY_PREFIX + "user", result);
+			return "redirect:/";
+		}
 		
 		User newUser = new User();
 		newUser.setFirstName(user.getFirstName());
@@ -182,7 +204,6 @@ public class UserController {
 								@RequestParam String lastName,
 								@RequestParam String bio,
 								@RequestParam String email,
-//								@RequestParam String profileImage,
 								@RequestParam String phone,
 								HttpSession session
 								) {
@@ -192,7 +213,6 @@ public class UserController {
 		user.setBio(bio);
 		user.setEmail(email);
 		user.setPhone(phone);
-//		user.setProfileImage(profileImage);
 		
 		userDAO.updateProfile(user, userName);
 		
@@ -207,7 +227,6 @@ public class UserController {
 								@RequestParam String lastName,
 								@RequestParam String bio,
 								@RequestParam String email,
-	//							@RequestParam String profileImage,
 								@RequestParam String phone,
 								@RequestParam String interests,
 								HttpSession session
@@ -218,7 +237,6 @@ public class UserController {
 		user.setBio(bio);
 		user.setEmail(email);
 		user.setPhone(phone);
-//		user.setProfileImage(profileImage);
 		user.setInterests(interests);
 		
 		userDAO.updateProfile(user, userName);
@@ -228,36 +246,64 @@ public class UserController {
 		return "redirect:/users/gh/"+userName;
 	}
 	
-//	@RequestMapping(path="/users/sensei/{userName}", method=RequestMethod.POST)
-//	public String createClass(@PathVariable String userName,
-//								@RequestParam String subjectName,
-//								@RequestParam String location,
-//								@RequestParam Date date,
-//								@RequestParam String startTime,
-//								@RequestParam String endTime,
-//								@RequestParam Float cost,
-//								@RequestParam int availableSlots,
-//								@RequestParam String description,
-//								HttpSession session) {
-//		
-//		Subject subject = new Subject();
-//		subject.setSubjectName(subjectName);
-//		subject.setLocation(location);
-//		subject.setDate(date);
-//		subject.setStartTime(startTime);
-//		subject.setEndTime(endTime);
-//		subject.setCost(cost);
-//		subject.setAvailableSlots(availableSlots);
-//		subject.setDescription(description);
-//		
-//		subjectDAO.saveSubject(subject);
-//		
-//		session.setAttribute("currentUser", userName);
-//		
-//									
-//		return "redirect:/users/sensei/"+userName;
-//	}
-//	
+	@RequestMapping(path="/users/sensei/updateSubject", method=RequestMethod.POST)
+	public String createSenseiClass(@PathVariable String userName,
+								@RequestParam String subjectName,
+								@RequestParam String location,
+								@RequestParam Date date,
+								@RequestParam String startTime,
+								@RequestParam String endTime,
+								@RequestParam Float cost,
+								@RequestParam int availableSlots,
+								@RequestParam String description,
+								HttpSession session) {
+		
+		Subject subject = new Subject();
+		subject.setSubjectName(subjectName);
+		subject.setLocation(location);
+		subject.setDate(date);
+		subject.setStartTime(startTime);
+		subject.setEndTime(endTime);
+		subject.setCost(cost);
+		subject.setAvailableSlots(availableSlots);
+		subject.setDescription(description);
+		
+		subjectDAO.saveSubject(subject);
+		
+		session.setAttribute("currentUser", userName);
+										
+		return "redirect:/users/sensei/"+userName;
+	}
+	
+	@RequestMapping(path="/users/gh/updateSubject", method=RequestMethod.POST)
+	public String createGHClass(@PathVariable String userName,
+								@RequestParam String subjectName,
+								@RequestParam String location,
+								@RequestParam Date date,
+								@RequestParam String startTime,
+								@RequestParam String endTime,
+								@RequestParam Float cost,
+								@RequestParam int availableSlots,
+								@RequestParam String description,
+								HttpSession session) {
+		
+		Subject subject = new Subject();
+		subject.setSubjectName(subjectName);
+		subject.setLocation(location);
+		subject.setDate(date);
+		subject.setStartTime(startTime);
+		subject.setEndTime(endTime);
+		subject.setCost(cost);
+		subject.setAvailableSlots(availableSlots);
+		subject.setDescription(description);
+		
+		subjectDAO.saveSubject(subject);
+		
+		session.setAttribute("currentUser", userName);
+										
+		return "redirect:/users/gh/"+userName;
+	}
+	
 	@RequestMapping(path="users/sensei/{userName}/updateSubject", method=RequestMethod.POST)
 	public String updateSenseiSubject(@ModelAttribute Subject subject, @RequestParam int classId)
 	{
