@@ -17,6 +17,7 @@
 	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
 <c:url var="formAction" value="/users/gh/${currentUser.userName}" />
+<c:url var="form" value="/uploadGHFile" />
 
 <section class="myContainer">
 	<div class="container-fluid">
@@ -33,9 +34,20 @@
 		<div class="row bioRow">
 			<div class="col-md-5">
 				<div id="profilePic">
-					<img src="../../img/${profile.profileImage}.jpg "
-						alt="place holder" />
+				<c:url var="imgUrl" value="/image/${profile.profileImage}" />
+						<img src="${imgUrl}" />
+				<c:if test="${not empty message}">
+  						  ${message} 
+					</c:if>
+<%-- 					<img src="../../img/${profile.profileImage}.jpg "
+						alt="place holder" /> --%>
 				</div>
+				<div class="text-right">
+
+						<a href="" class="btn btn-rounded mb-4 updateProfileButton"
+							data-toggle="modal" data-target="#modalProfileInfoForm">Update
+							Profile Image!</a>
+					</div>
 				<div class="updateButton">
 					<div class="modal fade" id="modalProfileInfoForm" tabindex="-1"
 						role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -49,14 +61,12 @@
 										<span aria-hidden="true">&times;</span>
 									</button>
 								</div>
-								<form method="POST" action="uploadFile"
+								<form method="POST" action="${form}"
 									enctype="multipart/form-data">
+										<input type="hidden" name="CSRF_TOKEN" value="${CSRF_TOKEN}">
 									File to upload: <input type="file" name="file"> <br />
 									<br /> <input type="submit" value="Upload">
-									<div class="modal-footer d-flex justify-content-center">
-										<button class="btn btn-deep-orange" type="submit">LET'S
-											DO IT!!</button>
-									</div>
+									<div class="modal-footer d-flex justify-content-center" ></div>
 								</form>
 								<c:if test="${not empty message}">
 									${message}
