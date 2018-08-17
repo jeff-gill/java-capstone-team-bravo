@@ -97,7 +97,7 @@
 								class="form-control" />
 						</div>
 						<button type="submit" class="btn btn-default">Login</button>
-						</form>
+					</form>
 				</div>
 			</div>
 			<div class="col-sm-6">
@@ -147,7 +147,6 @@
 			</div>
 		</div>
 	</div>
-
 </section>
 </body>
 </html>
