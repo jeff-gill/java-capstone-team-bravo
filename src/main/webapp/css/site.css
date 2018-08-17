@@ -142,12 +142,13 @@ div.signupContainer {
 	border-width: 10px;
 	border-style: outset;
 	border-color: #bab758;
+	object-fit: cover;
 }
 
 #profilePic img {
 	width: auto;
 	height: 100%;
-	margin-left: -45%;
+	object-fit: cover;
 }
 
 @media screen and (max-width: 991px) {
