@@ -1,16 +1,20 @@
 package com.techelevator;
 
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 
 import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
-
+import java.util.List;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -19,7 +23,6 @@ import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.SingleConnectionDataSource;
-
 import com.techelevator.model.JDBCSubjectDAO;
 import com.techelevator.model.Subject;
 
@@ -71,9 +74,9 @@ public class JDBCSubjectDAOIntegrationTest
 		DateFormat formatter = new SimpleDateFormat("MM-dd-yyyy");
 		Date date = formatter.parse("10-10-2018");
 		Subject subjects = getSubject(SUBJECT_NAME, "Nowhere special", date, "1:00", "2:00", 12.00f, 4, "All I want for Christmas is my two front teeth");
-		
 		subjectDAO.saveSubject(subjects);
-		assertNotNull(subjects);
+		
+		assertNotNull(subjects.getClassId());
 	}
 
 	@Test
@@ -83,8 +86,11 @@ public class JDBCSubjectDAOIntegrationTest
 		Date date = formatter.parse("10-10-2018");
 		Subject subjects = getSubject(SUBJECT_NAME, "Nowhere special", date, "1:00", "2:00", 12.00f, 4, "All I want for Christmas is my two front teeth");
 		subjectDAO.saveSubject(subjects);
-		subjectDAO.updateSubject(subjects, TEST_ID);
-		assertEquals(SUBJECT_NAME, subjects.getSubjectName());
+		subjects.setSubjectName("Hello");
+		subjectDAO.updateSubject(subjects, subjects.getClassId());
+		Subject sub = subjectDAO.getSubjectById(subjects.getClassId());
+		
+		assertSubjectsAreEqual(sub, subjects);
 	}
 	
 	@Test
@@ -99,6 +105,28 @@ public class JDBCSubjectDAOIntegrationTest
 		
 		assertNotNull(sub);
 		assertSubjectsAreEqual(subjects, sub);
+	}
+	
+	@Test
+	public void test_search_subject() throws ParseException
+	{
+		List<Subject> results = subjectDAO.searchSubject(SUBJECT_NAME);
+		
+		assertNotNull(results);
+		assertTrue(results.size() >= 1);
+	}
+	
+	@Test
+	public void test_delete_subject() throws ParseException
+	{
+		DateFormat formatter = new SimpleDateFormat("MM-dd-yyyy");
+		Date date = formatter.parse("10-10-2018");
+		Subject subjects = getSubject(SUBJECT_NAME, "Nowhere special", date, "1:00", "2:00", 12.00f, 4, "All I want for Christmas is my two front teeth");
+		subjectDAO.saveSubject(subjects);
+		subjectDAO.deleteSubject(subjects.getClassId());
+		subjects = subjectDAO.getSubjectById(subjects.getClassId());
+		
+		assertNull(subjects);
 	}
 	
 	private void assertSubjectsAreEqual(Subject expected, Subject actual) 
@@ -124,14 +152,6 @@ public class JDBCSubjectDAOIntegrationTest
 		subjects.setAvailableSlots(availableSlots);
 		subjects.setDescription(description);
 	
-		return subjects;
-	}
-	
-	private Subject getSubject(String className)
-	{
-		Subject subjects = new Subject();
-		subjects.setSubjectName(className);
-		
 		return subjects;
 	}
 }
