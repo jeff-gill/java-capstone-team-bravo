@@ -75,7 +75,7 @@
 		<div class="row">
 			<div class="col-sm-6">
 				<div class="col-md-2 senseiPicHome" id="senseiPicHome">
-					<img src="../../img/SenseiMaster.jpg">
+					<img src="img/SenseiMaster.jpg">
 				</div><br>
 				<div class="senseiMottoHome">
 				wonder. learn. connect. teach. repeat.</div>
