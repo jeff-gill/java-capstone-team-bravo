@@ -73,15 +73,28 @@ input[type=submit]:hover {
 }
 
 /* home */
-div.senseiMottoHome {
-	font-size: 32px; 
-	text-align: right;
+
+div.homeTitleBar {
+	backgroud-color:#f4f3f4;
+}
+
+h1.senseiHomeTitle {
+	font-size: 48px;
 }
 
 div.senseiPicHome {
 	width: 100%;
-	align-items: center
-	
+	align-items: center	
+}
+
+div.senseiMottoHome {
+	font-size: 32px; 
+	text-align: right;
+	padding-top: 20px;
+}
+
+div.signupContainer {
+	padding-top: 35px;
 }
 
 /* /* footer */

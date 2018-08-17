@@ -72,35 +72,48 @@
 
 <section class="myContainer">
 	<div class="container-fluid">
+		<div class="row homeTitleBar">
+			<div class="col-md-6">
+				<h1 class="senseiHomeTitle">Sensei.</h1>
+			</div>
+			<div class="col-md-6">
+				<div class="senseiMottoHome">wonder. learn. connect. teach.
+					repeat.</div>
+			</div>
+		</div>
 		<div class="row">
 			<div class="col-sm-6">
 				<div class="col-md-2 senseiPicHome" id="senseiPicHome">
 					<img src="img/SenseiMaster.jpg">
 				</div>
 				<br>
-				<div class="senseiMottoHome">wonder. learn. connect. teach.
-					repeat.</div>
-				<div>
-					<c:url var="formAction" value="/login" />
-					<form method="POST" action="${formAction}">
-						<input type="hidden" name="destination"
-							value="${param.destination}" /> <input type="hidden"
-							name="CSRF_TOKEN" value="${CSRF_TOKEN}" />
-						<div class="form-group">
-							<label for="userName">User Name: </label> <input type="text"
-								id="userName" name="userName" placeHolder="User Name"
-								class="form-control" />
-						</div>
-						<div class="form-group">
-							<label for="password">Password: </label> <input type="password"
-								id="password" name="password" placeHolder="Password"
-								class="form-control" />
-						</div>
-						<button type="submit" class="btn btn-default">Login</button>
-					</form>
-				</div>
+
+				<c:url var="formAction" value="/login" />
+				<form method="POST" action="${formAction}">
+					<input type="hidden" name="destination"
+						value="${param.destination}" /> <input type="hidden"
+						name="CSRF_TOKEN" value="${CSRF_TOKEN}" />
+					<div class="form-group">
+						<label for="userName">User Name: </label> <input type="text"
+							id="userName" name="userName" placeHolder="User Name"
+							class="form-control" />
+					</div>
+					<div class="form-group">
+						<label for="password">Password: </label> <input type="password"
+							id="password" name="password" placeHolder="Password"
+							class="form-control" />
+					</div>
+					<button type="submit" class="btn btn-default">Login</button>
+				</form>
 			</div>
-			<div class="col-sm-6">
+			<div class="col-sm-6 signupContainer">
+
+				<label for="isSensei">Choose Sensei or Grasshopper: </label>
+				<div class="form-group">
+					<input type="radio" value="true" name="sensei" /> Sensei <input
+						type="radio" value="false" name="sensei" /> Grasshopper
+					<form:errors path="activityLevel" cssClass="error" />
+				</div>
 				<c:url var="formAct" value="/" />
 				<form method="POST" action="${formAct}">
 					<input type="hidden" name="CSRF_TOKEN" value="${CSRF_TOKEN}" />
@@ -135,12 +148,6 @@
 					<div class="form-group">
 						<label for="email">Email: </label> <input type="text" id="email"
 							name="email" placeHolder="Email" class="form-control" />
-					</div>
-					<label for="isSensei">Choose Sensei or Grasshopper: </label>
-					<div class="form-group">
-						<input type="radio" value="true" name="sensei" /> Sensei <input
-							type="radio" value="false" name="sensei" /> Grasshopper
-						<form:errors path="activityLevel" cssClass="error" />
 					</div>
 					<button type="submit" class="btn btn-default">Create User</button>
 				</form>
