@@ -1,15 +1,8 @@
 package com.techelevator.controller;
 
-import java.io.BufferedOutputStream;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
 import java.util.Date;
 import java.util.Map;
-import java.util.UUID;
 
-import javax.servlet.ServletContext;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
@@ -22,7 +15,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.techelevator.model.Subject;
@@ -153,36 +145,36 @@ public class UserController {
 		return "redirect:/users/gh/"+userName;
 	}
 	
-	@RequestMapping(path="/users/sensei/{userName}", method=RequestMethod.POST)
-	public String createClass(@PathVariable String userName,
-								@RequestParam String subjectName,
-								@RequestParam String location,
-								@RequestParam Date date,
-								@RequestParam String startTime,
-								@RequestParam String endTime,
-								@RequestParam Float cost,
-								@RequestParam int availableSlots,
-								@RequestParam String description,
-								HttpSession session) {
-		
-		Subject subject = new Subject();
-		subject.setSubjectName(subjectName);
-		subject.setLocation(location);
-		subject.setDate(date);
-		subject.setStartTime(startTime);
-		subject.setEndTime(endTime);
-		subject.setCost(cost);
-		subject.setAvailableSlots(availableSlots);
-		subject.setDescription(description);
-		
-		subjectDAO.saveSubject(subject);
-		
-		session.setAttribute("currentUser", userName);
-		
-									
-		return "redirect:/users/sensei/"+userName;
-	}
-	
+//	@RequestMapping(path="/users/sensei/{userName}", method=RequestMethod.POST)
+//	public String createClass(@PathVariable String userName,
+//								@RequestParam String subjectName,
+//								@RequestParam String location,
+//								@RequestParam Date date,
+//								@RequestParam String startTime,
+//								@RequestParam String endTime,
+//								@RequestParam Float cost,
+//								@RequestParam int availableSlots,
+//								@RequestParam String description,
+//								HttpSession session) {
+//		
+//		Subject subject = new Subject();
+//		subject.setSubjectName(subjectName);
+//		subject.setLocation(location);
+//		subject.setDate(date);
+//		subject.setStartTime(startTime);
+//		subject.setEndTime(endTime);
+//		subject.setCost(cost);
+//		subject.setAvailableSlots(availableSlots);
+//		subject.setDescription(description);
+//		
+//		subjectDAO.saveSubject(subject);
+//		
+//		session.setAttribute("currentUser", userName);
+//		
+//									
+//		return "redirect:/users/sensei/"+userName;
+//	}
+//	
 	@RequestMapping(path="users/sensei/{userName}/updateSubject", method=RequestMethod.POST)
 	public String updateSenseiSubject(@ModelAttribute Subject subject, @RequestParam int classId)
 	{
