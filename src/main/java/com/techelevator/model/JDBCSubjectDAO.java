@@ -40,7 +40,7 @@ public class JDBCSubjectDAO implements SubjectDAO
 		
 		while (result.next())
 		{
-			subjects = mapRowSetToSubject(result);
+			subjects.add(mapRowToSubject(result));
 		}
 		
 		return subjects;
@@ -81,7 +81,7 @@ public class JDBCSubjectDAO implements SubjectDAO
 	private Subject mapRowToSubject(SqlRowSet results) 
 	{
 		Subject subject = new Subject();
-		subject.setSubjectName(results.getString("subject_name").toUpperCase());
+		subject.setSubjectName(results.getString("subject_name"));
 		subject.setLocation(results.getString("location"));
 		subject.setDate(results.getDate("event_date"));
 		subject.setStartTime(results.getString("event_start_time"));
