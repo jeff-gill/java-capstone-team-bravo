@@ -13,5 +13,7 @@ public interface SubjectDAO {
 	public void deleteSubject(int classId);
 		
 	public Subject getSubjectById(int id) ;
+	
+	public List<Subject> getAllSubjects(int classId);
 
 }

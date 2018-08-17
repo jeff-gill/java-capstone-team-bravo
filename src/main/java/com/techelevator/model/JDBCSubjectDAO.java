@@ -78,6 +78,21 @@ public class JDBCSubjectDAO implements SubjectDAO
 		return subjects;
 	}
 	
+	@Override
+	public List<Subject> getAllSubjects(int classId) 
+	{
+		List<Subject> subjects = new ArrayList<Subject>();
+		String sqlGetAllSubjects = "select * from subjects join user_subjects as US on subjects.class_id = US.class_id join user_info as UI on US.user_name = UI.user_name where subjects.class_id = ?";
+		SqlRowSet result = jdbcTemplate.queryForRowSet(sqlGetAllSubjects, classId);
+		
+		while (result.next())
+		{
+			subjects.add(mapRowToSubject(result));
+		}
+		
+		return subjects;
+	}
+	
 	private Subject mapRowToSubject(SqlRowSet results) 
 	{
 		Subject subject = new Subject();
@@ -118,4 +133,5 @@ public class JDBCSubjectDAO implements SubjectDAO
 		
 		return subjectList;
 	}
+
 }

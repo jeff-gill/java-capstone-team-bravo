@@ -27,6 +27,7 @@ import com.techelevator.model.Subject;
 public class JDBCSubjectDAOIntegrationTest 
 {
 	private static final String SUBJECT_NAME = "SWORD FIGHTING";
+	private static final int TEST_ID = 1;
 
 	private static SingleConnectionDataSource dataSource;
 	
@@ -125,6 +126,16 @@ public class JDBCSubjectDAOIntegrationTest
 		
 		assertNull(subjects);
 	}
+	
+	@Test
+	public void test_get_all_subjects() throws ParseException
+	{
+		List<Subject> results = subjectDAO.getAllSubjects(TEST_ID);
+		
+		assertNotNull(results);
+		assertTrue(results.size() >= 1);
+	}
+	
 	
 	private void assertSubjectsAreEqual(Subject expected, Subject actual) 
 	{
