@@ -5,10 +5,14 @@
 <head>
 <title>Sensei</title>
 
-<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
-<script src="http://cdn.jsdelivr.net/jquery.validation/1.15.0/jquery.validate.min.js"></script>
-<script src="https://cdn.jsdelivr.net/jquery.timeago/1.4.1/jquery.timeago.min.js"></script>
+<link rel="stylesheet"
+	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+<script
+	src="http://cdn.jsdelivr.net/jquery.validation/1.15.0/jquery.validate.min.js"></script>
+<script
+	src="https://cdn.jsdelivr.net/jquery.timeago/1.4.1/jquery.timeago.min.js"></script>
 <link rel="stylesheet" href="css/site.css">
 
 <meta charset="utf-8">
@@ -19,8 +23,8 @@
 	crossorigin="anonymous"></script>
 <link rel="stylesheet" href="style.css">
 
-<c:url var="formAction" value="/users/sensei/${currentUser}" />
-<c:url var="formAct" value="/users/sensei/${currentUser}" />
+<c:url var="formAction" value="/users/sensei/${currentUser.userName}" />
+<c:url var="formAct" value="/users/sensei/${currentUser.userName}" />
 
 
 <!-- <script type="text/javascript">
@@ -65,8 +69,9 @@
 				<h1 class="senseiHomeTitle">Sensei.</h1>
 			</div>
 			<div class="col-md-6">
-				<div class="senseiMottoHome">wonder. learn. connect. teach.
-					repeat.</div>
+				<div class="senseiMottoHome">
+					<b><i>wonder. learn. connect. teach. repeat.</i></b>
+				</div>
 			</div>
 		</div>
 		<div class="row">
@@ -115,10 +120,11 @@
 							id="password" name="password" placeHolder="Password"
 							class="form-control" />
 					</div>
-					<!--<div class="form-group">
-								<label for="confirmPassword">Confirm Password: </label>
-								<input type="password" id="confirmPassword" name="confirmPassword" placeHolder="Re-Type Password" class="form-control" />	
-					</div> -->
+					<div class="form-group">
+						<label for="confirmPassword">Confirm Password: </label> <input
+							type="password" id="confirmPassword" name="confirmPassword"
+							placeHolder="Re-Type Password" class="form-control" />
+					</div>
 					<div class="form-group">
 						<label for="firstName">First Name: </label> <input type="text"
 							id="firstName" name="firstName" placeHolder="First Name"

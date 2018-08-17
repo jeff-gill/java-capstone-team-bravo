@@ -194,7 +194,7 @@ public class UserController {
 	@RequestMapping(path="/users/gh/{userName}", method=RequestMethod.GET)
 	public String ghProfile(Map<String, User> model, @PathVariable String userName, HttpSession session) {
 		model.put("profile", userDAO.getGHProfileByUserName(userName));
-		
+		model.put("subject",subjectDAO.getSubjectById(classId));
 		return "ghProfilePage";
 	}
 	
