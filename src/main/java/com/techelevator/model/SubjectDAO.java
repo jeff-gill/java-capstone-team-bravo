@@ -14,6 +14,6 @@ public interface SubjectDAO {
 		
 	public Subject getSubjectById(int id) ;
 	
-	public List<Subject> getAllSubjects(int classId);
+	public List<Subject> getAllSubjects(String userName);
 
 }

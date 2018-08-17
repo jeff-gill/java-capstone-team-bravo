@@ -185,16 +185,16 @@ public class UserController {
 	}
 	
 	@RequestMapping(path="/users/sensei/{userName}", method=RequestMethod.GET)
-	public String senseiProfile(Map<String, User> model, @PathVariable String userName, HttpSession session) {
+	public String senseiProfile(Map<String, User> model, @PathVariable String userName, HttpSession session, ModelMap map) {
 		model.put("profile", userDAO.getSenseiProfileByUserName(userName));
-		
+		map.addAttribute("subject",subjectDAO.getAllSubjects(userName));
 		return "senseiProfilePage";
 	}
 	
 	@RequestMapping(path="/users/gh/{userName}", method=RequestMethod.GET)
-	public String ghProfile(Map<String, User> model, @PathVariable String userName, HttpSession session) {
+	public String ghProfile(Map<String, User> model,  @PathVariable String userName, HttpSession session, ModelMap map) {
 		model.put("profile", userDAO.getGHProfileByUserName(userName));
-		model.put("subject",subjectDAO.getSubjectById(classId));
+		map.addAttribute("subject",subjectDAO.getAllSubjects(userName));
 		return "ghProfilePage";
 	}
 	

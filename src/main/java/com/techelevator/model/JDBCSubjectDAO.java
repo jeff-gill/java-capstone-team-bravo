@@ -79,11 +79,11 @@ public class JDBCSubjectDAO implements SubjectDAO
 	}
 	
 	@Override
-	public List<Subject> getAllSubjects(int classId) 
+	public List<Subject> getAllSubjects(String userName) 
 	{
 		List<Subject> subjects = new ArrayList<Subject>();
-		String sqlGetAllSubjects = "select * from subjects join user_subjects as US on subjects.class_id = US.class_id join user_info as UI on US.user_name = UI.user_name where subjects.class_id = ?";
-		SqlRowSet result = jdbcTemplate.queryForRowSet(sqlGetAllSubjects, classId);
+		String sqlGetAllSubjects = "select * from subjects join user_subjects as US on subjects.class_id = US.class_id join user_info as UI on US.user_name = UI.user_name where UI.user_name = ?";
+		SqlRowSet result = jdbcTemplate.queryForRowSet(sqlGetAllSubjects, userName);
 		
 		while (result.next())
 		{
