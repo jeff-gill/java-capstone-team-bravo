@@ -78,8 +78,6 @@ public class UserController {
 			createImage(file, imageName);
 		}
 		
-		map.addAttribute("message", "uploaded to: " + imageName);
-		
 		return "redirect:/users/gh/"+user.getUserName();
 	}
 	
@@ -100,8 +98,6 @@ public class UserController {
 		{
 			createImage(file, imageName);
 		}
-		
-		map.addAttribute("message", "uploaded to: " + imageName);
 		
 		return "redirect:/users/sensei/"+user.getUserName();
 	}
