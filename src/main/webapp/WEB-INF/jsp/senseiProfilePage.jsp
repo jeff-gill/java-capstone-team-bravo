@@ -97,33 +97,33 @@
 									<div class="modal-body mx-3">
 										<div class="md-form mb-5">
 											<label data-error="wrong" data-success="right"
-												for="orangeForm-name"> First Name:</label><input type="text"
+												for="orangeForm-name"> First Name: </label><input type="text"
 												id="orangeForm-name" name="firstName"
-												class="form-control validate">
+												class="form-control validate" value="${profile.firstName}">
 										</div>
 										<div class="md-form mb-5">
 											<label data-error="wrong" data-success="right"
-												for="orangeForm-name"> Last Name:</label><input type="text"
+												for="orangeForm-name"> Last Name: </label><input type="text"
 												id="orangeForm-name" name="lastName"
-												class="form-control validate">
+												class="form-control validate" value="${profile.lastName}">
 										</div>
 										<div class="md-form mb-5">
 											<label data-error="wrong" data-success="right"
-												for="orangeForm-email">Primary Email Address:</label><input
+												for="orangeForm-email">Primary Email Address: </label><input
 												type="email" id="orangeForm-email" name="email"
-												class="form-control validate">
+												class="form-control validate" value="${profile.email}">
 										</div>
 										<div class="md-form mb-5">
 											<label data-error="wrong" data-success="right"
-												for="orangeForm-pass">Primary Phone Number:</label><input
+												for="orangeForm-pass">Primary Phone Number: </label><input
 												type="tel" id="orangeForm-pass" name="phone"
-												class="form-control validate">
+												class="form-control validate" value="${profile.phone}">
 										</div>
 										<div class="md-form mb-5">
 											<label data-error="wrong" data-success="right"
 												for="orangeForm-pass">Bio Info:</label><input type="tel"
 												id="orangeForm-pass" name="bio"
-												class="form-control validate">
+												class="form-control validate" value="${profile.bio}">
 										</div>
 										<br />
 									</div>
