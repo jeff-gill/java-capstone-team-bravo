@@ -65,8 +65,8 @@
 				<h1 class="senseiHomeTitle">Sensei.</h1>
 			</div>
 			<div class="col-md-6">
-				<div class="senseiMottoHome">wonder. learn. connect. teach.
-					repeat.</div>
+				<div class="senseiMottoHome"><b><i>wonder. learn. connect. teach.
+					repeat.</i></b></div>
 			</div>
 		</div>
 		<div class="row">
