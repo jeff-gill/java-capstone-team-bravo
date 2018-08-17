@@ -3,6 +3,7 @@ package com.techelevator.model;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
+import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotBlank;
 
 public class User {
@@ -14,18 +15,37 @@ public class User {
 		@Pattern(regexp=".*[A-Z].*", message="Must have a capital")
 	})
 
+	@NotBlank(message="Password field is required.")
 	private String password;
+	
 	private String role;
+	
 	private String confirmPassword;
+	
+	@NotBlank(message="First name field is required.")
 	private String firstName;
+	
+	@NotBlank(message="Last name field is required.")
 	private String lastName;
+	
+	@NotBlank(message="Bio field is required.")
 	private String bio;
+	
 	private int rating;
+	
+	@NotBlank(message="Please choose either Sensei or Grasshopper.")
 	private boolean sensei;
+	
 	private String profileImage;
+	
 	private String salt;
+	
+	@NotBlank(message="Email address is required.")
+	@Email(message="Valid email address is required.")
 	private String email;
+	
 	private String phone;
+	
 	private String interests;
 	
 	//Added isSensei and salt getters and setters
