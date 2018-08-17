@@ -5,7 +5,7 @@ import java.util.Date;
 public class Subject {
 	
 	private int classId;
-	private String className;
+	private String subjectName;
 	private String location;
 	private Date date;
 	private String startTime;
@@ -22,11 +22,11 @@ public class Subject {
 		this.classId = classId;
 	}
 
-	public String getClassName() {
-		return className;
+	public String getSubjectName() {
+		return subjectName;
 	}
-	public void setClassName(String className) {
-		this.className = className;
+	public void setSubjectName(String subjectName) {
+		this.subjectName = subjectName;
 	}
 	public String getLocation() {
 		return location;
