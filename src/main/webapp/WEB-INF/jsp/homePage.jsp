@@ -20,6 +20,7 @@
 <link rel="stylesheet" href="style.css">
 
 <c:url var="formAction" value="/users/sensei/${currentUser.userName}" />
+<c:url var="formAct" value="/users/sensei/${currentUser.userName}" />
 
 
 <!-- <script type="text/javascript">
@@ -114,10 +115,10 @@
 							id="password" name="password" placeHolder="Password"
 							class="form-control" />
 					</div>
-					<!--<div class="form-group">
+					<div class="form-group">
 								<label for="confirmPassword">Confirm Password: </label>
 								<input type="password" id="confirmPassword" name="confirmPassword" placeHolder="Re-Type Password" class="form-control" />	
-					</div> -->
+					</div>
 					<div class="form-group">
 						<label for="firstName">First Name: </label> <input type="text"
 							id="firstName" name="firstName" placeHolder="First Name"
