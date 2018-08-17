@@ -24,7 +24,7 @@ public class AuthenticationController {
 
 	@RequestMapping(path="/login", method=RequestMethod.GET)
 	public String displayLoginForm() {
-		return "login";
+		return "homePage";
 	}
 	
 	@RequestMapping(path="/login", method=RequestMethod.POST)
@@ -48,7 +48,7 @@ public class AuthenticationController {
 		} 
 		else 
 		{
-			return "redirect:/login";
+			return "redirect:/";
 		}
 	}
 
@@ -56,6 +56,6 @@ public class AuthenticationController {
 	public String logout(ModelMap model, HttpSession session) {
 		model.remove("currentUser");
 		session.invalidate();
-		return "redirect:/users/homePage";
+		return "redirect:/";
 	}
 }

@@ -90,7 +90,6 @@ public class UserController {
 		try {
 			return Files.readAllBytes(image.toPath());
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return null;
 		}
@@ -135,11 +134,11 @@ public class UserController {
 	
 	@RequestMapping(path= {"/", "/users/homePage"}, method=RequestMethod.POST)
 	public String createUser(@Valid @ModelAttribute User user, BindingResult result, RedirectAttributes flash, HttpSession session) {
-//		if(result.hasErrors()) {
-//			flash.addFlashAttribute("user", user);
-//			flash.addFlashAttribute(BindingResult.MODEL_KEY_PREFIX + "user", result);
-//			return "redirect:/users/new";
-//		}
+		if(result.hasErrors()) {
+			flash.addFlashAttribute("user", user);
+			flash.addFlashAttribute(BindingResult.MODEL_KEY_PREFIX + "user", result);
+			return "redirect:/";
+		}
 		
 		User newUser = new User();
 		newUser.setFirstName(user.getFirstName());
@@ -182,7 +181,6 @@ public class UserController {
 								@RequestParam String lastName,
 								@RequestParam String bio,
 								@RequestParam String email,
-//								@RequestParam String profileImage,
 								@RequestParam String phone,
 								HttpSession session
 								) {
@@ -192,7 +190,6 @@ public class UserController {
 		user.setBio(bio);
 		user.setEmail(email);
 		user.setPhone(phone);
-//		user.setProfileImage(profileImage);
 		
 		userDAO.updateProfile(user, userName);
 		
@@ -207,7 +204,6 @@ public class UserController {
 								@RequestParam String lastName,
 								@RequestParam String bio,
 								@RequestParam String email,
-	//							@RequestParam String profileImage,
 								@RequestParam String phone,
 								@RequestParam String interests,
 								HttpSession session
@@ -218,7 +214,6 @@ public class UserController {
 		user.setBio(bio);
 		user.setEmail(email);
 		user.setPhone(phone);
-//		user.setProfileImage(profileImage);
 		user.setInterests(interests);
 		
 		userDAO.updateProfile(user, userName);

@@ -23,8 +23,7 @@ public class JDBCSubjectDAO implements SubjectDAO
 	public void saveSubject(Subject subject) 
 	{
 		String sqlSaveSubject = "insert into subjects (subject_name, location, event_date, event_start_time, event_end_time, cost, available_slots, description) "
-							  + "values (?, ?, ?, ?, ?, ?, ?, ?) returning class_id "
-							  + "insert into user_subjects (class_id, user_name) values (?, ?)";
+							  + "values (?, ?, ?, ?, ?, ?, ?, ?) returning class_id";
 
 		int classId = jdbcTemplate.queryForObject(sqlSaveSubject, Integer.class, subject.getSubjectName(), subject.getLocation(), subject.getDate(),
 				subject.getStartTime(), subject.getEndTime(), subject.getCost(), subject.getAvailableSlots(), subject.getDescription());
