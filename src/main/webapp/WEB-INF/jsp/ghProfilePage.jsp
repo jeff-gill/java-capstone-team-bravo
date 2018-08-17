@@ -34,43 +34,42 @@
 		<div class="row bioRow">
 			<div class="col-md-5">
 				<div id="profilePic">
-				<c:url var="imgUrl" value="/image/${profile.profileImage}" />
-						<img src="${imgUrl}" />
-				<c:if test="${not empty message}">
+					<c:url var="imgUrl" value="/image/${profile.profileImage}" />
+					<img src="${imgUrl}" />
+					<c:if test="${not empty message}">
   						  ${message} 
-					</c:if>
-<%-- 					<img src="../../img/${profile.profileImage}.jpg "
-						alt="place holder" /> --%>
-				</div>
+					</c:if>				</div>
 				<div class="text-right">
 
-						<a href="" class="btn btn-rounded mb-4 updateProfileButton"
-							data-toggle="modal" data-target="#modalProfileInfoForm">Update
-							Profile Image!</a>
-					</div>
+					<a href="" class="btn btn-rounded mb-4 updateProfileButton"
+						data-toggle="modal" data-target="#modalProfileInfoForm">Update
+						Profile Image!</a>
+				</div>
 				<div class="updateButton">
-					<div class="modal fade" id="modalProfileInfoForm" tabindex="-1"
-						role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-						<div class="modal-dialog" role="document">
-							<div class="modal-content">
-								<div class="modal-header text-center">
-									<h4 class="modal-title w-100 font-weight-bold">Edit
-										Profile Image</h4>
-									<button type="button" class="close" data-dismiss="modal"
-										aria-label="Close">
-										<span aria-hidden="true">&times;</span>
-									</button>
-								</div>
-								<form method="POST" action="${form}"
-									enctype="multipart/form-data">
+					<div>
+						<div class="modal fade" id="modalProfileInfoForm" tabindex="-1"
+							role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+							<div class="modal-dialog" role="document">
+								<div class="modal-content">
+									<div class="modal-header text-center">
+										<h4 class="modal-title w-100 font-weight-bold">Edit
+											Profile Image</h4>
+										<button type="button" class="close" data-dismiss="modal"
+											aria-label="Close">
+											<span aria-hidden="true">&times;</span>
+										</button>
+									</div>
+									<form method="POST" action="${form}"
+										enctype="multipart/form-data">
 										<input type="hidden" name="CSRF_TOKEN" value="${CSRF_TOKEN}">
-									File to upload: <input type="file" name="file"> <br />
-									<br /> <input type="submit" value="Upload">
-									<div class="modal-footer d-flex justify-content-center" ></div>
-								</form>
-								<c:if test="${not empty message}">
+										File to upload: <input type="file" name="file"> <br />
+										<br /> <input type="submit" value="Upload">
+										<div class="modal-footer d-flex justify-content-center"></div>
+									</form>
+									<c:if test="${not empty message}">
 									${message}
 									</c:if>
+								</div>
 							</div>
 						</div>
 					</div>

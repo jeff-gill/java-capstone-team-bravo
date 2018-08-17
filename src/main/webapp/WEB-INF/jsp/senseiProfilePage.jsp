@@ -17,6 +17,7 @@
 	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
 <c:url var="formAction" value="/users/sensei/${currentUser.userName}" />
+<c:url var="form" value="/uploadSenseiFile" />
 
 <section class="myContainer">
 	<div class="container-fluid">
@@ -33,10 +34,46 @@
 		<div class="row bioRow">
 			<div class="col-md-5">
 				<div id="profilePic">
-					<img src="../../img/${profile.profileImage}.jpg "
-						alt="place holder" />
+					<c:url var="imgUrl" value="/image/${profile.profileImage}" />
+					<img src="${imgUrl}" />
+					<c:if test="${not empty message}">
+  						  ${message} 
+					</c:if>
 				</div>
-				<div>
+				<div class="text-right">
+
+					<a href="" class="btn btn-rounded mb-4 updateProfileButton"
+						data-toggle="modal" data-target="#modalProfileInfoForm">Update
+						Profile Image!</a>
+				</div>
+				<div class="updateButton">
+					<div>
+						<div class="modal fade" id="modalProfileInfoForm" tabindex="-1"
+							role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+							<div class="modal-dialog" role="document">
+								<div class="modal-content">
+									<div class="modal-header text-center">
+										<h4 class="modal-title w-100 font-weight-bold">Edit
+											Profile Image</h4>
+										<button type="button" class="close" data-dismiss="modal"
+											aria-label="Close">
+											<span aria-hidden="true">&times;</span>
+										</button>
+									</div>
+									<form method="POST" action="${form}"
+										enctype="multipart/form-data">
+										<input type="hidden" name="CSRF_TOKEN" value="${CSRF_TOKEN}">
+										File to upload: <input type="file" name="file"> <br />
+										<br /> <input type="submit" value="Upload">
+										<div class="modal-footer d-flex justify-content-center"></div>
+									</form>
+									<c:if test="${not empty message}">
+									${message}
+									</c:if>
+								</div>
+							</div>
+						</div>
+					</div>
 					<div class="text-right button">
 						<a href="" class="btn btn-rounded mb-4 updateButton"
 							data-toggle="modal" data-target="#modalProfileInfoForm">Update
@@ -224,111 +261,110 @@
 				</div>
 			</div>
 		</div>
-		<div class="row">
+	</div>
+	<div class="row">
 		<div class="col-md-12">
-		<p>Class Schedule:</p>
+			<p>Class Schedule:</p>
 		</div>
-		</div>
-		<div class="row">
-			<div class="col-md-3" id="classContent">
-				<p>
-					<a class="classInfoLabels"> <b>Subject:</b></a> placeholder
-					<%-- ${class.subjectName} --%>
-				</p>
+	</div>
+	<div class="row">
+		<div class="col-md-3" id="classContent">
+			<p>
+				<a class="classInfoLabels"> <b>Subject:</b></a> placeholder
+				<%-- ${class.subjectName} --%>
+			</p>
 
+		</div>
+		<div class="col-md-3" id="classContent">
+			<p>
+				<a class="classInfoLabels"> <b>Location:</b></a> placeholder
+				<%-- ${class.location} --%>
+			</p>
+		</div>
+		<div class="col-md-2" id="classContent">
+			<p>
+				<a class="classInfoLabels"> <b>Date:</b></a> placeholder
+				<%-- ${class.date} --%>
+			</p>
+		</div>
+		<div class="col-md-2" id="classDeets">
+			<div class="text-left button">
+				<a href="" class="btn btn-rounded mb-4 classInfoButton"
+					data-toggle="modal" data-target="#modalClassInfoForm">Checkout
+					Class Deets!</a>
 			</div>
-			<div class="col-md-3" id="classContent">
-				<p>
-					<a class="classInfoLabels"> <b>Location:</b></a> placeholder
-					<%-- ${class.location} --%>
-				</p>
-			</div>
-			<div class="col-md-2" id="classContent">
-				<p>
-					<a class="classInfoLabels"> <b>Date:</b></a> placeholder
-					<%-- ${class.date} --%>
-				</p>
-			</div>
-			<div class="col-md-2" id="classDeets">
-				<div class="text-left button">
-					<a href="" class="btn btn-rounded mb-4 classInfoButton"
-						data-toggle="modal" data-target="#modalClassInfoForm">Checkout
-						Class Deets!</a>
-				</div>
-				<div class="modal fade" id="modalClassInfoForm" tabindex="-1"
-					role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-					<div class="modal-dialog" role="document">
-						<div class="modal-content">
-							<div class="modal-header text-center">
-								<h4 class="modal-title w-100 font-weight-bold">Edit Profile</h4>
-								<button type="button" class="close" data-dismiss="modal"
-									aria-label="Close">
-									<span aria-hidden="true">&times;</span>
-								</button>
-							</div>
-							<form action="${formAction}" method="POST">
-								<input type="hidden" name="CSRF_TOKEN" value="${CSRF_TOKEN}">
-								<div class="modal-body mx-3">
-									<div class="md-form mb-5">
-										<label data-error="wrong" data-success="right"
-											for="orangeForm-name"> Subject:</label> <input type="text"
-											id="orangeForm-name" name="subject"
-											class="form-control validate">
-									</div>
-									<div class="md-form mb-5">
-										<label data-error="wrong" data-success="right"
-											for="orangeForm-name">Location:</label><input type="text"
-											id="orangeForm-name" name="location"
-											class="form-control validate">
-									</div>
-									<div class="md-form mb-5">
-										<label data-error="wrong" data-success="right"
-											for="orangeForm-email">Class Date:</label><input type="date"
-											id="orangeForm-email" name="date"
-											class="form-control validate">
-									</div>
-									<div class="md-form mb-5">
-										<label data-error="wrong" data-success="right"
-											for="orangeForm-pass">Time:</label><input type="time"
-											id="orangeForm-pass" name="time"
-											class="form-control validate">
-									</div>
-									<div class="md-form mb-5">
-										<label data-error="wrong" data-success="right"
-											for="orangeForm-pass">Cost:</label><input type="text"
-											id="orangeForm-pass" name="cost"
-											class="form-control validate">
-									</div>
-									<div class="md-form mb-5">
-										<label data-error="wrong" data-success="right"
-											for="orangeForm-pass">Available Slots:</label><input
-											type="text" id="orangeForm-pass" name="availableSlots"
-											class="form-control validate">
-									</div>
-									<div class="md-form mb-5">
-										<label data-error="wrong" data-success="right"
-											for="orangeForm-pass">Class Description:</label><input
-											type="text" id="orangeForm-pass" name="description"
-											class="form-control validate">
-									</div>
-									<br />
-								</div>
-								<div class="modal-footer d-flex justify-content-center">
-									<button class="btn btn-deep-orange" type="submit">LET'S
-										DO IT!!</button>
-								</div>
-							</form>
+			<div class="modal fade" id="modalClassInfoForm" tabindex="-1"
+				role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+				<div class="modal-dialog" role="document">
+					<div class="modal-content">
+						<div class="modal-header text-center">
+							<h4 class="modal-title w-100 font-weight-bold">Edit Profile</h4>
+							<button type="button" class="close" data-dismiss="modal"
+								aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
 						</div>
+						<form action="${formAction}" method="POST">
+							<input type="hidden" name="CSRF_TOKEN" value="${CSRF_TOKEN}">
+							<div class="modal-body mx-3">
+								<div class="md-form mb-5">
+									<label data-error="wrong" data-success="right"
+										for="orangeForm-name"> Subject:</label> <input type="text"
+										id="orangeForm-name" name="subject"
+										class="form-control validate">
+								</div>
+								<div class="md-form mb-5">
+									<label data-error="wrong" data-success="right"
+										for="orangeForm-name">Location:</label><input type="text"
+										id="orangeForm-name" name="location"
+										class="form-control validate">
+								</div>
+								<div class="md-form mb-5">
+									<label data-error="wrong" data-success="right"
+										for="orangeForm-email">Class Date:</label><input type="date"
+										id="orangeForm-email" name="date"
+										class="form-control validate">
+								</div>
+								<div class="md-form mb-5">
+									<label data-error="wrong" data-success="right"
+										for="orangeForm-pass">Time:</label><input type="time"
+										id="orangeForm-pass" name="time" class="form-control validate">
+								</div>
+								<div class="md-form mb-5">
+									<label data-error="wrong" data-success="right"
+										for="orangeForm-pass">Cost:</label><input type="text"
+										id="orangeForm-pass" name="cost" class="form-control validate">
+								</div>
+								<div class="md-form mb-5">
+									<label data-error="wrong" data-success="right"
+										for="orangeForm-pass">Available Slots:</label><input
+										type="text" id="orangeForm-pass" name="availableSlots"
+										class="form-control validate">
+								</div>
+								<div class="md-form mb-5">
+									<label data-error="wrong" data-success="right"
+										for="orangeForm-pass">Class Description:</label><input
+										type="text" id="orangeForm-pass" name="description"
+										class="form-control validate">
+								</div>
+								<br />
+							</div>
+							<div class="modal-footer d-flex justify-content-center">
+								<button class="btn btn-deep-orange" type="submit">LET'S
+									DO IT!!</button>
+							</div>
+						</form>
 					</div>
 				</div>
 			</div>
-			<div class="col-md-2" id="classDeets"></div>
 		</div>
-		<div class="row">
-			<div class="col-md-5"></div>
+		<div class="col-md-2" id="classDeets"></div>
+	</div>
+	<div class="row">
+		<div class="col-md-5"></div>
 
-			<div class="col-md-7"></div>
-		</div>
+		<div class="col-md-7"></div>
+	</div>
 </section>
 
 <c:import url="/WEB-INF/jsp/footer.jsp" />
