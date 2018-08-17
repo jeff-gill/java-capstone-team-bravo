@@ -97,38 +97,38 @@
 									<div class="modal-body mx-3">
 										<div class="md-form mb-5">
 											<label data-error="wrong" data-success="right"
-												for="orangeForm-name""> First Name</label> <input
+												for="orangeForm-name""> First Name: </label> <input
 												type="text" id="orangeForm-name" name="firstName"
 												class="form-control validate" value="${profile.firstName}">
 										</div>
 										<div class="md-form mb-5">
 											<label data-error="wrong" data-success="right"
-												for="orangeForm-name"> Last Name</label> <input type="text"
+												for="orangeForm-name"> Last Name: </label> <input type="text"
 												id="orangeForm-name" name="lastName"
 												class="form-control validate" value="${profile.lastName}">
 										</div>
 										<div class="md-form mb-5">
 											<label data-error="wrong" data-success="right"
-												for="orangeForm-email">Primary Email Address</label> <input
+												for="orangeForm-email">Primary Email Address: </label> <input
 												type="email" id="orangeForm-email" name="email"
 												class="form-control validate" value="${profile.email}">
 										</div>
 										<div class="md-form mb-5">
 											<label data-error="wrong" data-success="right"
-												for="orangeForm-pass">Primary Phone Number</label> <input
+												for="orangeForm-pass">Primary Phone Number: </label> <input
 												type="tel" id="orangeForm-pass" name="phone"
 												class="form-control validate" value="${profile.phone}">
 										</div>
 										<div class="md-form mb-5">
 											<label data-error="wrong" data-success="right"
-												for="orangeForm-pass">Bio Info</label> <input type="tel"
+												for="orangeForm-pass">Bio Info: </label> <input type="tel"
 												id="orangeForm-pass" name="bio"
 												class="form-control validate" value="${profile.bio}">
 										</div>
 
 										<div class="md-form mb-5">
 											<label data-error="wrong" data-success="right"
-												for="orangeForm-pass">Interests </label> <input type="tel"
+												for="orangeForm-pass">Interests: </label> <input type="tel"
 												id="orangeForm-pass" name="interests"
 												class="form-control validate" value="${profile.interests}">
 										</div>
@@ -214,7 +214,7 @@
 					<div class="modal-dialog" role="document">
 						<div class="modal-content">
 							<div class="modal-header text-center">
-								<h4 class="modal-title w-100 font-weight-bold">Edit Profile</h4>
+								<h4 class="modal-title w-100 font-weight-bold">Class Info</h4>
 								<button type="button" class="close" data-dismiss="modal"
 									aria-label="Close">
 									<span aria-hidden="true">&times;</span>
