@@ -44,12 +44,12 @@
 				<div class="text-right">
 
 					<a href="" class="btn btn-rounded mb-4 updateProfileButton"
-						data-toggle="modal" data-target="#modalProfileInfoForm">Update
+						data-toggle="modal" data-target="#modalProfilePicForm">Update
 						Profile Image!</a>
 				</div>
 				<div class="updateButton">
 					<div>
-						<div class="modal fade" id="modalProfileInfoForm" tabindex="-1"
+						<div class="modal fade" id="modalProfilePicForm" tabindex="-1"
 							role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 							<div class="modal-dialog" role="document">
 								<div class="modal-content">
