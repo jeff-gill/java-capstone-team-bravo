@@ -18,7 +18,8 @@
 
 <c:url var="formAction" value="/users/sensei/${currentUser.userName}" />
 <c:url var="form" value="/uploadSenseiFile" />
-<c:url var="formA" value="/users/sensei/${currentUser.userName}/updateSubject" />
+<c:url var="formA" value="/users/sensei/${currentUser.userName}/createSubject" />
+<c:url var="formUpdate" value="/users/sensei/${currentUser.userName}/updateSubject" />
 
 <section class="myContainer">
 	<div class="container-fluid">
@@ -268,23 +269,24 @@
 			<p>Class Schedule:</p>
 		</div>
 	</div>
+	<c:forEach items = "${subject}" var = "lesson">
 	<div class="row">
 		<div class="col-md-3" id="classContent">
 			<p>
-				<a class="classInfoLabels"> <b>Subject:</b></a> placeholder
+				<a class="classInfoLabels"> <b>Subject:</b> <c:out value = "${lesson.subjectName}" /></a> 
 				<%-- ${class.subjectName} --%>
 			</p>
 
 		</div>
 		<div class="col-md-3" id="classContent">
 			<p>
-				<a class="classInfoLabels"> <b>Location:</b></a> placeholder
+				<a class="classInfoLabels"> <b>Location:</b> <c:out value = "${lesson.location}" /></a> 
 				<%-- ${class.location} --%>
 			</p>
 		</div>
 		<div class="col-md-2" id="classContent">
 			<p>
-				<a class="classInfoLabels"> <b>Date:</b></a> placeholder
+				<a class="classInfoLabels"> <b>Date:</b> <c:out value = "${lesson.date}" /></a>
 				<%-- ${class.date} --%>
 			</p>
 		</div>
@@ -305,51 +307,57 @@
 								<span aria-hidden="true">&times;</span>
 							</button>
 						</div>
-						<form action="${formAction}" method="POST">
+						<form action="${formUpdate}" method="POST">
 							<input type="hidden" name="CSRF_TOKEN" value="${CSRF_TOKEN}">
 							<div class="modal-body mx-3">
 								<div class="md-form mb-5">
 									<label data-error="wrong" data-success="right"
 										for="orangeForm-name"> Subject:</label> <input type="text"
-										id="orangeForm-name" name="subject"
-										class="form-control validate">
+										id="orangeForm-name" name="subjectName"
+										class="form-control validate" value="${lesson.subjectName}">
 								</div>
 								<div class="md-form mb-5">
 									<label data-error="wrong" data-success="right"
 										for="orangeForm-name">Location:</label><input type="text"
 										id="orangeForm-name" name="location"
-										class="form-control validate">
+										class="form-control validate" value="${lesson.location}">
 								</div>
 								<div class="md-form mb-5">
 									<label data-error="wrong" data-success="right"
 										for="orangeForm-email">Class Date:</label><input type="date"
 										id="orangeForm-email" name="date"
-										class="form-control validate">
+										class="form-control validate" value="${lesson.date}">
 								</div>
 								<div class="md-form mb-5">
 									<label data-error="wrong" data-success="right"
-										for="orangeForm-pass">Time:</label><input type="time"
-										id="orangeForm-pass" name="time" class="form-control validate">
+										for="orangeForm-pass">Start Time:</label><input type="time"
+										id="orangeForm-pass" name="startTime" class="form-control validate" value = "${lesson.startTime}">
+								</div>
+									<div class="md-form mb-5">
+									<label data-error="wrong" data-success="right"
+										for="orangeForm-pass">End Time:</label><input type="time"
+										id="orangeForm-pass" name="endTime" class="form-control validate" value = "${lesson.endTime}">
 								</div>
 								<div class="md-form mb-5">
 									<label data-error="wrong" data-success="right"
 										for="orangeForm-pass">Cost:</label><input type="text"
-										id="orangeForm-pass" name="cost" class="form-control validate">
+										id="orangeForm-pass" name="cost" class="form-control validate" value = "${lesson.cost}">
 								</div>
 								<div class="md-form mb-5">
 									<label data-error="wrong" data-success="right"
 										for="orangeForm-pass">Available Slots:</label><input
 										type="text" id="orangeForm-pass" name="availableSlots"
-										class="form-control validate">
+										class="form-control validate" value = "${lesson.availableSlots}">
 								</div>
 								<div class="md-form mb-5">
 									<label data-error="wrong" data-success="right"
 										for="orangeForm-pass">Class Description:</label><input
 										type="text" id="orangeForm-pass" name="description"
-										class="form-control validate">
+										class="form-control validate" value = "${lesson.description}">
 								</div>
 								<br />
 							</div>
+							
 							<div class="modal-footer d-flex justify-content-center">
 								<button class="btn btn-deep-orange" type="submit">LET'S
 									DO IT!!</button>
@@ -361,6 +369,7 @@
 		</div>
 		<div class="col-md-2" id="classDeets"></div>
 	</div>
+	</c:forEach>
 	<div class="row">
 		<div class="col-md-5"></div>
 
