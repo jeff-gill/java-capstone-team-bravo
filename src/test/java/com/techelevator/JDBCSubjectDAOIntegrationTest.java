@@ -27,7 +27,7 @@ import com.techelevator.model.Subject;
 public class JDBCSubjectDAOIntegrationTest 
 {
 	private static final String SUBJECT_NAME = "SWORD FIGHTING";
-	
+	private static final String TEST_NAME = "lordgenius";
 
 	private static SingleConnectionDataSource dataSource;
 	
@@ -125,6 +125,18 @@ public class JDBCSubjectDAOIntegrationTest
 		subjects = subjectDAO.getSubjectById(subjects.getClassId());
 		
 		assertNull(subjects);
+	}
+	
+	@Test
+	public void add_user_to_class() throws ParseException
+	{
+		DateFormat formatter = new SimpleDateFormat("MM-dd-yyyy");
+		Date date = formatter.parse("10-10-2018");
+		Subject subjects = getSubject(SUBJECT_NAME, "Nowhere special", date, "1:00", "2:00", 12.00f, 4, "All I want for Christmas is my two front teeth");
+		subjectDAO.saveSubject(subjects);
+		subjectDAO.addUserToClass(subjects.getClassId(), TEST_NAME);
+		
+		assertNotNull(subjects.getClassId());
 	}
 	
 //	@Test

@@ -12,18 +12,18 @@ import org.springframework.stereotype.Component;
 public class JDBCSubjectDAO implements SubjectDAO 
 {	
 	private JdbcTemplate jdbcTemplate;
-	
+
 	@Autowired
 	public JDBCSubjectDAO(DataSource dataSource) 
 	{
 		this.jdbcTemplate = new JdbcTemplate(dataSource);
 	}
-	
+
 	@Override
 	public void saveSubject(Subject subject) 
 	{
 		String sqlSaveSubject = "insert into subjects (subject_name, location, event_date, event_start_time, event_end_time, cost, available_slots, description) "
-							  + "values (?, ?, ?, ?, ?, ?, ?, ?) returning class_id";
+				+ "values (?, ?, ?, ?, ?, ?, ?, ?) returning class_id";
 
 		int classId = jdbcTemplate.queryForObject(sqlSaveSubject, Integer.class, subject.getSubjectName(), subject.getLocation(), subject.getDate(),
 				subject.getStartTime(), subject.getEndTime(), subject.getCost(), subject.getAvailableSlots(), subject.getDescription());
@@ -37,12 +37,12 @@ public class JDBCSubjectDAO implements SubjectDAO
 		List<Subject> subjects = new ArrayList<Subject>();
 		String sqlFindIdOfSubject = "select * from subjects where subject_name = ?";
 		SqlRowSet result = jdbcTemplate.queryForRowSet(sqlFindIdOfSubject, subjectName);
-		
+
 		while (result.next())
 		{
 			subjects.add(mapRowToSubject(result));
 		}
-		
+
 		return subjects;
 	}
 
@@ -50,10 +50,10 @@ public class JDBCSubjectDAO implements SubjectDAO
 	public void updateSubject(Subject subject, int classId) 
 	{
 		String sqlUpdateSubject = "update subjects set subject_name = ?, location = ? , event_date = ? , event_start_time = ?, "
-						 + "event_end_time = ?, cost = ?, available_slots = ?, description = ? where class_id = ?";
+				+ "event_end_time = ?, cost = ?, available_slots = ?, description = ? where class_id = ?";
 
 		jdbcTemplate.update(sqlUpdateSubject, subject.getSubjectName(), subject.getLocation(), subject.getDate(), subject.getStartTime(), 
-							subject.getEndTime(), subject.getCost(), subject.getAvailableSlots(), subject.getDescription(), classId);	
+				subject.getEndTime(), subject.getCost(), subject.getAvailableSlots(), subject.getDescription(), classId);	
 	}
 
 	@Override
@@ -62,35 +62,44 @@ public class JDBCSubjectDAO implements SubjectDAO
 		String sqlDeleteSubject = "delete from subjects where class_id = ?";
 		jdbcTemplate.update(sqlDeleteSubject, classId);	
 	}
-	
+
 	@Override
 	public Subject getSubjectById(int id) 
 	{
 		Subject subjects = null;
 		String sqlFindIdOfSubject = "select * from subjects where class_id = ?";
 		SqlRowSet result = jdbcTemplate.queryForRowSet(sqlFindIdOfSubject, id);
-		
+
 		while (result.next())
 		{
 			subjects = mapRowToSubject(result);
 		}
-		
+
 		return subjects;
 	}
-	
+
 	@Override
 	public List<Subject> getAllSubjects(String userName) 
 	{
 		List<Subject> subjects = new ArrayList<Subject>();
 		String sqlGetAllSubjects = "select * from subjects join user_subjects as US on subjects.class_id = US.class_id join user_info as UI on US.user_name = UI.user_name where UI.user_name = ?";
 		SqlRowSet result = jdbcTemplate.queryForRowSet(sqlGetAllSubjects, userName);
-		
+
 		while (result.next())
 		{
 			subjects.add(mapRowToSubject(result));
 		}
-		
+
 		return subjects;
+	}
+
+	@Override
+	public void addUserToClass(int classId, String userName) 
+	{
+		String sqlSaveUserSubject = "insert into user_subjects (user_name, class_id) values (?, ?)";
+
+		jdbcTemplate.update(sqlSaveUserSubject, userName, classId);
+
 	}
 	
 	private Subject mapRowToSubject(SqlRowSet results) 
@@ -104,34 +113,36 @@ public class JDBCSubjectDAO implements SubjectDAO
 		subject.setCost(results.getFloat("cost"));
 		subject.setAvailableSlots(results.getInt("available_slots"));
 		subject.setDescription(results.getString("description"));
-		
+
 		return subject;
 	}
-//	
-//	private Subject getSubject(String subjectName)
-//	{
-//		Subject subjects = null;
-//		String sqlFindIdOfSubject = "select * from subjects where subject_name = ?";
-//		SqlRowSet result = jdbcTemplate.queryForRowSet(sqlFindIdOfSubject, subjectName);
-//		
-//		while (result.next())
-//		{
-//			subjects = mapRowToSubject(result);
-//		}
-//		
-//		return subjects;
-//	}
-	
+	//	
+	//	private Subject getSubject(String subjectName)
+	//	{
+	//		Subject subjects = null;
+	//		String sqlFindIdOfSubject = "select * from subjects where subject_name = ?";
+	//		SqlRowSet result = jdbcTemplate.queryForRowSet(sqlFindIdOfSubject, subjectName);
+	//		
+	//		while (result.next())
+	//		{
+	//			subjects = mapRowToSubject(result);
+	//		}
+	//		
+	//		return subjects;
+	//	}
+
 	private List<Subject> mapRowSetToSubject(SqlRowSet results)
 	{
 		List<Subject> subjectList = new ArrayList<Subject>();
-		
+
 		while(results.next()) 
 		{
 			subjectList.add(mapRowToSubject(results));
 		}
-		
+
 		return subjectList;
 	}
+
+
 
 }
