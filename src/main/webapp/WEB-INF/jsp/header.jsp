@@ -58,22 +58,7 @@
 	</header>
 	<nav class="navbar navbar-default">
 		<div class="container-fluid">
-			<%-- <ul class="nav navbar-nav">
-
-				<c:if test="${not empty currentUser}">
-					<c:url var="dashboardHref" value="/users/${currentUser}" />
-					<li><a href="${dashboardHref}">Private Messages</a></li>
-					<c:url var="newMessageHref"
-						value="/users/${currentUser}/messages/new" />
-					<li><a href="${newMessageHref}">New Message</a></li>
-					<c:url var="sentMessagesHref"
-						value="/users/${currentUser}/messages" />
-					<li><a href="${sentMessagesHref}">Sent Messages</a></li>
-					<c:url var="changePasswordHref"
-						value="/users/${currentUser}/changePassword" />
-					<li><a href="${changePasswordHref}">Change Password</a></li>
-				</c:if>
-			</ul> --%>
+			
 			<ul class="nav navbar-nav navbar-right">
 				<c:choose>
 					<c:when test="${empty currentUser}">
@@ -89,6 +74,11 @@
 					</c:otherwise>
 				</c:choose>
 			</ul>
+			<ul class="nav navbar-nav navbar-right">
+				<c:if test="${not empty currentUser}">
+					<c:url var="dashboardHref" value="/users/${currentUser}" />
+					<li><a href="${dashboardHref}">Private Messages</a></li>
+				</c:if>
+			</ul>
 		</div>
 	</nav>
-	<div class="container">

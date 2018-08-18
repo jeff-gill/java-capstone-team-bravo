@@ -9,6 +9,7 @@ DROP TABLE IF EXISTS app_user;
 drop table if exists user_info;
 drop table if exists subjects;
 drop table if exists user_subjects;
+drop table if exists messaging,
 drop sequence if exists seq_class_id;
 
 CREATE TABLE app_user (
@@ -57,6 +58,17 @@ create table user_subjects (
 	
 	constraint fk_class_id foreign key (class_id) references subjects (class_id) on delete cascade,
 	constraint fk_user_name foreign key (user_name) references user_info (user_name) on delete cascade
+);
+
+create table messaging (
+	message_id integer not null,
+	message_to varchar(35) not null,
+	message_from varchar(35) not null,
+	message_subject varchar(55) not null,
+	message_body(360) not null,
+	message_dateSent varchar(10),
+	
+	contraint pk_message_id primary key (message_id)
 );
 
 COMMIT;

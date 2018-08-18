@@ -117,6 +117,7 @@ public class UserController {
 		}	
 	}
 	
+	
 	private File getImageFilePath() 
 	{
 		String serverPath = getServerContextPath();
@@ -302,6 +303,14 @@ public class UserController {
 		session.setAttribute("currentUser", userName);
 										
 		return "redirect:/users/gh/"+userName;
+	}
+	
+	@RequestMapping(path="/users/messaging/{userName}", method=RequestMethod.GET)
+	public String displayMessagingForm(ModelMap modelHolder) {
+		if( ! modelHolder.containsAttribute("user")) {
+			modelHolder.addAttribute("user", new User());
+		}
+		return "messaging";
 	}
 	
 //	@RequestMapping(path="users/sensei/{userName}/updateSubject", method=RequestMethod.POST)

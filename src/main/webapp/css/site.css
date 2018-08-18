@@ -33,7 +33,7 @@
 }
 
 #mottoContainer {
-	
+	padding-top: 2%;
 }
 
 #senseiTitle h1 {
@@ -226,3 +226,18 @@ a {
 	text-decoration: none !important;
 }
 .updateButton
+
+
+/* messaging */
+
+div.messagingContainer {
+	padding: 30px;
+	background-color: #f4f3f4 !important;
+}
+
+div.row.messageInputs {
+	font-size: 14px;
+	padding:7px;
+	background-color: #f4f3f4
+	
+}

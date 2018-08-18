@@ -103,8 +103,8 @@
 										</div>
 										<div class="md-form mb-5">
 											<label data-error="wrong" data-success="right"
-												for="orangeForm-name"> Last Name: </label> <input type="text"
-												id="orangeForm-name" name="lastName"
+												for="orangeForm-name"> Last Name: </label> <input
+												type="text" id="orangeForm-name" name="lastName"
 												class="form-control validate" value="${profile.lastName}">
 										</div>
 										<div class="md-form mb-5">
@@ -184,26 +184,23 @@
 				</div>
 			</div>
 		</div>
-		<div class="row">
+		<%-- <div class="row">
 			<div class="col-md-3" id="classContent">
 				<p>
 					<a class="classInfoLabels"> <b>Subject:</b></a> placeholder
-					<%-- ${class.subjectName} --%>
-				<%-- 		<div>
-						<c:out value="${subject.subjectName}" />
-					</div> --%>
+					${class.subjectName}
 				</p>
 			</div>
 			<div class="col-md-3" id="classContent">
 				<p>
 					<a class="classInfoLabels"> <b>Location:</b></a> placeholder
-					<%-- ${class.location} --%>
+					${class.location}
 				</p>
 			</div>
 			<div class="col-md-2" id="classContent">
 				<p>
 					<a class="classInfoLabels"> <b>Date:</b></a> placeholder
-					<%-- ${class.date} --%>
+					${class.date}
 				</p>
 			</div>
 			<div class="col-md-2" id="classContent">
@@ -231,9 +228,9 @@
 											for="orangeForm-name"> Subject:</label> <input type="text"
 											id="orangeForm-name" name="subject"
 											class="form-control validate">
-											
-											 <%-- value="${g.subjectName} --%>
-											
+
+										value="${g.subjectName}
+
 									</div>
 									<div class="md-form mb-5">
 										<label data-error="wrong" data-success="right"
@@ -282,7 +279,7 @@
 					</div>
 				</div>
 			</div>
-		</div>
+		</div> --%>
 		<div class="col-md-2" id="classDeets"></div>
 	</div>
 	<div class="row">
