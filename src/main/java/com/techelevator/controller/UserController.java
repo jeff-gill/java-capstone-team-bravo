@@ -187,7 +187,7 @@ public class UserController {
 	@RequestMapping(path="/users/sensei/{userName}", method=RequestMethod.GET)
 	public String senseiProfile(Map<String, User> model, @PathVariable String userName, HttpSession session, ModelMap map) {
 		model.put("profile", userDAO.getSenseiProfileByUserName(userName));
-		map.addAttribute("subject",subjectDAO.getAllSubjects(userName));
+		map.addAttribute("subject", subjectDAO.getAllSubjects(userName));
 		return "senseiProfilePage";
 	}
 	
@@ -196,6 +196,13 @@ public class UserController {
 		model.put("profile", userDAO.getGHProfileByUserName(userName));
 		map.addAttribute("subject",subjectDAO.getAllSubjects(userName));
 		return "ghProfilePage";
+	}
+	
+	@RequestMapping(path="/users/sensei/{userName}/updateSubject", method=RequestMethod.GET)
+	public String updateSenseiSubject(Map<String, User> model,  @PathVariable String userName, HttpSession session, ModelMap map) {
+		model.put("profile", userDAO.getGHProfileByUserName(userName));
+		map.addAttribute("subject",subjectDAO.getAllSubjects(userName));
+		return "senseiProfilePage";
 	}
 	
 	@RequestMapping(path="/users/sensei/{userName}", method=RequestMethod.POST)
@@ -246,7 +253,7 @@ public class UserController {
 		return "redirect:/users/gh/"+userName;
 	}
 	
-	@RequestMapping(path="/users/sensei/{userName}/updateSubject", method=RequestMethod.POST)
+	@RequestMapping(path="/users/sensei/{userName}/createSubject", method=RequestMethod.POST)
 	public String createSenseiClass(@PathVariable String userName,
 								@RequestParam String subjectName,
 								@RequestParam String location,
@@ -269,6 +276,40 @@ public class UserController {
 		subject.setDescription(description);
 		
 		subjectDAO.saveSubject(subject);
+		
+		subjectDAO.addUserToClass(subject.getClassId(), userName);
+		
+		session.setAttribute("currentUser", userName);
+										
+		return "redirect:/users/sensei/"+userName;
+	}
+	
+
+	
+	@RequestMapping(path="/users/sensei/{userName}/updateSubject", method=RequestMethod.POST)
+	public String updateSenseiClass(@PathVariable String userName,
+								@RequestParam String subjectName,
+								@RequestParam String location,
+								@RequestParam Date date,
+								@RequestParam String startTime,
+								@RequestParam String endTime,
+								@RequestParam Float cost,
+								@RequestParam int availableSlots,
+								@RequestParam String description,
+								HttpSession session) {
+		
+		Subject subject = new Subject();
+		subject.setSubjectName(subjectName);
+		subject.setLocation(location);
+		subject.setDate(date);
+		subject.setStartTime(startTime);
+		subject.setEndTime(endTime);
+		subject.setCost(cost);
+		subject.setAvailableSlots(availableSlots);
+		subject.setDescription(description);
+		
+	
+		subjectDAO.updateSubject(subject, subject.getClassId());
 		
 		session.setAttribute("currentUser", userName);
 										
@@ -299,9 +340,19 @@ public class UserController {
 		
 		subjectDAO.saveSubject(subject);
 		
+		subjectDAO.addUserToClass(subject.getClassId(), userName);
+		
 		session.setAttribute("currentUser", userName);
 										
 		return "redirect:/users/gh/"+userName;
+	}
+	
+	@RequestMapping(path="/users/messaging/{userName}", method=RequestMethod.GET)
+	public String displayMessagingForm(ModelMap modelHolder) {
+	if( ! modelHolder.containsAttribute("user")) {
+	modelHolder.addAttribute("user", new User());
+	}
+	return "messaging";
 	}
 	
 //	@RequestMapping(path="users/sensei/{userName}/updateSubject", method=RequestMethod.POST)
