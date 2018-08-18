@@ -15,5 +15,7 @@ public interface SubjectDAO {
 	public Subject getSubjectById(int id) ;
 	
 	public List<Subject> getAllSubjects(String userName);
+	
+	public void addUserToClass(int classId, String userName);
 
 }
