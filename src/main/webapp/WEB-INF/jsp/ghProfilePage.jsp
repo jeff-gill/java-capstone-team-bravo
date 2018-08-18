@@ -189,9 +189,9 @@
 				<p>
 					<a class="classInfoLabels"> <b>Subject:</b></a> placeholder
 					<%-- ${class.subjectName} --%>
-						<div>
+				<%-- 		<div>
 						<c:out value="${subject.subjectName}" />
-					</div>
+					</div> --%>
 				</p>
 			</div>
 			<div class="col-md-3" id="classContent">
