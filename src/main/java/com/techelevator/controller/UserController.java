@@ -6,6 +6,9 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Map;
 import java.util.UUID;
@@ -56,8 +59,8 @@ public class UserController {
 //	
 	@RequestMapping(path="/", method=RequestMethod.GET)
 	public String displayNewUserForm(ModelMap modelHolder) {
-		if( ! modelHolder.containsAttribute("user")) {
-			modelHolder.addAttribute("user", new User());
+		if( ! modelHolder.containsAttribute("currentUser")) {
+			modelHolder.addAttribute("currentUser", new User());
 		}
 		return "homePage";
 	}
@@ -80,7 +83,7 @@ public class UserController {
 			createImage(file, imageName);
 		}
 		
-		return "redirect:/users/gh/"+user.getUserName();
+		return "redirect:/users/gh/" + user.getUserName();
 	}
 	
 	@RequestMapping(path="/uploadSenseiFile", method=RequestMethod.POST)
@@ -101,7 +104,7 @@ public class UserController {
 			createImage(file, imageName);
 		}
 		
-		return "redirect:/users/sensei/"+user.getUserName();
+		return "redirect:/users/sensei/" + user.getUserName();
 	}
 	
 	@RequestMapping(path="/image/{imageName}", method=RequestMethod.GET)
@@ -178,10 +181,10 @@ public class UserController {
 
 		if (newU.isSensei())
 		{
-			return "redirect:/users/sensei/"+newU.getUserName();
+			return "redirect:/users/sensei/" + newU.getUserName();
 		}
 		
-			return "redirect:/users/gh/"+newU.getUserName();
+			return "redirect:/users/gh/" + newU.getUserName();
 	
 	}
 	
@@ -200,7 +203,14 @@ public class UserController {
 	}
 	
 	@RequestMapping(path="/users/sensei/{userName}/updateSubject", method=RequestMethod.GET)
-	public String updateSenseiSubject(Map<String, User> model,  @PathVariable String userName, HttpSession session, ModelMap map) {
+	public String updateSenseiSubject(Map<String, User> model, @PathVariable String userName, HttpSession session, ModelMap map) {
+		model.put("profile", userDAO.getGHProfileByUserName(userName));
+		map.addAttribute("subject",subjectDAO.getAllSubjects(userName));
+		return "senseiProfilePage";
+	}
+	
+	@RequestMapping(path="/users/sensei/{userName}/createSubject", method=RequestMethod.GET)
+	public String createSenseiSubject(Map<String, User> model, @PathVariable String userName, HttpSession session, ModelMap map) {
 		model.put("profile", userDAO.getGHProfileByUserName(userName));
 		map.addAttribute("subject",subjectDAO.getAllSubjects(userName));
 		return "senseiProfilePage";
@@ -226,7 +236,7 @@ public class UserController {
 		
 		session.setAttribute("currentUser", user);
 		
-		return "redirect:/users/sensei/"+userName;
+		return "redirect:/users/sensei/" + userName;
 	}
 	
 	@RequestMapping(path="/users/gh/{userName}", method=RequestMethod.POST)
@@ -251,25 +261,27 @@ public class UserController {
 		
 		session.setAttribute("currentUser", user);
 		
-		return "redirect:/users/gh/"+userName;
+		return "redirect:/users/gh/" + userName;
 	}
 	
 	@RequestMapping(path="/users/sensei/{userName}/createSubject", method=RequestMethod.POST)
 	public String createSenseiClass(@PathVariable String userName,
 								@RequestParam String subjectName,
 								@RequestParam String location,
-								@RequestParam Date date,
+								@RequestParam String date,
 								@RequestParam String startTime,
 								@RequestParam String endTime,
 								@RequestParam Float cost,
 								@RequestParam int availableSlots,
 								@RequestParam String description,
-								HttpSession session) {
+								HttpSession session) throws ParseException {
 		
 		Subject subject = new Subject();
 		subject.setSubjectName(subjectName);
 		subject.setLocation(location);
-		subject.setDate(date);
+		DateFormat formatter = new SimpleDateFormat("MM-dd-yyyy");
+		Date newDate = formatter.parse(date);
+		subject.setDate(newDate);
 		subject.setStartTime(startTime);
 		subject.setEndTime(endTime);
 		subject.setCost(cost);
@@ -282,27 +294,28 @@ public class UserController {
 		
 		session.setAttribute("currentUser", userName);
 										
-		return "redirect:/users/sensei/"+userName;
+		return "redirect:/users/sensei/" + userName;
 	}
-	
-
 	
 	@RequestMapping(path="/users/sensei/{userName}/updateSubject", method=RequestMethod.POST)
 	public String updateSenseiClass(@PathVariable String userName,
+								@RequestParam int classId,
 								@RequestParam String subjectName,
 								@RequestParam String location,
-								@RequestParam Date date,
+								@RequestParam String date,
 								@RequestParam String startTime,
 								@RequestParam String endTime,
 								@RequestParam Float cost,
 								@RequestParam int availableSlots,
 								@RequestParam String description,
-								HttpSession session) {
+								HttpSession session) throws ParseException {
 		
-		Subject subject = new Subject();
+		Subject subject = subjectDAO.getSubjectById(classId);
 		subject.setSubjectName(subjectName);
 		subject.setLocation(location);
-		subject.setDate(date);
+		DateFormat formatter = new SimpleDateFormat("MM-dd-yyyy");
+		Date newDate = formatter.parse(date);
+		subject.setDate(newDate);
 		subject.setStartTime(startTime);
 		subject.setEndTime(endTime);
 		subject.setCost(cost);
@@ -314,25 +327,27 @@ public class UserController {
 		
 		session.setAttribute("currentUser", userName);
 										
-		return "redirect:/users/sensei/"+userName;
+		return "redirect:/users/sensei/" + userName;
 	}
 	
 	@RequestMapping(path="/users/gh/{userName}/updateSubject", method=RequestMethod.POST)
 	public String createGHClass(@PathVariable String userName,
 								@RequestParam String subjectName,
 								@RequestParam String location,
-								@RequestParam Date date,
+								@RequestParam String date,
 								@RequestParam String startTime,
 								@RequestParam String endTime,
 								@RequestParam Float cost,
 								@RequestParam int availableSlots,
 								@RequestParam String description,
-								HttpSession session) {
+								HttpSession session) throws ParseException {
 		
 		Subject subject = new Subject();
 		subject.setSubjectName(subjectName);
 		subject.setLocation(location);
-		subject.setDate(date);
+		DateFormat formatter = new SimpleDateFormat("MM-dd-yyyy");
+		Date newDate = formatter.parse(date);
+		subject.setDate(newDate);
 		subject.setStartTime(startTime);
 		subject.setEndTime(endTime);
 		subject.setCost(cost);
@@ -345,7 +360,7 @@ public class UserController {
 		
 		session.setAttribute("currentUser", userName);
 										
-		return "redirect:/users/gh/"+userName;
+		return "redirect:/users/gh/" + userName;
 	}
 	
 	@RequestMapping(path="/users/messaging/{userName}", method=RequestMethod.GET)

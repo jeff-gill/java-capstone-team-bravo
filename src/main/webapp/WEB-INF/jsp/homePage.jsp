@@ -23,10 +23,6 @@
 	crossorigin="anonymous"></script>
 <link rel="stylesheet" href="style.css">
 
-<c:url var="formAction" value="/users/sensei/${currentUser.userName}" />
-<c:url var="formAct" value="/users/sensei/${currentUser.userName}" />
-
-
 <!-- <script type="text/javascript">
 	$(document).ready(function () {
 		$.validator.addMethod('capitals', function(thing){
