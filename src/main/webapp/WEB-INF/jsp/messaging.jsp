@@ -30,62 +30,63 @@
 	</div>
 	<div class="container-fluid">
 		<div class="row">
-			<div class="col-md-12">Private Messages</div>
+			<div class="col-md-12 privateMessages" style="font-size: 28px">Private
+				Messages</div>
 		</div>
 	</div>
-	<div class="container-fluid messagingContainer" style="margin-right: 200px; margin-left:200px">
-			<div class="row messageInputs">
-				<div class="col-md-12">
-					<br>
-				</div>
+	<div class="container-fluid messagingContainer"
+		style="margin-right: 100px; margin-left: 100px">
+		<form>
+		<div class="row messageInputs">
+			<div class="col-md-1"></div>
+			<div class="col-md-2">To:</div>
+			<div class="col-md-9">
+				<input class="messagePeople" maxlength="35" />
 			</div>
-			<div class="row messageInputs">
-				<div class="col-md-1"></div>
-				<div class="col-md-2">To:</div>
-				<div class="col-md-9">
-					<input>
-				</div>
-				<div class="col-md-1"></div>
-			</div>
-			<div class="row messageInputs">
-				<div class="col-md-1"></div>
-				<div class="col-md-2">From:</div>
-				<div class="col-md-9">
-					<input>
-				</div>
-				<div class="col-md-1"></div>
-			</div>
-			<div class="row messageInputs">
-				<div class="col-md-1"></div>
-				<div class="col-md-2">Message Subject:</div>
-				<div class="col-md-9">
-					<input>
-				</div>
-				<div class="col-md-1"></div>
-			</div>
-			<div class="row messageInputs">
-				<div class="col-md-1"></div>
-				<div class="col-md-2">Message Body:</div>
-				<div class="col-md-9">
-					<input>
-				</div>
-				<div class="col-md-1"></div>
-			</div>
-			<div class="row messageInputs">
-				<div class="col-md-12"></div>
-			</div>
-			<div class="row messageInputs">
-
-				<div class="col-md-4"></div>
-				<div class="col-md-7">
-					<div id="messageSubmit">
-						<input class="messageSubmitButton" type="submit"
-							value="Send Message" />
-					</div>
-				</div>
-				<div class="col-md-1"></div>
-			</div>
+			<div class="col-md-1"></div>
 		</div>
+		<div class="row messageInputs">
+			<div class="col-md-1"></div>
+			<div class="col-md-2">From:</div>
+			<div class="col-md-9">
+				<input class="messagePeople" maxlength="35"/>
+			</div>
+			<div class="col-md-1"></div>
+		</div>
+		<div class="row messageInputs">
+			<div class="col-md-1"></div>
+			<div class="col-md-2">Message Subject:</div>
+			<div class="col-md-9">
+				<input class="messageSubject" maxlength="55" />
+			</div>
+			<div class="col-md-1"></div>
+		</div>
+		<div class="row messageInputs">
+			<div class="col-md-1"></div>
+			<div class="col-md-2">Message Body:</div>
+			<div class="col-md-9">
+				<textarea class="messageBody" maxlength="360"></textarea>
+			</div>
+			<div class="col-md-1"></div>
+		</div>
+		<div class="row messageInputs">
+			<div class="col-md-12"></div>
+		</div>
+		<div class="row messageInputs">
+
+			<div class="col-md-7"></div>
+			<div class="col-md-4">
+				<div id="messageSubmit">
+				 <input class="messageSubmitButton" type="reset" value="Clear Message">
+					<input class="messageSubmitButton" type="submit"
+						value="Send Message" />
+				</div>
+			</div>
+			
+			<div class="col-md-1"></div>
+		</div>
+		</form>
+	</div>
 </section>
 
 <c:import url="/WEB-INF/jsp/footer.jsp" />
