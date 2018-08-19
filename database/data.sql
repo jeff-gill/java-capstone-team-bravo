@@ -9,3 +9,5 @@ insert into subjects (subject_name, location, event_date, event_start_time, even
 insert into user_subjects (class_id, user_name) values (1, 'lordgenius');
 
 insert into user_info (user_name, password, first_name, last_name, bio, ratings, is_sensei, email, phone, profile_image) values('YoungSon', 1234, 'Jon', 'Snow', 'Lorem ipsum dolor amet migas retro shabby chic, hot chicken vice hell of health goth before they sold out irony. Retro pop-up raclette cornhole YOLO lomo. Gluten-free waistcoat la croix, skateboard organic pabst dreamcatcher pok pok adaptogen direct trade wayfarers art party', 4, false, 'jonSnow@got.com', '419-706-0235', 'gh');
+
+insert into messaging (message_to, message_from, message_subject, message_body, message_date_sent) values ('lordgenius', 'YoungSon', 'Hi', 'I have always wanted to kill zombies, teach me please!!!', '08/19/2018');
