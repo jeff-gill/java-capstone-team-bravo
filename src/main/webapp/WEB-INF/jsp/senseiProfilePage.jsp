@@ -292,7 +292,7 @@
 		</div>
 		<div class="col-md-2" id="classContent">
 			<p>
-				<a class="classInfoLabels"> <b>Date:</b><%-- <fmt:parseDate pattern="MM/dd/yyyy" value="${bean.dateString}" var="parsedDate" /> --%>
+				<a class="classInfoLabels"> <b>Date:</b><fmt:parseDate pattern="MM/dd/yyyy" value="${bean.dateString}" var="parsedDate" />
 <fmt:formatDate value="${lesson.date}" pattern="MM-dd-yyyy" /><%--  <c:out value = "${lesson.date}" /> --%></a>
 			</p>
 		</div>

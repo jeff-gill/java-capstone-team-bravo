@@ -209,6 +209,13 @@ public class UserController {
 		return "senseiProfilePage";
 	}
 	
+	@RequestMapping(path="/users/sensei/{userName}/createSubject", method=RequestMethod.GET)
+	public String createSenseiSubject(Map<String, User> model, @PathVariable String userName, HttpSession session, ModelMap map) {
+		model.put("profile", userDAO.getGHProfileByUserName(userName));
+		map.addAttribute("subject",subjectDAO.getAllSubjects(userName));
+		return "senseiProfilePage";
+	}
+	
 	@RequestMapping(path="/users/sensei/{userName}", method=RequestMethod.POST)
 	public String updateSenseiProfile(@PathVariable String userName,
 								@RequestParam String firstName,
@@ -261,18 +268,20 @@ public class UserController {
 	public String createSenseiClass(@PathVariable String userName,
 								@RequestParam String subjectName,
 								@RequestParam String location,
-								@RequestParam Date date,
+								@RequestParam String date,
 								@RequestParam String startTime,
 								@RequestParam String endTime,
 								@RequestParam Float cost,
 								@RequestParam int availableSlots,
 								@RequestParam String description,
-								HttpSession session) {
+								HttpSession session) throws ParseException {
 		
 		Subject subject = new Subject();
 		subject.setSubjectName(subjectName);
 		subject.setLocation(location);
-		subject.setDate(date);
+		DateFormat formatter = new SimpleDateFormat("MM-dd-yyyy");
+		Date newDate = formatter.parse(date);
+		subject.setDate(newDate);
 		subject.setStartTime(startTime);
 		subject.setEndTime(endTime);
 		subject.setCost(cost);
