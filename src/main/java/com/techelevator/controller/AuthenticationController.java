@@ -39,11 +39,11 @@ public class AuthenticationController {
 
 			if (user.isSensei())
 			{
-				return "redirect:/users/sensei/"+userName;
+				return "redirect:/users/sensei/" + userName;
 			}
 			else 
 			{
-				return "redirect:/users/gh/"+userName;
+				return "redirect:/users/gh/" + userName;
 			}
 		} 
 		else 

@@ -1,4 +1,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %> 
+<fmt:formatDate value="${bean.date}" pattern="MM-dd-yyyy" />
 
 <c:import url="/WEB-INF/jsp/header.jsp" />
 
@@ -140,8 +142,7 @@
 						<div class="text-right">
 							<a href="" id="updateButton" class="btn btn-rounded mb-4"
 								id="updateButton" data-toggle="modal"
-								data-target="#modalRegisterForm">Update Your Class
-								Schedule!!</a>
+								data-target="#modalRegisterForm">Create a Class</a>
 						</div>
 
 
@@ -164,7 +165,7 @@
 											<div class="md-form mb-5">
 												<label data-error="wrong" data-success="right"
 													for="orangeForm-name">Class Name:</label><input type="text"
-													id="orangeForm-name" name="className"
+													id="orangeForm-name" name="subjectName"
 													class="form-control validate">
 											</div>
 											<br />
@@ -178,14 +179,21 @@
 											<div class="md-form mb-5">
 												<label data-error="wrong" data-success="right"
 													for="orangeForm-email">Date:</label><input
-													type="date" id="orangeForm-email" name="date"
+													type="text" id="orangeForm-email" name="date"
 													class="form-control validate">
 											</div>
 											<br />
 											<div class="md-form mb-4">
 												<label data-error="wrong" data-success="right"
-													for="orangeForm-pass">Class Time:</label><input
-													type="text" id="orangeForm-pass"
+													for="orangeForm-pass">Class Start Time:</label><input
+													type="time" id="orangeForm-pass" name="startTime"
+													class="form-control validate">
+											</div>
+											<br />
+											<div class="md-form mb-4">
+												<label data-error="wrong" data-success="right"
+													for="orangeForm-pass">Class End Time:</label><input
+													type="time" id="orangeForm-pass" name="endTime"
 													class="form-control validate">
 											</div>
 											<br />
@@ -274,34 +282,31 @@
 		<div class="col-md-3" id="classContent">
 			<p>
 				<a class="classInfoLabels"> <b>Subject:</b> <c:out value = "${lesson.subjectName}" /></a> 
-				<%-- ${class.subjectName} --%>
 			</p>
 
 		</div>
 		<div class="col-md-3" id="classContent">
 			<p>
 				<a class="classInfoLabels"> <b>Location:</b> <c:out value = "${lesson.location}" /></a> 
-				<%-- ${class.location} --%>
 			</p>
 		</div>
 		<div class="col-md-2" id="classContent">
 			<p>
-				<a class="classInfoLabels"> <b>Date:</b> <c:out value = "${lesson.date}" /></a>
-				<%-- ${class.date} --%>
+				<a class="classInfoLabels"> <b>Date:</b><%-- <fmt:parseDate pattern="MM/dd/yyyy" value="${bean.dateString}" var="parsedDate" /> --%>
+<fmt:formatDate value="${lesson.date}" pattern="MM-dd-yyyy" /><%--  <c:out value = "${lesson.date}" /> --%></a>
 			</p>
 		</div>
 		<div class="col-md-2" id="classDeets">
 			<div class="text-left button">
 				<a href="" class="btn btn-rounded mb-4 classInfoButton"
-					data-toggle="modal" data-target="#modalClassInfoForm">Checkout
-					Class Deets!</a>
+					data-toggle="modal" data-target="#modalClassInfoForm">View/Edit Class</a>
 			</div>
 			<div class="modal fade" id="modalClassInfoForm" tabindex="-1"
 				role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 				<div class="modal-dialog" role="document">
 					<div class="modal-content">
 						<div class="modal-header text-center">
-							<h4 class="modal-title w-100 font-weight-bold">Edit Profile</h4>
+							<h4 class="modal-title w-100 font-weight-bold">Class Description</h4>
 							<button type="button" class="close" data-dismiss="modal"
 								aria-label="Close">
 								<span aria-hidden="true">&times;</span>
@@ -309,6 +314,7 @@
 						</div>
 						<form action="${formUpdate}" method="POST">
 							<input type="hidden" name="CSRF_TOKEN" value="${CSRF_TOKEN}">
+							<input type="hidden" name="classId" value="${lesson.classId}">
 							<div class="modal-body mx-3">
 								<div class="md-form mb-5">
 									<label data-error="wrong" data-success="right"
@@ -324,7 +330,7 @@
 								</div>
 								<div class="md-form mb-5">
 									<label data-error="wrong" data-success="right"
-										for="orangeForm-email">Class Date:</label><input type="date"
+										for="orangeForm-email">Class Date:</label><input type="text"
 										id="orangeForm-email" name="date"
 										class="form-control validate" value="${lesson.date}">
 								</div>
@@ -359,8 +365,7 @@
 							</div>
 							
 							<div class="modal-footer d-flex justify-content-center">
-								<button class="btn btn-deep-orange" type="submit">LET'S
-									DO IT!!</button>
+								<button class="btn btn-deep-orange" type="submit">Done</button>
 							</div>
 						</form>
 					</div>

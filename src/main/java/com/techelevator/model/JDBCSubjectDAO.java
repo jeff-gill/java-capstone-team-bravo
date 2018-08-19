@@ -105,6 +105,7 @@ public class JDBCSubjectDAO implements SubjectDAO
 	private Subject mapRowToSubject(SqlRowSet results) 
 	{
 		Subject subject = new Subject();
+		subject.setClassId(results.getInt("class_id"));
 		subject.setSubjectName(results.getString("subject_name"));
 		subject.setLocation(results.getString("location"));
 		subject.setDate(results.getDate("event_date"));
