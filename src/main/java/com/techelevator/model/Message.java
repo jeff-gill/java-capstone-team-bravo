@@ -1,6 +1,6 @@
 package com.techelevator.model;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 public class Message {
 	
@@ -9,7 +9,7 @@ public class Message {
 	private String receiverName;
 	private String messageSubject;
 	private String messageBody;
-	private Date date;
+	private LocalDate date;
 	
 	public int getMessageId() {
 		return messageId;
@@ -41,13 +41,10 @@ public class Message {
 	public void setMessageBody(String messageBody) {
 		this.messageBody = messageBody;
 	}
-	public Date getDate() {
+	public LocalDate getDate() {
 		return date;
 	}
-	public void setDate(Date date) {
+	public void setDate(LocalDate date) {
 		this.date = date;
-	}
-	
-	
-
+	}	
 }
