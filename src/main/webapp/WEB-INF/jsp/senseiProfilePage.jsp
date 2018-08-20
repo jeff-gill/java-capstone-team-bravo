@@ -292,8 +292,7 @@
 		</div>
 		<div class="col-md-2" id="classContent">
 			<p>
-				<a class="classInfoLabels"> <b>Date:</b><fmt:parseDate pattern="MM/dd/yyyy" value="${bean.dateString}" var="parsedDate" />
-<fmt:formatDate value="${lesson.date}" pattern="MM-dd-yyyy" /><%--  <c:out value = "${lesson.date}" /> --%></a>
+				<a class="classInfoLabels"> <b>Date:</b><fmt:formatDate value="${lesson.date}" pattern="MM-dd-yyyy" /></a>
 			</p>
 		</div>
 		<div class="col-md-2" id="classDeets">
@@ -332,7 +331,7 @@
 									<label data-error="wrong" data-success="right"
 										for="orangeForm-email">Class Date:</label><input type="text"
 										id="orangeForm-email" name="date"
-										class="form-control validate" value="${lesson.date}">
+										class="form-control validate" value="<fmt:formatDate value="${lesson.date}" pattern="MM-dd-yyyy" />">
 								</div>
 								<div class="md-form mb-5">
 									<label data-error="wrong" data-success="right"
