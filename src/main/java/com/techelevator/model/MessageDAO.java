@@ -8,5 +8,5 @@ public interface MessageDAO {
 	
 	public List<Message> getMessagesForUser(String userName);
 	
-	public String getMessage(String userName);
+	public Message getMessageById(int messageId);
 }

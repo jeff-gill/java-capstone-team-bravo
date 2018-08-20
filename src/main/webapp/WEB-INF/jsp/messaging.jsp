@@ -1,4 +1,7 @@
+
+
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <c:import url="/WEB-INF/jsp/header.jsp" />
 
@@ -15,12 +18,11 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
 <script
 	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+	
 
-<c:url var="formAction" value="/users/gh/${currentUser.userName}" />
-<c:url var="form" value="/uploadGHFile" />
 
-<c:url var="formAction" value="/users/gh/${currentUser.userName}" />
-<c:url var="form" value="/uploadGHFile" />
+<c:url var="formAction" value="/users/messaging/${currentUser.userName}" />
+
 
 <section>
 	<div>

@@ -31,6 +31,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.techelevator.model.MessageDAO;
 import com.techelevator.model.Subject;
 import com.techelevator.model.SubjectDAO;
 import com.techelevator.model.User;
@@ -43,6 +44,8 @@ public class UserController {
 	@Autowired
 	private SubjectDAO subjectDAO;
 	private UserDAO userDAO;
+	@Autowired
+	private MessageDAO messageDAO;
 	
 	@Autowired
 	ServletContext servletContext;
@@ -363,15 +366,19 @@ public class UserController {
 		return "redirect:/users/gh/" + userName;
 	}
 	
-	@RequestMapping(path="/users/messaging/{userName}", method=RequestMethod.GET)
-	public String displayMessagingForm(ModelMap modelHolder) {
-	if( ! modelHolder.containsAttribute("user")) {
-	modelHolder.addAttribute("user", new User());
-	}
-	return "messaging";
+	@RequestMapping(path="/users/messages/{userName}", method=RequestMethod.GET)
+	public String displayMessagingForm(@PathVariable String userName, ModelMap map, HttpSession session) {
+		map.addAttribute("message", messageDAO.getMessagesForUser(userName));
+		
+		session.setAttribute("currentUser", userName);
+		
+	return "messageList";
 
 	}
 	
+//	@RequestMapping(path="/users/messaging/{userName}", method=RequestMethod.POST)
+//	public
+//	
 //	@RequestMapping(path="users/sensei/{userName}/updateSubject", method=RequestMethod.POST)
 //	public String updateSenseiSubject(@ModelAttribute Subject subject, @RequestParam int classId)
 //	{

@@ -16,11 +16,8 @@
 <script
 	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
-<c:url var="formAction" value="/users/gh/${currentUser.userName}" />
-<c:url var="form" value="/uploadGHFile" />
+<c:url var="formAction" value="/users/messages/${currentUser.userName}" />
 
-<c:url var="formAction" value="/users/gh/${currentUser.userName}" />
-<c:url var="form" value="/uploadGHFile" />
 
 <section>
 	<div>
@@ -38,23 +35,21 @@
 	</div>
 	<div class="container-fluid messagingContainer"
 		style="margin-right: 100px; margin-left: 100px">
-		<form>
+		<c:forEach items="${message}" var="userMessage">
+		<form action="${formAction}" method="GET">
 			<div class="row messageInputs">
-				<div class="col-md-2">From:</div>
+				<div class="col-md-2">From: <c:out value="${userMessage.senderName}" /></div>
 				<div class="col-md-2">Subject:</div>
 				<div class="col-md-7">Body:</div>
 				<div class="col-md-2"></div>
-			</div>
-			<div class="row messageInputs">
-				<div class="col-md-2">From:</div>
-				<div class="col-md-2">Subject:</div>
-				<div class="col-md-7">Body:</div>
-				<div class="col-md-2">
+			
+		
 					<input type="text" name="expandMessage" id="expandMessage"
 						placeholder="Read Message" />
 				</div>
-			</div>
+			
 		</form>
+		</c:forEach>
 	</div>
 
 
