@@ -184,7 +184,7 @@
 												<label data-error="wrong" data-success="right"
 													for="orangeForm-email">Date:</label><input type="date"
 													id="orangeForm-email" name="date"
-													class="form-control validate">
+													class="form-control validate" pattern="MM-dd-yyy">
 											</div>
 											<br />
 											<div class="md-form mb-4">
