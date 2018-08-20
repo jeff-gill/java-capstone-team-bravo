@@ -292,8 +292,7 @@
 		</div>
 		<div class="col-md-2" id="classContent">
 			<p>
-				<a class="classInfoLabels"> <b>Date:</b><fmt:parseDate pattern="MM/dd/yyyy" value="${bean.dateString}" var="parsedDate" />
-<fmt:formatDate value="${lesson.date}" pattern="MM-dd-yyyy" /><%--  <c:out value = "${lesson.date}" /> --%></a>
+				<a class="classInfoLabels"> <b>Date:</b><fmt:formatDate value="${lesson.date}" pattern="MM-dd-yyyy" /></a>
 			</p>
 		</div>
 		<div class="col-md-2" id="classDeets">
@@ -312,6 +311,9 @@
 								<span aria-hidden="true">&times;</span>
 							</button>
 						</div>
+						
+						
+						<c:forEach items = "${subject}" var = "lesson">
 						<form action="${formUpdate}" method="POST">
 							<input type="hidden" name="CSRF_TOKEN" value="${CSRF_TOKEN}">
 							<input type="hidden" name="classId" value="${lesson.classId}">
@@ -332,7 +334,7 @@
 									<label data-error="wrong" data-success="right"
 										for="orangeForm-email">Class Date:</label><input type="text"
 										id="orangeForm-email" name="date"
-										class="form-control validate" value="${lesson.date}">
+										class="form-control validate" value="<fmt:formatDate value="${lesson.date}" pattern="MM-dd-yyyy" />">
 								</div>
 								<div class="md-form mb-5">
 									<label data-error="wrong" data-success="right"
@@ -364,10 +366,15 @@
 								<br />
 							</div>
 							
+							
 							<div class="modal-footer d-flex justify-content-center">
 								<button class="btn btn-deep-orange" type="submit">Done</button>
 							</div>
 						</form>
+						
+						</c:forEach>
+						
+						
 					</div>
 				</div>
 			</div>

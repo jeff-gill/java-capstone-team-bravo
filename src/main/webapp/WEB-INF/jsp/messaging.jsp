@@ -25,13 +25,13 @@
 <section>
 	<div>
 		<h2 class="profileName">
-			<c:out value="${profile.firstName} ${profile.lastName}" />
+			<b><c:out value="${currentUser.firstName} ${currentUser.lastName}" /></b>
 		</h2>
 	</div>
 	<div class="container-fluid">
 		<div class="row">
-			<div class="col-md-12 privateMessages" style="font-size: 28px">Private
-				Messages</div>
+			<div class="col-md-12 privateMessages" style="font-size: 28px"><i>Compose Private
+				Messages</i></div>
 		</div>
 	</div>
 	<div class="container-fluid messagingContainer"
@@ -42,14 +42,6 @@
 			<div class="col-md-2">To:</div>
 			<div class="col-md-9">
 				<input class="messagePeople" maxlength="35" />
-			</div>
-			<div class="col-md-1"></div>
-		</div>
-		<div class="row messageInputs">
-			<div class="col-md-1"></div>
-			<div class="col-md-2">From:</div>
-			<div class="col-md-9">
-				<input class="messagePeople" maxlength="35"/>
 			</div>
 			<div class="col-md-1"></div>
 		</div>
