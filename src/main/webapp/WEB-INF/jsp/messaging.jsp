@@ -41,7 +41,7 @@
 			<div class="col-md-1"></div>
 			<div class="col-md-2">To:</div>
 			<div class="col-md-9">
-				<input class="messagePeople" maxlength="35" />
+				<input type="hidden" class="messagePeople" maxlength="35" />
 			</div>
 			<div class="col-md-1"></div>
 		</div>
