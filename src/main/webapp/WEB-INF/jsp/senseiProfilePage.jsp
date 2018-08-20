@@ -311,6 +311,9 @@
 								<span aria-hidden="true">&times;</span>
 							</button>
 						</div>
+						
+						
+						<c:forEach items = "${subject}" var = "lesson">
 						<form action="${formUpdate}" method="POST">
 							<input type="hidden" name="CSRF_TOKEN" value="${CSRF_TOKEN}">
 							<input type="hidden" name="classId" value="${lesson.classId}">
@@ -363,10 +366,15 @@
 								<br />
 							</div>
 							
+							
 							<div class="modal-footer d-flex justify-content-center">
 								<button class="btn btn-deep-orange" type="submit">Done</button>
 							</div>
 						</form>
+						
+						</c:forEach>
+						
+						
 					</div>
 				</div>
 			</div>
