@@ -18,15 +18,16 @@
 <script
 	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
+<c:url var="formUpdate"
+	value="/users/sensei/${currentUser.userName}/updateSubject" />
 <c:url var="formAction" value="/users/sensei/${currentUser.userName}" />
 <c:url var="form" value="/uploadSenseiFile" />
 <c:url var="formA"
 	value="/users/sensei/${currentUser.userName}/createSubject" />
-<c:url var="formUpdate"
-	value="/users/sensei/${currentUser.userName}/updateSubject" />
 
 <section class="myContainer">
-	<div class="container-fluid senseiInfo">
+	<div class="container-fluid senseiInfo"
+		style="margin-right: 30px; margin-left: 30px">
 		<div class="row">
 			<div class="col-md-12">
 				<h2 class="profileName">
@@ -38,7 +39,7 @@
 			<div class="col-md-12"></div>
 		</div>
 		<div class="row bioRow">
-			<div class="col-md-5">
+			<div class="col-md-3">
 				<div id="profilePic">
 					<c:url var="imgUrl" value="/image/${profile.profileImage}" />
 					<img src="${imgUrl}" />
@@ -46,11 +47,12 @@
   						  ${message} 
 					</c:if>
 				</div>
-				<div class="text-right">
+			</div>
+			<div class="col-md-2">
+				<div class="text-left button userSections">
 
-					<a href="" class="btn btn-rounded mb-4 updateProfileButton"
-						data-toggle="modal" data-target="#modalProfilePicForm">Update
-						Profile Image!</a>
+					<a href="" class="text-left" data-toggle="modal"
+						data-target="#modalProfilePicForm">Update Profile Image!</a>
 				</div>
 				<div class="updateButton">
 					<div>
@@ -59,7 +61,7 @@
 							<div class="modal-dialog" role="document">
 								<div class="modal-content">
 									<div class="modal-header text-center">
-										<h4 class="modal-title w-100 font-weight-bold">Edit
+										<h4 class="modal-title w-100 font-weight-bold ">Edit
 											Profile Image</h4>
 										<button type="button" class="close" data-dismiss="modal"
 											aria-label="Close">
@@ -80,7 +82,7 @@
 							</div>
 						</div>
 					</div>
-					<div class="text-right button">
+					<div class="text-left button userSections">
 						<a href="" class="btn btn-rounded mb-4 updateButton"
 							data-toggle="modal" data-target="#modalProfileInfoForm">Update
 							Profile Info!</a>
@@ -141,10 +143,10 @@
 						</div>
 					</div>
 					<div>
-						<div class="text-right">
-							<a href="" id="updateButton" class="btn btn-rounded mb-4"
-								id="updateButton" data-toggle="modal"
-								data-target="#modalRegisterForm">Create a Class</a>
+						<div class="text-left userSections">
+							<a href="" class="btn btn-rounded mb-4" id="updateButton"
+								data-toggle="modal" data-target="#modalRegisterForm">Create
+								a Class</a>
 						</div>
 
 
@@ -180,7 +182,7 @@
 											<br />
 											<div class="md-form mb-5">
 												<label data-error="wrong" data-success="right"
-													for="orangeForm-email">Date:</label><input type="text"
+													for="orangeForm-email">Date:</label><input type="date"
 													id="orangeForm-email" name="date"
 													class="form-control validate">
 											</div>
@@ -232,8 +234,21 @@
 						</div>
 					</div>
 				</div>
+				<div class="userSections">
+					<c:if test="${not empty currentUser}">
+						<c:url var="dashboardHref"
+							value="/users/messaging/${currentUser.userName}" />
+						<a href="${dashboardHref}">Create a Message</a>
+					</c:if>
+				</div>
+				<div class="userSections">
+					<c:if test="${not empty currentUser}">
+						<c:url var="dashboardHref"
+							value="/users/messages/${currentUser.userName}" />
+						<a href="${dashboardHref}">See Messages List</a>
+					</c:if>
+				</div>
 			</div>
-			<div class="col-md-1"></div>
 			<div class="col-md-6">
 				<div class="userSections">
 					<div class="userInfoLabels">
@@ -272,37 +287,54 @@
 					</div>
 				</div>
 			</div>
+			<div class="col-md-1"></div>
 		</div>
 	</div>
-
-	<div class="container-fluid">
+	<div class="container-fluid"
+		style="margin-right: 30px; margin-left: 30px">
 		<div class="row">
-			<div class="col-md-12">
-				<p>Class Schedule:</p>
-			</div>
+			<div class="col-md-12"></div>
 
 		</div>
+
+		<div class="row">
+			<div class="col-md-3" id="classContent">
+				<p>
+					<a class="classInfoLabels"> <b>Subject:</b></a>
+				</p>
+
+			</div>
+			<div class="col-md-3" id="classContent">
+				<p>
+					<a class="classInfoLabels"> <b>Location:</b></a>
+				</p>
+			</div>
+			<div class="col-md-2" id="classContent">
+				<p>
+					<a class="classInfoLabels"> <b>Date:</b></a>
+				</p>
+			</div>
+		</div>
 		<c:forEach items="${subject}" var="lesson">
-			<div class="row">
+			<div class="row subjectRow">
 				<div class="col-md-3" id="classContent">
 					<p>
-						<a class="classInfoLabels"> <b>Subject:</b> <c:out
-								value="${lesson.subjectName}" /></a>
+						<c:out value="${lesson.subjectName}" />
 					</p>
 
 				</div>
 				<div class="col-md-3" id="classContent">
 					<p>
-						<a class="classInfoLabels"> <b>Location:</b> <c:out
-								value="${lesson.location}" /></a>
+						<c:out value="${lesson.location}" />
 					</p>
 				</div>
 				<div class="col-md-2" id="classContent">
 					<p>
-						<a class="classInfoLabels"> <b>Date:</b> <fmt:formatDate
-								value="${lesson.date}" pattern="MM-dd-yyyy" /></a>
+						<fmt:formatDate value="${lesson.date}" pattern="MM-dd-yyyy" />
 					</p>
 				</div>
+
+
 				<div class="col-md-2" id="classDeets">
 					<div class="text-left button">
 						<a href="" class="btn btn-rounded mb-4 classInfoButton"
@@ -380,26 +412,19 @@
 											</div>
 											<br />
 										</div>
-
-
 										<div class="modal-footer d-flex justify-content-center">
 											<button class="btn btn-deep-orange" type="submit">Done</button>
 										</div>
 									</form>
-
 								</c:forEach>
-
-
 							</div>
 						</div>
 					</div>
 				</div>
-				<div class="col-md-2" id="classDeets"></div>
 			</div>
 		</c:forEach>
 		<div class="row">
 			<div class="col-md-5"></div>
-
 			<div class="col-md-7"></div>
 		</div>
 	</div>

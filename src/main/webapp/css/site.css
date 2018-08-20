@@ -67,6 +67,7 @@ input[type=submit]:hover {
 	font-weight: bold;
 	align-item: right;
 }
+
 input[type=reset] {
 	background-color: #bab758;
 	font-weight: bold;
@@ -134,7 +135,7 @@ div.signupContainer {
 }
 
 * /
-	/* profile modal */  
+	/* profile modal */   
 
 .updateButton {
 	background-color: #bab758 !important;
@@ -184,6 +185,12 @@ div.signupContainer {
 	}
 }
 
+.subjectRow {
+	display: block;
+    vertical-align: middle;
+}
+.subjectRow:nth-child(odd) {
+	background-color: #f7f7f7;
 }
 
 div.container-fluid.senseiInfo {
@@ -214,7 +221,7 @@ div.container-fluid.senseiInfo {
 }
 
 .bioRow {
-	padding-bottom: 30px;
+	padding-bottom: 30px
 }
 
 .classSections {
@@ -235,6 +242,25 @@ div.container-fluid.senseiInfo {
 	min-width: 75px;
 }
 
+.actionSections {
+	display: flex;
+	box-sizing: border-box; align-items : center;
+	padding-bottom: 5px;
+	border-width: 2px;
+	border-style: outset;
+	border-color: #bab758;
+	border-radius: 5px;
+	margin-bottom: 2px;
+	background-color: #f7f7f7;
+	width: 65%;
+	text-align: center;
+	align-items: center;
+}
+
+#actionButtons {
+	align: bottom;
+}
+
 #classContent {
 	padding: 0;
 	min-height: 50px;
@@ -244,7 +270,7 @@ a {
 	text-decoration: none !important;
 }
 
-.updateButton /* messaging */ 
+.updateButton /* messaging */  
 
 div.col-md-12.privateMessages {
 	font-size: 48px;
@@ -289,7 +315,7 @@ div.row.messageInputs {
 	width: 90%;
 	height: 160px;
 	word-wrap: break-word;
-    word-break: break-all;
-    padding: 15px;
+	word-break: break-all;
+	padding: 15px;
 	resize: NONE;
 }

@@ -74,11 +74,5 @@
 					</c:otherwise>
 				</c:choose>
 			</ul>
-			<ul class="nav navbar-nav navbar-right">
-				<c:if test="${not empty currentUser}">
-					<c:url var="dashboardHref" value="/users/messaging/${currentUser.userName}" />
-					<li><a href="${dashboardHref}">Private Messages</a></li>
-				</c:if>
-			</ul>
 		</div>
 	</nav>
