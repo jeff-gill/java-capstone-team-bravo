@@ -185,6 +185,12 @@ div.signupContainer {
 }
 
 }
+
+div.container-fluid.senseiInfo {
+	padding-left: 25px;
+	padding-right: 25px;
+}
+
 .profileName {
 	font-size: 42px;
 }

@@ -43,16 +43,15 @@
 				<div class="col-md-2">From:</div>
 				<div class="col-md-2">Subject:</div>
 				<div class="col-md-7">Body:</div>
-				<div class="col-md-2">
-				</div>
+				<div class="col-md-2"></div>
 			</div>
 			<div class="row messageInputs">
 				<div class="col-md-2">From:</div>
 				<div class="col-md-2">Subject:</div>
 				<div class="col-md-7">Body:</div>
 				<div class="col-md-2">
-				<input type="text" name="expandMessage" id="expandMessage"
-							placeholder="Read Message" />
+					<input type="text" name="expandMessage" id="expandMessage"
+						placeholder="Read Message" />
 				</div>
 			</div>
 		</form>

@@ -1,5 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %> 
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <fmt:formatDate value="${bean.date}" pattern="MM-dd-yyyy" />
 
 <c:import url="/WEB-INF/jsp/header.jsp" />
@@ -20,11 +20,13 @@
 
 <c:url var="formAction" value="/users/sensei/${currentUser.userName}" />
 <c:url var="form" value="/uploadSenseiFile" />
-<c:url var="formA" value="/users/sensei/${currentUser.userName}/createSubject" />
-<c:url var="formUpdate" value="/users/sensei/${currentUser.userName}/updateSubject" />
+<c:url var="formA"
+	value="/users/sensei/${currentUser.userName}/createSubject" />
+<c:url var="formUpdate"
+	value="/users/sensei/${currentUser.userName}/updateSubject" />
 
 <section class="myContainer">
-	<div class="container-fluid">
+	<div class="container-fluid senseiInfo">
 		<div class="row">
 			<div class="col-md-12">
 				<h2 class="profileName">
@@ -100,8 +102,8 @@
 									<div class="modal-body mx-3">
 										<div class="md-form mb-5">
 											<label data-error="wrong" data-success="right"
-												for="orangeForm-name"> First Name: </label><input type="text"
-												id="orangeForm-name" name="firstName"
+												for="orangeForm-name"> First Name: </label><input
+												type="text" id="orangeForm-name" name="firstName"
 												class="form-control validate" value="${profile.firstName}">
 										</div>
 										<div class="md-form mb-5">
@@ -178,8 +180,8 @@
 											<br />
 											<div class="md-form mb-5">
 												<label data-error="wrong" data-success="right"
-													for="orangeForm-email">Date:</label><input
-													type="text" id="orangeForm-email" name="date"
+													for="orangeForm-email">Date:</label><input type="text"
+													id="orangeForm-email" name="date"
 													class="form-control validate">
 											</div>
 											<br />
@@ -199,8 +201,8 @@
 											<br />
 											<div class="md-form mb-4">
 												<label data-error="wrong" data-success="right"
-													for="orangeForm-pass">Class Cost:</label><input
-													type="text" id="orangeForm-pass" name="cost"
+													for="orangeForm-pass">Class Cost:</label><input type="text"
+													id="orangeForm-pass" name="cost"
 													class="form-control validate">
 											</div>
 											<br />
@@ -272,120 +274,134 @@
 			</div>
 		</div>
 	</div>
-	<div class="row">
-		<div class="col-md-12">
-			<p>Class Schedule:</p>
-		</div>
-	</div>
-	<c:forEach items = "${subject}" var = "lesson">
-	<div class="row">
-		<div class="col-md-3" id="classContent">
-			<p>
-				<a class="classInfoLabels"> <b>Subject:</b> <c:out value = "${lesson.subjectName}" /></a> 
-			</p>
+
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-md-12">
+				<p>Class Schedule:</p>
+			</div>
 
 		</div>
-		<div class="col-md-3" id="classContent">
-			<p>
-				<a class="classInfoLabels"> <b>Location:</b> <c:out value = "${lesson.location}" /></a> 
-			</p>
-		</div>
-		<div class="col-md-2" id="classContent">
-			<p>
-				<a class="classInfoLabels"> <b>Date:</b><fmt:formatDate value="${lesson.date}" pattern="MM-dd-yyyy" /></a>
-			</p>
-		</div>
-		<div class="col-md-2" id="classDeets">
-			<div class="text-left button">
-				<a href="" class="btn btn-rounded mb-4 classInfoButton"
-					data-toggle="modal" data-target="#modalClassInfoForm">View/Edit Class</a>
-			</div>
-			<div class="modal fade" id="modalClassInfoForm" tabindex="-1"
-				role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-				<div class="modal-dialog" role="document">
-					<div class="modal-content">
-						<div class="modal-header text-center">
-							<h4 class="modal-title w-100 font-weight-bold">Class Description</h4>
-							<button type="button" class="close" data-dismiss="modal"
-								aria-label="Close">
-								<span aria-hidden="true">&times;</span>
-							</button>
+		<c:forEach items="${subject}" var="lesson">
+			<div class="row">
+				<div class="col-md-3" id="classContent">
+					<p>
+						<a class="classInfoLabels"> <b>Subject:</b> <c:out
+								value="${lesson.subjectName}" /></a>
+					</p>
+
+				</div>
+				<div class="col-md-3" id="classContent">
+					<p>
+						<a class="classInfoLabels"> <b>Location:</b> <c:out
+								value="${lesson.location}" /></a>
+					</p>
+				</div>
+				<div class="col-md-2" id="classContent">
+					<p>
+						<a class="classInfoLabels"> <b>Date:</b> <fmt:formatDate
+								value="${lesson.date}" pattern="MM-dd-yyyy" /></a>
+					</p>
+				</div>
+				<div class="col-md-2" id="classDeets">
+					<div class="text-left button">
+						<a href="" class="btn btn-rounded mb-4 classInfoButton"
+							data-toggle="modal" data-target="#modalClassInfoForm">View/Edit
+							Class</a>
+					</div>
+					<div class="modal fade" id="modalClassInfoForm" tabindex="-1"
+						role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+						<div class="modal-dialog" role="document">
+							<div class="modal-content">
+								<div class="modal-header text-center">
+									<h4 class="modal-title w-100 font-weight-bold">Class
+										Description</h4>
+									<button type="button" class="close" data-dismiss="modal"
+										aria-label="Close">
+										<span aria-hidden="true">&times;</span>
+									</button>
+								</div>
+
+
+								<c:forEach items="${subject}" var="lesson">
+									<form action="${formUpdate}" method="POST">
+										<input type="hidden" name="CSRF_TOKEN" value="${CSRF_TOKEN}">
+										<input type="hidden" name="classId" value="${lesson.classId}">
+										<div class="modal-body mx-3">
+											<div class="md-form mb-5">
+												<label data-error="wrong" data-success="right"
+													for="orangeForm-name"> Subject:</label> <input type="text"
+													id="orangeForm-name" name="subjectName"
+													class="form-control validate" value="${lesson.subjectName}">
+											</div>
+											<div class="md-form mb-5">
+												<label data-error="wrong" data-success="right"
+													for="orangeForm-name">Location:</label><input type="text"
+													id="orangeForm-name" name="location"
+													class="form-control validate" value="${lesson.location}">
+											</div>
+											<div class="md-form mb-5">
+												<label data-error="wrong" data-success="right"
+													for="orangeForm-email">Class Date:</label><input
+													type="text" id="orangeForm-email" name="date"
+													class="form-control validate"
+													value="<fmt:formatDate value="${lesson.date}" pattern="MM-dd-yyyy" />">
+											</div>
+											<div class="md-form mb-5">
+												<label data-error="wrong" data-success="right"
+													for="orangeForm-pass">Start Time:</label><input type="time"
+													id="orangeForm-pass" name="startTime"
+													class="form-control validate" value="${lesson.startTime}">
+											</div>
+											<div class="md-form mb-5">
+												<label data-error="wrong" data-success="right"
+													for="orangeForm-pass">End Time:</label><input type="time"
+													id="orangeForm-pass" name="endTime"
+													class="form-control validate" value="${lesson.endTime}">
+											</div>
+											<div class="md-form mb-5">
+												<label data-error="wrong" data-success="right"
+													for="orangeForm-pass">Cost:</label><input type="text"
+													id="orangeForm-pass" name="cost"
+													class="form-control validate" value="${lesson.cost}">
+											</div>
+											<div class="md-form mb-5">
+												<label data-error="wrong" data-success="right"
+													for="orangeForm-pass">Available Slots:</label><input
+													type="text" id="orangeForm-pass" name="availableSlots"
+													class="form-control validate"
+													value="${lesson.availableSlots}">
+											</div>
+											<div class="md-form mb-5">
+												<label data-error="wrong" data-success="right"
+													for="orangeForm-pass">Class Description:</label><input
+													type="text" id="orangeForm-pass" name="description"
+													class="form-control validate" value="${lesson.description}">
+											</div>
+											<br />
+										</div>
+
+
+										<div class="modal-footer d-flex justify-content-center">
+											<button class="btn btn-deep-orange" type="submit">Done</button>
+										</div>
+									</form>
+
+								</c:forEach>
+
+
+							</div>
 						</div>
-						
-						
-						<c:forEach items = "${subject}" var = "lesson">
-						<form action="${formUpdate}" method="POST">
-							<input type="hidden" name="CSRF_TOKEN" value="${CSRF_TOKEN}">
-							<input type="hidden" name="classId" value="${lesson.classId}">
-							<div class="modal-body mx-3">
-								<div class="md-form mb-5">
-									<label data-error="wrong" data-success="right"
-										for="orangeForm-name"> Subject:</label> <input type="text"
-										id="orangeForm-name" name="subjectName"
-										class="form-control validate" value="${lesson.subjectName}">
-								</div>
-								<div class="md-form mb-5">
-									<label data-error="wrong" data-success="right"
-										for="orangeForm-name">Location:</label><input type="text"
-										id="orangeForm-name" name="location"
-										class="form-control validate" value="${lesson.location}">
-								</div>
-								<div class="md-form mb-5">
-									<label data-error="wrong" data-success="right"
-										for="orangeForm-email">Class Date:</label><input type="text"
-										id="orangeForm-email" name="date"
-										class="form-control validate" value="<fmt:formatDate value="${lesson.date}" pattern="MM-dd-yyyy" />">
-								</div>
-								<div class="md-form mb-5">
-									<label data-error="wrong" data-success="right"
-										for="orangeForm-pass">Start Time:</label><input type="time"
-										id="orangeForm-pass" name="startTime" class="form-control validate" value = "${lesson.startTime}">
-								</div>
-									<div class="md-form mb-5">
-									<label data-error="wrong" data-success="right"
-										for="orangeForm-pass">End Time:</label><input type="time"
-										id="orangeForm-pass" name="endTime" class="form-control validate" value = "${lesson.endTime}">
-								</div>
-								<div class="md-form mb-5">
-									<label data-error="wrong" data-success="right"
-										for="orangeForm-pass">Cost:</label><input type="text"
-										id="orangeForm-pass" name="cost" class="form-control validate" value = "${lesson.cost}">
-								</div>
-								<div class="md-form mb-5">
-									<label data-error="wrong" data-success="right"
-										for="orangeForm-pass">Available Slots:</label><input
-										type="text" id="orangeForm-pass" name="availableSlots"
-										class="form-control validate" value = "${lesson.availableSlots}">
-								</div>
-								<div class="md-form mb-5">
-									<label data-error="wrong" data-success="right"
-										for="orangeForm-pass">Class Description:</label><input
-										type="text" id="orangeForm-pass" name="description"
-										class="form-control validate" value = "${lesson.description}">
-								</div>
-								<br />
-							</div>
-							
-							
-							<div class="modal-footer d-flex justify-content-center">
-								<button class="btn btn-deep-orange" type="submit">Done</button>
-							</div>
-						</form>
-						
-						</c:forEach>
-						
-						
 					</div>
 				</div>
+				<div class="col-md-2" id="classDeets"></div>
 			</div>
-		</div>
-		<div class="col-md-2" id="classDeets"></div>
-	</div>
-	</c:forEach>
-	<div class="row">
-		<div class="col-md-5"></div>
+		</c:forEach>
+		<div class="row">
+			<div class="col-md-5"></div>
 
-		<div class="col-md-7"></div>
+			<div class="col-md-7"></div>
+		</div>
 	</div>
 </section>
 
