@@ -69,26 +69,12 @@ public class JDBCUserDAO implements UserDAO {
 
 		return thisUser;
 	}
-
-	@Override
-	public User getSenseiProfileByUserName(String userName) {
-		return getProfileByUserName(userName, true);
-	}
 	
 	@Override
-	public User getGHProfileByUserName(String userName) {
-		return getProfileByUserName(userName, false);
-	}
-
-	@Override
-	public void updateImageName(String userName, String imageName) {
-		jdbcTemplate.update("update user_info set profile_image = ? where user_name = ?", imageName, userName);
-	}	
-	
-	private User getProfileByUserName(String userName, boolean isSensei) {
+	public User getProfileByUserName(String userName) {
 		String sqlProfileByUserName = "select * from user_info " + 
-									  "where user_name = ? and is_sensei = ?";
-		SqlRowSet result = jdbcTemplate.queryForRowSet(sqlProfileByUserName, userName, isSensei);
+									  "where user_name = ?";
+		SqlRowSet result = jdbcTemplate.queryForRowSet(sqlProfileByUserName, userName);
 		
 		User user = new User();
 		
@@ -99,6 +85,11 @@ public class JDBCUserDAO implements UserDAO {
 		
 		return user;
 	}
+
+	@Override
+	public void updateImageName(String userName, String imageName) {
+		jdbcTemplate.update("update user_info set profile_image = ? where user_name = ?", imageName, userName);
+	}	
 
 	private User mapRowToUser(SqlRowSet results) {
 		User user = new User();
