@@ -16,7 +16,7 @@
 <script
 	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
-<c:url var="formAction" value="/users/messages/${currentUser.userName}" />
+<c:url var="formAction" value="/messages/${currentUser.userName}" />
 
 
 <section>
@@ -60,6 +60,7 @@
 					</div>
 				</form>
 			</div>
+
 		</c:forEach>
 	</div>
 </section>
