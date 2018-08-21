@@ -74,5 +74,11 @@
 					</c:otherwise>
 				</c:choose>
 			</ul>
+			<ul class="nav navbar-nav navbar-right">
+			<li>
+				<a id="logoutLink" href="../users/${currentUser.userName}">Profile Page</a>
+			</li>
+			</ul>
+			
 		</div>
 	</nav>
