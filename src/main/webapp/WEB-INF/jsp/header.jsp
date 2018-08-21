@@ -10,7 +10,7 @@
 	src="http://cdn.jsdelivr.net/jquery.validation/1.15.0/additional-methods.js "></script>
 <script src="https://cdn.jsdelivr.net/jquery.timeago/1.4.1/jquery.timeago.min.js"></script>
 
-<link rel="stylesheet" href="../css/site.css">
+<link rel="stylesheet" href="../../css/site.css">
 
 <script type="text/javascript">
 	$(document).ready(function() {
@@ -34,7 +34,7 @@
 		<div class="container-fluid">
 			<div class="row">
 				<div class="col-md-2 senseiPic" id="senseiPic">
-					<img src="../img/SenseiMaster.jpg">
+					<img src="../../img/SenseiMaster.jpg">
 				</div>
 				<div class="col-md-4" id="senseiTitle">
 					<h1>Sensei</h1>

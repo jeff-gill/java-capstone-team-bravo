@@ -33,24 +33,33 @@
 			</div>
 		</div>
 	</div>
-	<div class="container-fluid messagingContainer"
+	<div class="container-fluid messagingListContainer"
 		style="margin-right: 100px; margin-left: 100px">
+		<div class="row messagesHeader">
+			<div class="col-md-2">To:</div>
+			<div class="col-md-2">From:</div>
+			<div class="col-md-2">Subject:</div>
+			<div class="col-md-6">Body:</div>
+		</div>
 		<c:forEach items="${message}" var="userMessage">
-		<form action="${formAction}" method="GET">
-			<div class="row messageInputs">
-				<div class="col-md-2">From: <c:out value="${userMessage.senderName}" /></div>
-				<div class="col-md-2">Subject: <c:out value="${userMessage.messageSubject}" /></div>
-				<div class="col-md-7">Body: <c:out value="${userMessage.messageBody}" /></div>
-				<div class="col-md-2"></div>
-			
-		
-					<input class="messageReadButton" type="submit"
-					value="Read Message" />
-				</div>
-			
-		</form>
+			<div class="row messagesList">
+				<form action="${formAction}" method="GET">
+					<div>
+						<div class="col-md-2">
+							<c:out value="${userMessage.senderName}" />
+						</div>
+						<div class="col-md-2">
+							<c:out value="${userMessage.receiverName}" />
+						</div>
+						<div class="col-md-2">
+							<c:out value="${userMessage.messageSubject}" />
+						</div>
+						<div class="col-md-6">
+							<c:out value="${userMessage.messageBody}" />
+						</div>
+					</div>
+				</form>
+			</div>
 		</c:forEach>
 	</div>
-
-
 </section>

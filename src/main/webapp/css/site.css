@@ -135,7 +135,7 @@ div.signupContainer {
 }
 
 * /
-	/* profile modal */   
+	/* profile modal */    
 
 .updateButton {
 	background-color: #bab758 !important;
@@ -187,10 +187,29 @@ div.signupContainer {
 
 .subjectRow {
 	display: block;
-    vertical-align: middle;
+	vertical-align: middle;
 }
+
 .subjectRow:nth-child(odd) {
 	background-color: #f7f7f7;
+}
+
+.messagesList {
+	display: block;
+	vertical-align: middle;
+	padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.messagesList:nth-child(odd) {
+	background-color: #f7f7f7;
+}
+
+.messagesHeader {
+	background-color: #f7f7f7;
+	border-bottom-width: 3px;
+	border-bottom-style: outset;
+	border-bottom-color: #bab758;
 }
 
 div.container-fluid.senseiInfo {
@@ -241,7 +260,6 @@ div.div.buttonSections {
 	font-size: 12px !important;
 	align-text: center !important; */
 }
-
 div.userSections.userInfoLabels {
 	padding-right: 15px;
 	min-width: 230px;
@@ -272,7 +290,8 @@ div.userSections.userInfoLabels {
 
 .actionSections {
 	display: flex;
-	box-sizing: border-box; align-items : center;
+	box-sizing: border-box;
+	align-items: center;
 	padding-bottom: 5px;
 	border-width: 2px;
 	border-style: outset;
@@ -298,7 +317,7 @@ a {
 	text-decoration: none !important;
 }
 
-.updateButton /* messaging */  
+.updateButton /* messaging */   
 
 div.col-md-12.privateMessages {
 	font-size: 48px;
@@ -317,10 +336,29 @@ div.messagingContainer {
 	background-color: #eaeaea;
 }
 
+div.messagingListContainer {
+	margin-top: 25px;
+	padding: 0px 15px 0px 15px;
+	background-color: white !important;
+	border-width: 5px;
+	border-style: outset;
+	border-color: #bab758;
+	user-select: none;
+	text-decoration: none;
+	border-radius: 5px;
+	background-color: #eaeaea;
+}
+
 div.row.messageInputs {
 	font-size: 14px;
 	padding: 7px;
 	background-color: #f4f3f4
+}
+
+div.row.messageListInputs {
+	font-size: 14px;
+	padding: 7px;
+	background-color: white;
 }
 
 .messagePeople {
@@ -350,19 +388,18 @@ div.row.messageInputs {
 
 /* sensei Buttons */
 .btn-group {
-padding-bottom: 5px;
-
+	padding-bottom: 5px;
 }
 
 .btn-group button {
-    background-color: #b2ae4e; /* Green background */
-    border: 1px solid green; /* Green border */
-    color: black; 
-    padding: 10px 24px; /* Some padding */
-    cursor: pointer; /* Pointer/hand icon */
-    float: left; /* Float the buttons side by side */
-    border-radius: 5px;
-    	border-width: 5px;
+	background-color: #b2ae4e; /* Green background */
+	border: 1px solid green; /* Green border */
+	color: black;
+	padding: 10px 24px; /* Some padding */
+	cursor: pointer; /* Pointer/hand icon */
+	float: left; /* Float the buttons side by side */
+	border-radius: 5px;
+	border-width: 5px;
 	border-style: outset;
 	border-color: #bab758;
 	user-select: none;
@@ -372,18 +409,18 @@ padding-bottom: 5px;
 
 /* Clear floats (clearfix hack) */
 .btn-group:after {
-    content: "";
-    clear: both;
-    display: table;
+	content: "";
+	clear: both;
+	display: table;
 }
 
-.btn-group button:not(:last-child) {
-    border-right: none; /* Prevent double borders */
+.btn-group button:not (:last-child ) {
+	border-right: none; /* Prevent double borders */
 }
 
 /* Add a background color on hover */
 .btn-group button:hover {
-    background-color: #5b592a;
-    color: white;
-    font-weight: strong;
+	background-color: #5b592a;
+	color: white;
+	font-weight: strong;
 }
