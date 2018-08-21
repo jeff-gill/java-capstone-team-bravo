@@ -44,8 +44,7 @@
 				<div class="col-md-2"></div>
 			
 		
-					<input class="messageReadButton" type="submit"
-					value="Read Message" />
+					
 				</div>
 			
 		</form>
