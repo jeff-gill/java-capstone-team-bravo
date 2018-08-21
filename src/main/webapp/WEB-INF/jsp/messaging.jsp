@@ -38,47 +38,51 @@
 	</div>
 	<div class="container-fluid messagingContainer"
 		style="margin-right: 100px; margin-left: 100px">
-		<form>
-		<div class="row messageInputs">
-			<div class="col-md-1"></div>
-			<div class="col-md-2">To:</div>
-			<div class="col-md-9">
-				<input class="messagePeople" maxlength="35" />
-			</div>
-			<div class="col-md-1"></div>
-		</div>
-		<div class="row messageInputs">
-			<div class="col-md-1"></div>
-			<div class="col-md-2">Message Subject:</div>
-			<div class="col-md-9">
-				<input class="messageSubject" maxlength="55" />
-			</div>
-			<div class="col-md-1"></div>
-		</div>
-		<div class="row messageInputs">
-			<div class="col-md-1"></div>
-			<div class="col-md-2">Message Body:</div>
-			<div class="col-md-9">
-				<textarea class="messageBody" maxlength="360"></textarea>
-			</div>
-			<div class="col-md-1"></div>
-		</div>
-		<div class="row messageInputs">
-			<div class="col-md-12"></div>
-		</div>
-		<div class="row messageInputs">
-
-			<div class="col-md-7"></div>
-			<div class="col-md-4">
-				<div id="messageSubmit">
-				 <input class="messageSubmitButton" type="reset" value="Clear Message">
-					<input class="messageSubmitButton" type="submit"
-						value="Send Message" />
+		<form action="${formAction}" method="POST">
+		<input type="hidden" name="destination"
+		value="${param.destination}" /> <input type="hidden"
+		name="CSRF_TOKEN" value="${CSRF_TOKEN}" />
+		
+			<div class="row messageInputs">
+				<div class="col-md-1"></div>
+				<div class="col-md-2">To:</div>
+				<div class="col-md-9">
+					<input class="messagePeople" name="receiverName" maxlength="35" />
 				</div>
+				<div class="col-md-1"></div>
 			</div>
-			
-			<div class="col-md-1"></div>
-		</div>
+			<div class="row messageInputs">
+				<div class="col-md-1"></div>
+				<div class="col-md-2">Message Subject:</div>
+				<div class="col-md-9">
+					<input class="messageSubject" name="messageSubject" maxlength="55" />
+				</div>
+				<div class="col-md-1"></div>
+			</div>
+			<div class="row messageInputs">
+				<div class="col-md-1"></div>
+				<div class="col-md-2">Message Body:</div>
+				<div class="col-md-9">
+					<textarea class="messageBody" name="messageBody" maxlength="360"></textarea>
+				</div>
+				<div class="col-md-1"></div>
+			</div>
+			<div class="row messageInputs">
+				<div class="col-md-12"></div>
+			</div>
+			<div class="row messageInputs">
+	
+				<div class="col-md-7"></div>
+				<div class="col-md-4">
+					<div id="messageSubmit">
+					 <input class="messageSubmitButton" type="reset" value="Clear Message">
+						<input class="messageSubmitButton" type="submit"
+							value="Send Message" />
+					</div>
+				</div>
+				
+				<div class="col-md-1"></div>
+			</div>
 		</form>
 	</div>
 </section>

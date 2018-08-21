@@ -9,6 +9,7 @@ import java.nio.file.Files;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.Map;
 import java.util.UUID;
@@ -31,6 +32,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.techelevator.model.Message;
 import com.techelevator.model.MessageDAO;
 import com.techelevator.model.Subject;
 import com.techelevator.model.SubjectDAO;
@@ -367,7 +369,7 @@ public class UserController {
 	}
 	
 	@RequestMapping(path="/users/messages/{userName}", method=RequestMethod.GET)
-	public String displayMessagingForm(@PathVariable String userName, ModelMap map, HttpSession session) {
+	public String displayAllMessages(@PathVariable String userName, ModelMap map, HttpSession session) {
 		map.addAttribute("message", messageDAO.getMessagesForUser(userName));
 		
 		session.setAttribute("currentUser", userName);
@@ -375,6 +377,41 @@ public class UserController {
 	return "messageList";
 
 	}
+	
+	@RequestMapping(path="/users/messaging/{userName}", method=RequestMethod.GET)
+	public String displayMessagingForm(@PathVariable String userName, HttpSession session) {
+		
+		
+		session.setAttribute("currentUser", userName);
+		
+	return "messaging";
+
+	}
+	
+	@RequestMapping(path="/users/messaging/{userName}", method=RequestMethod.POST)
+	public String displayMessagingForm(@PathVariable String userName, HttpSession session, 
+										@RequestParam String receiverName,
+										@RequestParam String messageSubject,
+										@RequestParam String messageBody) {
+		
+			Message message = new Message();
+			
+			message.setSenderName(userName);
+			message.setReceiverName(receiverName);
+			message.setMessageSubject(messageSubject);
+			message.setMessageBody(messageBody);
+			LocalDate date = LocalDate.now();
+			message.setDate(date);
+			
+			messageDAO.saveMessage(message);
+		
+		session.setAttribute("currentUser", userName);
+		
+	return "redirect:/users/messages/"+userName;
+
+	}
+	
+	
 	
 //	@RequestMapping(path="/users/messaging/{userName}", method=RequestMethod.POST)
 //	public
