@@ -144,7 +144,7 @@ public class UserController {
 	}
 	
 	@RequestMapping(path= "/", method=RequestMethod.POST)
-	public String createUser(@Valid @ModelAttribute User user, BindingResult result, RedirectAttributes flash, HttpSession session) 
+	public String createUser(@Valid @ModelAttribute User user, BindingResult result, RedirectAttributes flash, HttpSession session, ModelMap map) 
 	{	
 		User newUser = new User();
 		newUser.setFirstName(user.getFirstName());
@@ -163,6 +163,7 @@ public class UserController {
 		userDAO.saveUser(newUser);
 		User newU = userDAO.getUserByUserName(user.getUserName());
 		session.setAttribute("currentUser", newU);
+		map.addAttribute("user", newUser);
 		
 		return "redirect:/users/" + newU.getUserName();
 	}

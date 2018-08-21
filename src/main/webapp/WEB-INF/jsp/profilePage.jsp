@@ -18,7 +18,6 @@
 <c:url var="formA" value="/users/${currentUser.userName}/createSubject" />
 
 <section class="myContainer">
-	<c:forEach items="${currentUser.userName}" var="profileUser">
 	<div class="container-fluid senseiInfo"
 		style="margin-right: 30px; margin-left: 30px">
 		<div class="row">
@@ -136,14 +135,13 @@
 						</div>
 					</div>
 					<div>
+					<c:if test="${user.IsSensei == true}" >
 						<div class="text-left btn-group">
 							<a href="" class="btn-mb-4"
 								data-toggle="modal" data-target="#modalRegisterForm"><button>Create
 								a Class</button></a>
 						</div>
-
-					<c:choose>
-						<c:when test="${profileUser}" >
+					</c:if>
 						<div class="modal fade" id="modalRegisterForm" tabindex="-1"
 							role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 							<div class="modal-dialog" role="document">
@@ -226,8 +224,6 @@
 								</div>
 							</div>
 						</div>
-						</c:when>
-					</c:choose>
 					</div>
 				</div>
 				<div class="btn-group">
@@ -420,7 +416,6 @@
 			<div class="col-md-7"></div>
 		</div>
 	</div>
-	</c:forEach>
 </section>
 
 <c:import url="/WEB-INF/jsp/footer.jsp" />
