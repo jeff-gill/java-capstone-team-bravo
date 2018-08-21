@@ -10,8 +10,10 @@ drop table if exists user_info;
 drop table if exists subjects;
 drop table if exists user_subjects;
 drop table if exists messaging;
+drop table if exists reviews;
 drop sequence if exists seq_class_id;
 drop sequence if exists seq_message_id;
+drop sequence if exists seq_review_id;
 
 CREATE TABLE app_user (
   id SERIAL PRIMARY KEY,
@@ -72,6 +74,19 @@ create table messaging (
 	message_date_sent date not null,
 	
 	constraint pk_message_id primary key (message_id)
+);
+
+create sequence seq_review_id;
+
+create table reviews (
+        review_id integer default nextval('seq_review_id'),
+        reviewee varchar(32) not null,
+        reviewer varchar(32) not null,
+        panda_rating int not null,
+        review varchar (360),
+        
+        constraint pk_review_id primary key (review_id),
+        constraint fk_reviewee foreign key (reviewee) references user_info (user_name) on delete cascade
 );
 
 COMMIT;
