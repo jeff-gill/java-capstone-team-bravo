@@ -34,6 +34,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.techelevator.model.Message;
 import com.techelevator.model.MessageDAO;
+import com.techelevator.model.Review;
+import com.techelevator.model.ReviewDAO;
 import com.techelevator.model.Subject;
 import com.techelevator.model.SubjectDAO;
 import com.techelevator.model.User;
@@ -48,6 +50,9 @@ public class UserController {
 	private UserDAO userDAO;
 	@Autowired
 	private MessageDAO messageDAO;
+	
+	@Autowired
+	private ReviewDAO reviewDAO;
 	
 	@Autowired
 	ServletContext servletContext;
@@ -290,4 +295,33 @@ public class UserController {
 		
 		return "redirect:/messages/" + userName;
 	}
+	
+	@RequestMapping(path="/review/{reviewee}", method=RequestMethod.GET)
+	public String displayReviewForm(@PathVariable String reviewee, HttpSession session) {
+		
+		
+		
+		return "review";
+	}
+	
+	@RequestMapping(path="/review/{reviewee}", method=RequestMethod.POST) 
+	public String submitReview(@PathVariable String reviewee, HttpSession session,
+								@RequestParam String reviewer,
+								@RequestParam int pandaRating,
+								@RequestParam String review) {
+		
+		session.setAttribute("currentUser", reviewer);
+		
+		Review r = new Review();
+		r.setReviewee(reviewee);
+		r.setReviewer(reviewer);
+		r.setPandaRating(pandaRating);
+		r.setReview(review);
+		
+		reviewDAO.saveReview(r);
+		
+		return "redirect:/users/{reviewee}";
+	}
+	
+	
 }	
