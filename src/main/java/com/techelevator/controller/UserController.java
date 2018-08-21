@@ -172,6 +172,7 @@ public class UserController {
 	{
 		model.put("profile", userDAO.getProfileByUserName(userName));
 		map.addAttribute("subject", subjectDAO.getAllSubjects(userName));
+		
 		return "profilePage";
 	}
 	
