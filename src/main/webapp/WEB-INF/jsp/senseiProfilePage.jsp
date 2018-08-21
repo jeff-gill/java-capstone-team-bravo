@@ -315,7 +315,7 @@
 			<div class="col-md-2 button btn-group">
 					<div class="text-left">
 						<a href="" class="mb-4 classInfoButton"
-							data-toggle="modal" data-target="#modalClassInfoForm"><button>View/Edit Class</button>
+							data-toggle="modal" data-target="#modalClassInfoForm"><button>View/Edit Classes</button>
 							</a>
 					</div>
 					<div class="modal fade" id="modalClassInfoForm" tabindex="-1"
