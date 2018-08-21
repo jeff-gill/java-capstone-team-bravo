@@ -26,7 +26,8 @@ public class JDBCMessageDAO implements MessageDAO
 	{
 		String sqlSaveMessage = "INSERT INTO messaging (message_to, message_from, message_subject, message_body, message_date_sent) VALUES (?,?,?,?,?) returning message_id";
 		int messageId = jdbcTemplate.queryForObject(sqlSaveMessage, Integer.class, message.getSenderName(), message.getReceiverName(), message.getMessageSubject(), message.getMessageBody(), 
-													message.getDate());
+		message.getDate());
+		
 		message.setMessageId(messageId);
 	}
 
@@ -35,7 +36,7 @@ public class JDBCMessageDAO implements MessageDAO
 	{
 		List<Message> messages = new ArrayList<Message>();
 		String sqlGetAllUsersMessages = "select * from messaging " + 
-				"where message_to = ? or message_from = ?";
+				"where message_to = ? or message_from = ? order by message_date_sent desc";
 		SqlRowSet result = jdbcTemplate.queryForRowSet(sqlGetAllUsersMessages, userName, userName);
 		
 		while (result.next())

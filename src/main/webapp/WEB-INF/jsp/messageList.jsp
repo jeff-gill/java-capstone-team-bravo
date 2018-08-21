@@ -39,13 +39,13 @@
 		<form action="${formAction}" method="GET">
 			<div class="row messageInputs">
 				<div class="col-md-2">From: <c:out value="${userMessage.senderName}" /></div>
-				<div class="col-md-2">Subject:</div>
-				<div class="col-md-7">Body:</div>
+				<div class="col-md-2">Subject: <c:out value="${userMessage.messageSubject}" /></div>
+				<div class="col-md-7">Body: <c:out value="${userMessage.messageBody}" /></div>
 				<div class="col-md-2"></div>
 			
 		
-					<input type="text" name="expandMessage" id="expandMessage"
-						placeholder="Read Message" />
+					<input class="messageReadButton" type="submit"
+					value="Read Message" />
 				</div>
 			
 		</form>
