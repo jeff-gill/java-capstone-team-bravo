@@ -13,25 +13,25 @@ import com.techelevator.model.User;
 import com.techelevator.model.UserDAO;
 
 @Controller
-public class AuthenticationController {
-
+public class AuthenticationController 
+{
 	private UserDAO userDAO;
 
 	@Autowired
-	public AuthenticationController(UserDAO userDAO) {
+	public AuthenticationController(UserDAO userDAO) 
+	{
 		this.userDAO = userDAO;
 	}
 
 	@RequestMapping(path="/login", method=RequestMethod.GET)
-	public String displayLoginForm() {
+	public String displayLoginForm() 
+	{
 		return "homePage";
 	}
 	
 	@RequestMapping(path="/login", method=RequestMethod.POST)
-	public String login(@RequestParam String userName, 
-						@RequestParam String password, 
-						@RequestParam(required=false) String destination,
-						HttpSession session) {
+	public String login(@RequestParam String userName, @RequestParam String password, @RequestParam(required=false) String destination, HttpSession session) 
+	{
 		if(userDAO.searchForUsernameAndPassword(userName, password)) 
 		{
 			User user = userDAO.getUserByUserName(userName);
@@ -46,9 +46,11 @@ public class AuthenticationController {
 	}
 
 	@RequestMapping(path="/logout", method=RequestMethod.POST)
-	public String logout(ModelMap model, HttpSession session) {
+	public String logout(ModelMap model, HttpSession session) 
+	{
 		model.remove("currentUser");
 		session.invalidate();
+		
 		return "redirect:/";
 	}
 }

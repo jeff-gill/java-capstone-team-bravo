@@ -120,7 +120,7 @@
 										</div>
 										<div class="md-form mb-5">
 											<label data-error="wrong" data-success="right"
-												for="orangeForm-pass">Bio Info:</label><input type="tel"
+												for="orangeForm-pass">Bio Info: </label><input type="tel"
 												id="orangeForm-pass" name="bio"
 												class="form-control validate" value="${profile.bio}">
 										</div>
@@ -135,7 +135,7 @@
 						</div>
 					</div>
 					<div>
-					<c:if test="${user.IsSensei == true}" >
+					<c:if test="${currentUser.sensei == true}" >
 						<div class="text-left btn-group">
 							<a href="" class="btn-mb-4"
 								data-toggle="modal" data-target="#modalRegisterForm"><button>Create
@@ -160,49 +160,49 @@
 										<div class="modal-body mx-3">
 											<div class="md-form mb-5">
 												<label data-error="wrong" data-success="right"
-													for="orangeForm-name">Class Name:</label><input type="text"
+													for="orangeForm-name">Class Name: </label><input type="text"
 													id="orangeForm-name" name="subjectName"
 													class="form-control validate">
 											</div>
 											<br />
 											<div class="md-form mb-5">
 												<label data-error="wrong" data-success="right"
-													for="orangeForm-email">Class Location:</label><input
+													for="orangeForm-email">Class Location: </label><input
 													type="text" id="orangeForm-email" name="location"
 													class="form-control validate">
 											</div>
 											<br />
 											<div class="md-form mb-5">
 												<label data-error="wrong" data-success="right"
-													for="orangeForm-email">Date (MM-dd-yyyy):</label><input type="text"
+													for="orangeForm-email">Date (MM-dd-yyyy): </label><input type="text"
 													id="orangeForm-email" name="date"
 													class="form-control validate" value="<fmt:formatDate value="${lesson.date}" pattern="MM-dd-yyyy "/> ">
 											</div>
 											<br />
 											<div class="md-form mb-4">
 												<label data-error="wrong" data-success="right"
-													for="orangeForm-pass">Class Start Time:</label><input
+													for="orangeForm-pass">Class Start Time: </label><input
 													type="time" id="orangeForm-pass" name="startTime"
 													class="form-control validate">
 											</div>
 											<br />
 											<div class="md-form mb-4">
 												<label data-error="wrong" data-success="right"
-													for="orangeForm-pass">Class End Time:</label><input
+													for="orangeForm-pass">Class End Time: </label><input
 													type="time" id="orangeForm-pass" name="endTime"
 													class="form-control validate">
 											</div>
 											<br />
 											<div class="md-form mb-4">
 												<label data-error="wrong" data-success="right"
-													for="orangeForm-pass">Class Cost:</label><input type="text"
+													for="orangeForm-pass">Class Cost: </label><input type="text"
 													id="orangeForm-pass" name="cost"
 													class="form-control validate">
 											</div>
 											<br />
 											<div class="md-form mb-4">
 												<label data-error="wrong" data-success="right"
-													for="orangeForm-pass">Available Slots:</label><input
+													for="orangeForm-pass">Available Slots: </label><input
 													type="text" id="orangeForm-pass" name="availableSlots"
 													class="form-control validate">
 
@@ -210,7 +210,7 @@
 											<br />
 											<div class="md-form mb-4">
 												<label data-error="wrong" data-success="right"
-													for="orangeForm-pass">Class Description:</label><input
+													for="orangeForm-pass">Class Description: </label><input
 													type="text" id="orangeForm-pass" name="description"
 													class="form-control validate">
 											</div>
@@ -244,7 +244,7 @@
 			<div class="col-md-6">
 				<div class="userSections">
 					<div class="userInfoLabels">
-						<b>Bio Info:</b>
+						<b>Bio Info: </b>
 					</div>
 					<div>
 						<c:out value="${profile.bio}" />
@@ -252,7 +252,7 @@
 				</div>
 				<div class="userSections">
 					<div class="userInfoLabels">
-						<b>Email:</b>
+						<b>Email: </b>
 					</div>
 
 					<div>
@@ -282,26 +282,26 @@
 			<div class="col-md-1"></div>
 		</div>
 	</div>
-	<div class="container-fluid"
-		style="margin-right: 30px; margin-left: 30px">
+	<div class="container-fluid" style="margin-right: 30px; margin-left: 30px">
+		<c:if test="${currentUser.sensei == true}" >
 		<div class="row">
 			<div class="col-md-12"></div>
 		</div>
 		<div class="row button">
 			<div class="col-md-3" id="classContent">
 				<p>
-					<a class="classInfoLabels"> <b>Subject:</b></a>
+					<a class="classInfoLabels"> <b>Subject: </b></a>
 				</p>
 
 			</div>
 			<div class="col-md-3" id="classContent">
 				<p>
-					<a class="classInfoLabels"> <b>Location:</b></a>
+					<a class="classInfoLabels"> <b>Location: </b></a>
 				</p>
 			</div>
 			<div class="col-md-2" id="classContent">
 				<p>
-					<a class="classInfoLabels"> <b>Date:</b></a>
+					<a class="classInfoLabels"> <b>Date: </b></a>
 				</p>
 			</div>
 			<div class="col-md-2 button btn-group">
@@ -331,7 +331,7 @@
 										<div class="modal-body mx-3">
 											<div class="md-form mb-5">
 												<label data-error="wrong" data-success="right"
-													for="orangeForm-name"> Subject:</label> <input type="text"
+													for="orangeForm-name"> Subject: </label> <input type="text"
 													id="orangeForm-name" name="subjectName"
 													class="form-control validate" value="${lesson.subjectName}">
 											</div>
@@ -343,39 +343,39 @@
 											</div>
 											<div class="md-form mb-5">
 												<label data-error="wrong" data-success="right"
-													for="orangeForm-email">Class Date:</label><input
+													for="orangeForm-email">Class Date: </label><input
 													type="text" id="orangeForm-email" name="date"
 													class="form-control validate"
 													value="<fmt:formatDate value="${lesson.date}" pattern="MM-dd-yyyy "/> "> 
 											</div>
 											<div class="md-form mb-5">
 												<label data-error="wrong" data-success="right"
-													for="orangeForm-pass">Start Time:</label><input type="time"
+													for="orangeForm-pass">Start Time: </label><input type="time"
 													id="orangeForm-pass" name="startTime"
 													class="form-control validate" value="${lesson.startTime}">
 											</div>
 											<div class="md-form mb-5">
 												<label data-error="wrong" data-success="right"
-													for="orangeForm-pass">End Time:</label><input type="time"
+													for="orangeForm-pass">End Time: </label><input type="time"
 													id="orangeForm-pass" name="endTime"
 													class="form-control validate" value="${lesson.endTime}">
 											</div>
 											<div class="md-form mb-5">
 												<label data-error="wrong" data-success="right"
-													for="orangeForm-pass">Cost:</label><input type="text"
+													for="orangeForm-pass">Cost: </label><input type="text"
 													id="orangeForm-pass" name="cost"
 													class="form-control validate" value="${lesson.cost}">
 											</div>
 											<div class="md-form mb-5">
 												<label data-error="wrong" data-success="right"
-													for="orangeForm-pass">Available Slots:</label><input
+													for="orangeForm-pass">Available Slots :</label><input
 													type="text" id="orangeForm-pass" name="availableSlots"
 													class="form-control validate"
 													value="${lesson.availableSlots}">
 											</div>
 											<div class="md-form mb-5">
 												<label data-error="wrong" data-success="right"
-													for="orangeForm-pass">Class Description:</label><input
+													for="orangeForm-pass">Class Description: </label><input
 													type="text" id="orangeForm-pass" name="description"
 													class="form-control validate" value="${lesson.description}">
 											</div>
@@ -415,6 +415,7 @@
 			<div class="col-md-5"></div>
 			<div class="col-md-7"></div>
 		</div>
+		</c:if>
 	</div>
 </section>
 
