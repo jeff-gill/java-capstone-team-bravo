@@ -36,15 +36,8 @@ public class AuthenticationController {
 		{
 			User user = userDAO.getUserByUserName(userName);
 			session.setAttribute("currentUser", user);
-
-			if (user.isSensei())
-			{
-				return "redirect:/users/sensei/" + userName;
-			}
-			else 
-			{
-				return "redirect:/users/gh/" + userName;
-			}
+			
+			return "redirect:/users/" + user.getUserName();
 		} 
 		else 
 		{

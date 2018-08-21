@@ -76,7 +76,7 @@
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
 			<li>
-				<a id="logoutLink" href="../../users/sensei/${currentUser.userName}">Profile Page</a>
+				<a id="logoutLink" href="../users/${currentUser.userName}">Profile Page</a>
 			</li>
 			</ul>
 			

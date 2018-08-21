@@ -19,10 +19,7 @@
 <script
 	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 	
-
-
-<c:url var="formAction" value="/users/messaging/${currentUser.userName}" />
-
+<c:url var="formAction" value="/sendMessage/${currentUser.userName}" />
 
 <section>
 	<div>

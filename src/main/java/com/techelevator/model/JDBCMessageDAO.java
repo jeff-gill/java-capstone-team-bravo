@@ -35,8 +35,7 @@ public class JDBCMessageDAO implements MessageDAO
 	public List<Message> getMessagesForUser(String userName) 
 	{
 		List<Message> messages = new ArrayList<Message>();
-		String sqlGetAllUsersMessages = "select * from messaging " + 
-				"where message_to = ? or message_from = ? order by message_date_sent desc";
+		String sqlGetAllUsersMessages = "select * from messaging where message_to = ? or message_from = ? order by message_date_sent desc";
 		SqlRowSet result = jdbcTemplate.queryForRowSet(sqlGetAllUsersMessages, userName, userName);
 		
 		while (result.next())
@@ -44,6 +43,21 @@ public class JDBCMessageDAO implements MessageDAO
 			messages.add(mapRowToMessage(result));
 		}
 		return messages;
+	}
+
+	@Override
+	public Message getMessageById(int messageId) 
+	{	
+		Message message = new Message();
+		String sqlGetMessageById = "select * from messaging where message_id = ?";
+		SqlRowSet result = jdbcTemplate.queryForRowSet(sqlGetMessageById, messageId);
+		
+		while(result.next()) 
+		{
+			message = mapRowToMessage(result);
+		}
+		
+		return message;
 	}
 
 	private Message mapRowToMessage(SqlRowSet results) 
@@ -57,20 +71,6 @@ public class JDBCMessageDAO implements MessageDAO
 		message.setDate(results.getDate("message_date_sent").toLocalDate());
 		
 
-		return message;
-	}
-
-	@Override
-	public Message getMessageById(int messageId) 
-	{	
-		Message message = new Message();
-		String sqlGetMessageById = "select * from messaging " + 
-				"where message_id = ?";
-		SqlRowSet result = jdbcTemplate.queryForRowSet(sqlGetMessageById, messageId);
-		
-		while(result.next()) {
-			message = mapRowToMessage(result);
-		}
 		return message;
 	}
 }

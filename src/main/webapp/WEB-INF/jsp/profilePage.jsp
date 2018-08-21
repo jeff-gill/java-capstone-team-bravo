@@ -1,31 +1,24 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<fmt:formatDate value="${bean.date}" pattern="MM-dd-yyyy" />
 
 <c:import url="/WEB-INF/jsp/header.jsp" />
 
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<script defer
-	src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"
+<script defer src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"
 	integrity="sha384-4oV5EgaV02iISL2ban6c/RmotsABqE4yZxZLcYMAdG7FAPsyHYAPpywE9PJo+Khy"
 	crossorigin="anonymous"></script>
-<link rel="stylesheet"
-	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-<link rel="stylesheet" href="style.css">
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
-<script
-	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
-<c:url var="formUpdate"
-	value="/users/sensei/${currentUser.userName}/updateSubject" />
-<c:url var="formAction" value="/users/sensei/${currentUser.userName}" />
-<c:url var="form" value="/uploadSenseiFile" />
-<c:url var="formA"
-	value="/users/sensei/${currentUser.userName}/createSubject" />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+<c:url var="formUpdate" value="/users/${currentUser.userName}/updateSubject" />
+<c:url var="formAction" value="/users/${currentUser.userName}" />
+<c:url var="form" value="/uploadFile" />
+<c:url var="formA" value="/users/${currentUser.userName}/createSubject" />
 
 <section class="myContainer">
+	<c:forEach items="${currentUser.userName}" var="profileUser">
 	<div class="container-fluid senseiInfo"
 		style="margin-right: 30px; margin-left: 30px">
 		<div class="row">
@@ -149,7 +142,8 @@
 								a Class</button></a>
 						</div>
 
-
+					<c:choose>
+						<c:when test="${profileUser}" >
 						<div class="modal fade" id="modalRegisterForm" tabindex="-1"
 							role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 							<div class="modal-dialog" role="document">
@@ -232,19 +226,21 @@
 								</div>
 							</div>
 						</div>
+						</c:when>
+					</c:choose>
 					</div>
 				</div>
 				<div class="btn-group">
 					<c:if test="${not empty currentUser}">
 						<c:url var="dashboardHref"
-							value="/users/messaging/${currentUser.userName}" />
+							value="/sendMessage/${currentUser.userName}" />
 						<a href="${dashboardHref}"><button>Create a Message</button></a>
 					</c:if>
 				</div>
 				<div class="btn-group">
 					<c:if test="${not empty currentUser}">
 						<c:url var="dashboardHref"
-							value="/users/messages/${currentUser.userName}" />
+							value="/messages/${currentUser.userName}" />
 						<a href="${dashboardHref}"><button>See Messages List</button></a>
 					</c:if>
 				</div>
@@ -281,7 +277,7 @@
 					</div>
 					<div class="pandaFaces">
 						<c:forEach begin="1" end="${profile.rating}">
-							<img class="panda" src="../../img/rating.png" width="6%">
+							<img class="panda" src="../img/rating.png" width="6%">
 						</c:forEach>
 						<a>&emsp;(out of 5)</a>
 					</div>
@@ -424,6 +420,7 @@
 			<div class="col-md-7"></div>
 		</div>
 	</div>
+	</c:forEach>
 </section>
 
 <c:import url="/WEB-INF/jsp/footer.jsp" />
