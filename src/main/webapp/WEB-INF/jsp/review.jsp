@@ -38,7 +38,7 @@
 	</div>
 	<div class="container-fluid messagingContainer"
 		style="margin-right: 100px; margin-left: 100px">
-		<form action="${formRating}" method="POST">
+		<form action="${formAction}" method="POST">
 			<input type="hidden" name="destination" value="${param.destination}" />
 			<input type="hidden" name="CSRF_TOKEN" value="${CSRF_TOKEN}" />
 
