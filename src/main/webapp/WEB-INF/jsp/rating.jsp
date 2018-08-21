@@ -32,38 +32,77 @@
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-md-12 privateMessages" style="font-size: 28px">
-				<i>Sensei Ratings</i>
+				<i>Compose Private Messages</i>
 			</div>
 		</div>
 	</div>
-	<div class="container-fluid messagingListContainer"
+	<div class="container-fluid messagingContainer"
 		style="margin-right: 100px; margin-left: 100px">
-		<div class="row messagesHeader">
-			<div class="col-md-2">Sensei Name:</div>
-			<div class="col-md-2">Grasshopper Name:</div>
-			<div class="col-md-2">Subject:</div>
-			<div class="col-md-6">Rating:</div>
-		</div>
-		<c:forEach items="${message}" var="userMessage">
-			<div class="row messagesList">
-				<form action="${formAction}" method="GET">
-					<div>
-						<div class="col-md-2">
-							<c:out value="${profile.userName}" />
-						</div>
-						<div class="col-md-2">
-							<c:out value="${rofile.userName.receiverName}" />
-						</div>
-						<div class="col-md-2">
-							<c:out value="${userMessage.messageSubject}" />
-						</div>
-						<div class="col-md-6">
-							<c:out value="${userMessage.messageBody}" />
-						</div>
-					</div>
-				</form>
-			</div>
+		<form action="${formRating}" method="POST">
+			<input type="hidden" name="destination" value="${param.destination}" />
+			<input type="hidden" name="CSRF_TOKEN" value="${CSRF_TOKEN}" />
 
-		</c:forEach>
+			<div class="row messageInputs">
+				<div class="col-md-1"></div>
+				<div class="col-md-2">Sensei Name:</div>
+				<div class="col-md-9">
+					<input class="messagePeople" name="senseiName" maxlength="35" />
+				</div>
+				<div class="col-md-1"></div>
+			</div>
+			<div class="row messageInputs">
+				<div class="col-md-1"></div>
+				<div class="col-md-2">Class Subject:</div>
+				<div class="col-md-9">
+					<input class="messageSubject" name="subjectName" maxlength="55" />
+				</div>
+				<div class="col-md-1"></div>
+			</div>
+			<div class="row messageInputs">
+				<div class="col-md-1"></div>
+				<div class="col-md-2">Message Body:</div>
+				<div class="col-md-9">
+					<textarea class="messageBody" name="messageBody" maxlength="360"></textarea>
+				</div>
+				<div class="col-md-1"></div>
+			</div>
+			<div class="row messageInputs">
+				<div class="col-md-1"></div>
+				<div class="col-md-3">Please give your Sensei a Panda Rating:</div>
+				<div class="col-md-8">
+					<label> <input type="radio" name="panda" /> <img
+						src="../img/rating.png" width="6%">1
+					</label> <label> <input type="radio" name="panda" /> <img
+						src="../img/rating.png" width="6%">2
+					</label><label> <input type="radio" name="panda" /> <img
+						src="../img/rating.png" width="6%">3
+					</label><label> <input type="radio" name="panda" /> <img
+						src="../img/rating.png" width="6%">4
+					</label><label> <input type="radio" name="panda" /> <img
+						src="../img/rating.png" width="6%">5
+					</label>
+
+
+
+
+				</div>
+				<div class="col-md-1"></div>
+			</div>
+			<div class="row messageInputs">
+
+				<div class="col-md-7"></div>
+				<div class="col-md-4">
+					<div id="messageSubmit">
+						<input class="messageSubmitButton" type="reset"
+							value="Clear Message"> <input class="messageSubmitButton"
+							type="submit" value="Send Message" />
+					</div>
+				</div>
+
+				<div class="col-md-1"></div>
+			</div>
+		</form>
 	</div>
 </section>
+
+<c:import url="/WEB-INF/jsp/footer.jsp" />
