@@ -48,13 +48,13 @@
 					</c:if>
 				</div>
 			</div>
-			<div class="col-md-2">
-				<div class="text-left button userSections">
+		<div class="col-md-2">
+				<div class="text-left button btn-group">
 
 					<a href="" class="text-left" data-toggle="modal"
-						data-target="#modalProfilePicForm">Update Profile Image!</a>
+						data-target="#modalProfilePicForm"><button>Update Profile Image!</button></a>
 				</div>
-				<div class="updateButton">
+				<div class="modalButton">
 					<div>
 						<div class="modal fade" id="modalProfilePicForm" tabindex="-1"
 							role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -82,10 +82,10 @@
 							</div>
 						</div>
 					</div>
-					<div class="text-left button userSections">
-						<a href="" class="btn btn-rounded mb-4 updateButton"
-							data-toggle="modal" data-target="#modalProfileInfoForm">Update
-							Profile Info!</a>
+					<div class="text-left button btn-group">
+						<a href="" class="mb-4"
+							data-toggle="modal" data-target="#modalProfileInfoForm"><button>Update
+							Profile Info!</button></a>
 					</div>
 					<div class="modal fade" id="modalProfileInfoForm" tabindex="-1"
 						role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -143,10 +143,10 @@
 						</div>
 					</div>
 					<div>
-						<div class="text-left userSections">
-							<a href="" class="btn btn-rounded mb-4" id="updateButton"
-								data-toggle="modal" data-target="#modalRegisterForm">Create
-								a Class</a>
+						<div class="text-left btn-group">
+							<a href="" class="btn-mb-4"
+								data-toggle="modal" data-target="#modalRegisterForm"><button>Create
+								a Class</button></a>
 						</div>
 
 
@@ -155,8 +155,8 @@
 							<div class="modal-dialog" role="document">
 								<div class="modal-content">
 									<div class="modal-header text-center">
-										<h4 class="modal-title w-100 font-weight-bold">Schedule a
-											Class</h4>
+										<h4 class="modal-title w-100 font-weight-bold"><button>Schedule a
+											Class</button></h4>
 										<button type="button" class="close" data-dismiss="modal"
 											aria-label="Close">
 											<span aria-hidden="true">&times;</span>
@@ -182,9 +182,9 @@
 											<br />
 											<div class="md-form mb-5">
 												<label data-error="wrong" data-success="right"
-													for="orangeForm-email">Date:</label><input type="date"
+													for="orangeForm-email">Date (MM-dd-yyyy):</label><input type="text"
 													id="orangeForm-email" name="date"
-													class="form-control validate" pattern="MM-dd-yyy">
+													class="form-control validate" value="<fmt:formatDate value="${lesson.date}" pattern="MM-dd-yyyy "/> ">
 											</div>
 											<br />
 											<div class="md-form mb-4">
@@ -234,18 +234,18 @@
 						</div>
 					</div>
 				</div>
-				<div class="userSections">
+				<div class="btn-group">
 					<c:if test="${not empty currentUser}">
 						<c:url var="dashboardHref"
 							value="/users/messaging/${currentUser.userName}" />
-						<a href="${dashboardHref}">Create a Message</a>
+						<a href="${dashboardHref}"><button>Create a Message</button></a>
 					</c:if>
 				</div>
-				<div class="userSections">
+				<div class="btn-group">
 					<c:if test="${not empty currentUser}">
 						<c:url var="dashboardHref"
 							value="/users/messages/${currentUser.userName}" />
-						<a href="${dashboardHref}">See Messages List</a>
+						<a href="${dashboardHref}"><button>See Messages List</button></a>
 					</c:if>
 				</div>
 			</div>
@@ -294,10 +294,8 @@
 		style="margin-right: 30px; margin-left: 30px">
 		<div class="row">
 			<div class="col-md-12"></div>
-
 		</div>
-
-		<div class="row">
+		<div class="row button">
 			<div class="col-md-3" id="classContent">
 				<p>
 					<a class="classInfoLabels"> <b>Subject:</b></a>
@@ -314,32 +312,11 @@
 					<a class="classInfoLabels"> <b>Date:</b></a>
 				</p>
 			</div>
-		</div>
-		<c:forEach items="${subject}" var="lesson">
-			<div class="row subjectRow">
-				<div class="col-md-3" id="classContent">
-					<p>
-						<c:out value="${lesson.subjectName}" />
-					</p>
-
-				</div>
-				<div class="col-md-3" id="classContent">
-					<p>
-						<c:out value="${lesson.location}" />
-					</p>
-				</div>
-				<div class="col-md-2" id="classContent">
-					<p>
-						<fmt:formatDate value="${lesson.date}" pattern="MM-dd-yyyy" />
-					</p>
-				</div>
-
-
-				<div class="col-md-2" id="classDeets">
-					<div class="text-left button">
-						<a href="" class="btn btn-rounded mb-4 classInfoButton"
-							data-toggle="modal" data-target="#modalClassInfoForm">View/Edit
-							Class</a>
+			<div class="col-md-2 button btn-group">
+					<div class="text-left">
+						<a href="" class="mb-4 classInfoButton"
+							data-toggle="modal" data-target="#modalClassInfoForm"><button>View/Edit Class</button>
+							</a>
 					</div>
 					<div class="modal fade" id="modalClassInfoForm" tabindex="-1"
 						role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -377,7 +354,7 @@
 													for="orangeForm-email">Class Date:</label><input
 													type="text" id="orangeForm-email" name="date"
 													class="form-control validate"
-													value="<fmt:formatDate value="${lesson.date}" pattern="MM-dd-yyyy" />">
+													value="<fmt:formatDate value="${lesson.date}" pattern="MM-dd-yyyy "/> "> 
 											</div>
 											<div class="md-form mb-5">
 												<label data-error="wrong" data-success="right"
@@ -420,6 +397,25 @@
 							</div>
 						</div>
 					</div>
+				</div>
+		</div>
+		<c:forEach items="${subject}" var="lesson">
+			<div class="row subjectRow">
+				<div class="col-md-3" id="classContent">
+					<p>
+						<c:out value="${lesson.subjectName}" />
+					</p>
+
+				</div>
+				<div class="col-md-3" id="classContent">
+					<p>
+						<c:out value="${lesson.location}" />
+					</p>
+				</div>
+				<div class="col-md-2" id="classContent">
+					<p>
+						<fmt:formatDate value="${lesson.date}" pattern="MM-dd-yyyy" />
+					</p>
 				</div>
 			</div>
 		</c:forEach>
