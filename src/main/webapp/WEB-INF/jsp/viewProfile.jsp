@@ -73,9 +73,9 @@
 							<b>Panda Rating: </b>
 						</div>
 						<div class="pandaFaces">
-							<c:choose begin="1" end="${pandas.rating}">
+							<c:forEach begin="1" end="${pandas}">
 								<img class="panda" src="../img/rating.png" width="6%">
-							</c:choose>
+							</c:forEach>
 							<a>&emsp;(out of 5)</a>
 						</div>
 					</div>

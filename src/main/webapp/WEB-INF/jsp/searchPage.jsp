@@ -10,16 +10,10 @@
 	integrity="sha384-4oV5EgaV02iISL2ban6c/RmotsABqE4yZxZLcYMAdG7FAPsyHYAPpywE9PJo+Khy"
 	crossorigin="anonymous"></script>
 
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
-<script
-	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
-<c:url var="formUpdate"
-	value="/users/${currentUser.userName}/updateSubject" />
-<c:url var="formAction" value="/users/${currentUser.userName}" />
-<c:url var="form" value="/uploadFile" />
-<c:url var="formA" value="/users/${currentUser.userName}/createSubject" />
+<c:url var="formUpdate" value="/users/search" />
 
 <section class="myContainer">
 	<div class="container-fluid"

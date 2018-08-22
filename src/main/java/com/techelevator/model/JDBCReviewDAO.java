@@ -45,6 +45,19 @@ public class JDBCReviewDAO implements ReviewDAO{
 		
 		return reviews;
 	}
+	
+	@Override
+	public int averagePandaRating(String userName) 
+	{
+		String sqlAveragePandaRating = "select avg(panda_rating) from reviews where reviewee = ?";		
+		SqlRowSet result = jdbcTemplate.queryForRowSet(sqlAveragePandaRating, userName);
+
+		if(result.next())
+		{
+			return (int) result.getFloat(1);
+		}
+		return 0;
+	}
 
 	private Review mapRowToReviews(SqlRowSet result) 
 	{
@@ -56,14 +69,5 @@ public class JDBCReviewDAO implements ReviewDAO{
 		review.setReview(result.getString("review"));
 		
 		return review;
-	}
-
-	@Override
-	public int averagePandaRating(String userName) 
-	{
-		String sqlAveragePandaRating = "select avg(panda_rating) from reviews where reviewee = ?";		
-		SqlRowSet result = jdbcTemplate.queryForRowSet(sqlAveragePandaRating, userName);
-		
-		return result.getInt(1);
 	}
 }

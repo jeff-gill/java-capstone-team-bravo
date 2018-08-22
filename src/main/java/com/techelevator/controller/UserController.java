@@ -358,4 +358,16 @@ public class UserController {
 		
 		return "redirect:/{userName}/review?userName=" + reveiweeName;
 	}
+	
+	@RequestMapping(path="/users/search", method=RequestMethod.GET)
+	public String displaySearch(ModelMap map, HttpServletRequest request) 
+	{	
+		String reveiweeName = request.getParameter("userName");
+		String subjectName = request.getParameter("subjectName");
+		User user = userDAO.getProfileByUserName(reveiweeName);
+		request.setAttribute("userProfile", user);
+		List<Subject> subject = subjectDAO.searchSubject(subjectName);
+		
+		return "searchPage";
+	}
 }	
