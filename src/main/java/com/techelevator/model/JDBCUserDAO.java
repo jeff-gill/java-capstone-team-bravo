@@ -88,12 +88,12 @@ public class JDBCUserDAO implements UserDAO {
 	}
 
 	@Override
-	public List<User> getSenseisBySubject(String className) {
-		String sqlProfileBySubject = "select subject_name, user_info.user_name from user_info " + 
+	public List<User> getSenseisBySubject(String subjectName) {
+		String sqlProfileBySubject = "select user_info.* from user_info " + 
 									 "join user_subjects on user_info.user_name = user_subjects.user_name " + 
-									 "join subjects on user_subjects.subject_id = subjects.subject_id " + 
-									 "where is_sensei = true and subject_name = ?";
-		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlProfileBySubject, className);
+									 "join subjects on user_subjects.class_id = subjects.class_id " + 
+									 "where is_sensei = true and subject_name ilike ?";
+		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlProfileBySubject, "%" + subjectName + "%");
 
 		return mapRowSetToUser(results);
 	}
@@ -110,7 +110,7 @@ public class JDBCUserDAO implements UserDAO {
 	private User mapRowToUser(SqlRowSet results) {
 		User user = new User();
 		user.setUserName(results.getString("user_name"));
-		user.setPassword(results.getString("password"));
+//		user.setPassword(results.getString("password"));
 		user.setFirstName(results.getString("first_name"));
 		user.setLastName(results.getString("last_name"));
 		user.setBio(results.getString("bio"));

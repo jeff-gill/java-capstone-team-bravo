@@ -352,21 +352,28 @@ public class UserController {
 	@RequestMapping(path="/{userName}/profile", method=RequestMethod.POST)
 	public String postReview(@PathVariable String userName, HttpServletRequest request) 
 	{	
-		String reveiweeName = request.getParameter("userName");
-		User user = userDAO.getProfileByUserName(reveiweeName);
+		String profileName = request.getParameter("userName");
+		User user = userDAO.getProfileByUserName(profileName);
 		request.setAttribute("userProfile", user);
 		
-		return "redirect:/{userName}/review?userName=" + reveiweeName;
+		return "redirect:/{userName}/review?userName=" + profileName;
 	}
 	
 	@RequestMapping(path="/users/search", method=RequestMethod.GET)
 	public String displaySearch(ModelMap map, HttpServletRequest request) 
 	{	
-		String reveiweeName = request.getParameter("userName");
+		
+		String profileName= request.getParameter("userName");
 		String subjectName = request.getParameter("subjectName");
-		User user = userDAO.getProfileByUserName(reveiweeName);
+		List<User> senseisViaSubject = userDAO.getSenseisBySubject(subjectName);
+		map.addAttribute("senseis", senseisViaSubject);
+		User user = userDAO.getProfileByUserName(profileName);
 		request.setAttribute("userProfile", user);
 		List<Subject> subject = subjectDAO.searchSubject(subjectName);
+		request.setAttribute("subject", subject);
+		int averagePandas = reviewDAO.averagePandaRating(user.getUserName());
+		map.addAttribute("pandas", averagePandas);
+		
 		
 		return "searchPage";
 	}

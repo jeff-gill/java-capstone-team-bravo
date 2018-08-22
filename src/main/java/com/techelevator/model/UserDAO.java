@@ -18,7 +18,7 @@ public interface UserDAO {
 	
 	public void updateProfile(User user, String userName);
 	
-	public List<User> getSenseisBySubject(String className);
+	public List<User> getSenseisBySubject(String subjectName);
 	
 	public List<User> getSenseis();
 	

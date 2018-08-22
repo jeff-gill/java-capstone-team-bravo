@@ -13,7 +13,10 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
-<c:url var="formUpdate" value="/users/search" />
+<c:url var="formSearch" value="/users/search" >
+<c:param name="userName">${userProfile.userName }</c:param>
+<%-- <c:param name="subjectName">${subject.subjectName }</c:param> --%>
+</c:url>
 
 <section class="myContainer">
 	<div class="container-fluid"
@@ -37,7 +40,7 @@
 
 			<div class="col-md-3" id="classContent">
 				<p>
-					<a class="classInfoLabels"> <b>Subject & Class Date: </b></a>
+					<a class="classInfoLabels"> <b>Subject: </b></a>
 				</p>
 
 			</div>
@@ -49,37 +52,38 @@
 				</p>
 			</div>
 		</div>
-		<c:forEach items="${subject}" var="lesson">
+		
+		<c:forEach items="${senseis}" var="searchInfo">
 			<div class="row subjectRow">
 				<div class="col-md-2" id="classContent">
 					<div id="profilePicThumb">
-						<c:url var="imgUrl" value="/image/${profile.profileImage}" />
+						<c:url var="imgUrl" value="/image/${searchInfo.profileImage}" />						
 						<img src="${imgUrl}" />
 						<c:if test="${not empty message}">
   						  ${message} 
 					</c:if>
 					</div>
 				</div>
+				
 				<div class="col-md-3" id="classContent">
 					<p>
-						<c:out value="${profile.userName}" />
+						<c:out value="${searchInfo.userName}" />
 					</p>
 					<p>
-						<fmt:formatDate value="${profile.email}" />
+						<c:out value="${searchInfo.email}" />
 					</p>
 
 				</div>
+				<c:forEach items="${subject}" var="subject">
 				<div class="col-md-3" id="classContent">
 					<p>
-						<c:out value="${lesson.subjectName}" />
-					</p>
-					<p>
-						<c:out value="${lesson.date}" />
+						<c:out value="${subject.subjectName}" />
 					</p>
 				</div>
+				</c:forEach>
 				<div class="col-md-3" id="classContent">
 					<div class="pandaFaces">
-						<c:forEach begin="1" end="${profile.rating}">
+						<c:forEach begin="1" end="${pandas}">
 							<img class="panda" src="../img/rating.png" width="6%">
 						</c:forEach>
 						<a>&emsp;(out of 5)</a>
