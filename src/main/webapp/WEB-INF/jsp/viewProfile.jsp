@@ -14,9 +14,6 @@
 <script
 	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
-<c:url var="formAction" value="/${currentUser.userName}/profile" >
-<c:param name="userName">${userProfile.userName}</c:param>
-</c:url>
 <c:url value="/${currentUser.userName}/review" var="reviewPageURL" >
 <c:param name="userName">${userProfile.userName}</c:param>
 </c:url>
