@@ -330,7 +330,7 @@ public class UserController {
 		
 		reviewDAO.saveReview(r);
 		
-		return "redirect:/{userName}/profile";
+		return "redirect:/" + userName + "/profile?userName=" + reviewee;
 	}
 	
 	@RequestMapping(path="/{userName}/profile", method=RequestMethod.GET)
@@ -341,7 +341,7 @@ public class UserController {
 		map.addAttribute("userProfile", user);
 		List<Subject> subject = subjectDAO.getAllSubjects(userName);
 		map.addAttribute("subject", subject);
-		List<Review> review = reviewDAO.getReviewsForUser(userName);
+		List<Review> review = reviewDAO.getReviewsForUser(selectedUser);
 		map.addAttribute("review", review);
 		int averagePandas = reviewDAO.averagePandaRating(selectedUser);
 		map.addAttribute("pandas", averagePandas);
@@ -350,12 +350,12 @@ public class UserController {
 	}
 	
 	@RequestMapping(path="/{userName}/profile", method=RequestMethod.POST)
-	public String postReview(@PathVariable String userName) 
+	public String postReview(@PathVariable String userName, HttpServletRequest request) 
 	{	
-//		String reveiweeName = request.getParameter("userName");
-//		User user = userDAO.getProfileByUserName(reveiweeName);
-//		request.setAttribute("userProfile", user);
+		String reveiweeName = request.getParameter("userName");
+		User user = userDAO.getProfileByUserName(reveiweeName);
+		request.setAttribute("userProfile", user);
 		
-		return "redirect:/{userName}/review";
+		return "redirect:/{userName}/review?userName=" + reveiweeName;
 	}
 }	
