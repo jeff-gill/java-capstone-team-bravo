@@ -114,7 +114,6 @@ public class JDBCUserDAO implements UserDAO {
 		user.setFirstName(results.getString("first_name"));
 		user.setLastName(results.getString("last_name"));
 		user.setBio(results.getString("bio"));
-		user.setRating(results.getInt("ratings"));
 		user.setSensei(results.getBoolean("is_sensei"));
 		user.setEmail(results.getString("email"));
 		user.setPhone(results.getString("phone"));

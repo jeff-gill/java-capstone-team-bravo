@@ -179,6 +179,8 @@ public class UserController {
 	{
 		model.put("profile", userDAO.getProfileByUserName(userName));
 		map.addAttribute("subject", subjectDAO.getAllSubjects(userName));
+		int averagePandas = reviewDAO.averagePandaRating(userName);
+		map.addAttribute("pandas", averagePandas);
 		
 		return "profilePage";
 	}
@@ -341,6 +343,8 @@ public class UserController {
 		map.addAttribute("subject", subject);
 		List<Review> review = reviewDAO.getReviewsForUser(userName);
 		map.addAttribute("review", review);
+		int averagePandas = reviewDAO.averagePandaRating(selectedUser);
+		map.addAttribute("pandas", averagePandas);
 		
 		return "viewProfile";
 	}

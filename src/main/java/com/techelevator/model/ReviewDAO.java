@@ -8,4 +8,5 @@ public interface ReviewDAO {
 	
 	public List<Review> getReviewsForUser(String userName);
 
+	public int averagePandaRating(String userName);
 }

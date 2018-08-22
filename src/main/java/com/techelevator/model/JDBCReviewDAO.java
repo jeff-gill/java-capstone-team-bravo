@@ -1,5 +1,8 @@
 package com.techelevator.model;
 
+import java.beans.Statement;
+import java.sql.ResultSet;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -53,5 +56,14 @@ public class JDBCReviewDAO implements ReviewDAO{
 		review.setReview(result.getString("review"));
 		
 		return review;
+	}
+
+	@Override
+	public int averagePandaRating(String userName) 
+	{
+		String sqlAveragePandaRating = "select avg(panda_rating) from reviews where reviewee = ?";		
+		SqlRowSet result = jdbcTemplate.queryForRowSet(sqlAveragePandaRating, userName);
+		
+		return result.getInt(1);
 	}
 }

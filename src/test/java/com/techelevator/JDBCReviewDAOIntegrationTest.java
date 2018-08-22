@@ -1,5 +1,6 @@
 package com.techelevator;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
@@ -86,6 +87,20 @@ public class JDBCReviewDAOIntegrationTest {
 		assertNotNull(reviews.getReviewId());
 	}
 	
+	@Test
+	public void test_panda_average() {
+		
+		Review review1 = getReview(REVIEWEE_NAME, REVIEWER_NAME, 5, "lordgenius is both a lord and a genius, I slay zombies so hard now. I feel very confident in my survival skills and warmly welcome the coming apocalypse");
+		Review review2 = getReview(REVIEWEE_NAME, REVIEWER_NAME, 4, "lordgenius is both a lord and a genius, I slay zombies so hard now. I feel very confident in my survival skills and warmly welcome the coming apocalypse");
+		Review review3 = getReview(REVIEWEE_NAME, REVIEWER_NAME, 3, "lordgenius is both a lord and a genius, I slay zombies so hard now. I feel very confident in my survival skills and warmly welcome the coming apocalypse");
+		
+		int averageRating = reviewDAO.averagePandaRating(REVIEWEE_NAME);
+		
+		assertTrue(averageRating == 4);
+		
+		
+	}
+	
 	private Review getReview(String reviewee, String reviewer, int pandaRating, String review) 
 	{
 		Review testReview = new Review();
@@ -97,5 +112,7 @@ public class JDBCReviewDAOIntegrationTest {
 	
 		return testReview;
 	}
+	
+
 
 }
