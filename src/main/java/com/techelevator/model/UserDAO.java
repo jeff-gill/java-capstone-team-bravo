@@ -20,6 +20,8 @@ public interface UserDAO {
 	
 	public List<User> getSenseisBySubject(String className);
 	
+	public List<User> getSenseis();
+	
 	
 
 }

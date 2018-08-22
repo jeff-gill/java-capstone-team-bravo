@@ -272,6 +272,13 @@ public class UserController {
 		return "messageList";
 	}
 	
+	@RequestMapping(path="search/subjects/", method=RequestMethod.GET)
+	public String displaySenseisForSubject(@PathVariable String subjectName, ModelMap map) {
+		
+		map.addAttribute("subject", subjectDAO.getAllSubjects(subjectName));
+		return "subjectList";
+	}
+	
 	@RequestMapping(path="/sendMessage/{userName}", method=RequestMethod.GET)
 	public String displayMessagingForm(@PathVariable String userName, HttpSession session) 
 	{	

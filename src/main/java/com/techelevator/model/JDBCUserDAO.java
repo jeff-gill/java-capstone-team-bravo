@@ -97,6 +97,15 @@ public class JDBCUserDAO implements UserDAO {
 
 		return mapRowSetToUser(results);
 	}
+	
+	@Override
+	public List<User> getSenseis() {
+		String sqlGetSenseis = "select * from user_info " + 
+				"where is_sensei = ?";
+		SqlRowSet results =jdbcTemplate.queryForRowSet(sqlGetSenseis, true);
+		
+		return mapRowSetToUser(results);
+	}
 
 	private User mapRowToUser(SqlRowSet results) {
 		User user = new User();
@@ -122,4 +131,6 @@ public class JDBCUserDAO implements UserDAO {
 		}
 		return userList;
 	}
+
+
 }
