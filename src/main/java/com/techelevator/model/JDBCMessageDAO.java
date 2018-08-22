@@ -24,9 +24,9 @@ public class JDBCMessageDAO implements MessageDAO
 	@Override
 	public void saveMessage(Message message) 
 	{
-		String sqlSaveMessage = "INSERT INTO messaging (message_to, message_from, message_subject, message_body, message_date_sent) VALUES (?,?,?,?,?) returning message_id";
-		int messageId = jdbcTemplate.queryForObject(sqlSaveMessage, Integer.class, message.getSenderName(), message.getReceiverName(), message.getMessageSubject(), message.getMessageBody(), 
-		message.getDate());
+		String sqlSaveMessage = "insert into messaging (message_to, message_from, message_subject, message_body, message_date_sent) values (?,?,?,?,?) returning message_id";
+		int messageId = jdbcTemplate.queryForObject(sqlSaveMessage, Integer.class, message.getSenderName(), message.getReceiverName(), message.getMessageSubject(), 
+													message.getMessageBody(), message.getDate());
 		
 		message.setMessageId(messageId);
 	}
@@ -70,7 +70,6 @@ public class JDBCMessageDAO implements MessageDAO
 		message.setMessageBody(results.getString("message_body"));
 		message.setDate(results.getDate("message_date_sent").toLocalDate());
 		
-
 		return message;
 	}
 }

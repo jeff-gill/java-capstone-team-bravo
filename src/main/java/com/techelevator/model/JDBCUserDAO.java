@@ -22,28 +22,20 @@ public class JDBCUserDAO implements UserDAO {
 		this.jdbcTemplate = new JdbcTemplate(dataSource);
 		this.hashMaster = hashMaster;
 	}
-	
+
 	@Override
 	public void saveUser(User user) {
-//		byte[] salt = hashMaster.generateRandomSalt();
-//		String hashedPassword = hashMaster.computeHash(user.getPassword(), salt);
-		//String saltString = new String(Base64.encode(salt));
-		
-				String sqlSaveUser = "INSERT INTO user_info(user_name, password, first_name, last_name, bio, email, is_sensei) VALUES (?, ?, ?, ?, ?, ?, ?)";
-				jdbcTemplate.update(sqlSaveUser, user.getUserName(), user.getPassword(), user.getFirstName(), user.getLastName(), user.getBio(), user.getEmail(), user.isSensei());
+		String sqlSaveUser = "insert into user_info(user_name, password, first_name, last_name, bio, email, is_sensei) values (?, ?, ?, ?, ?, ?, ?)";
+		jdbcTemplate.update(sqlSaveUser, user.getUserName(), user.getPassword(), user.getFirstName(), user.getLastName(), user.getBio(), user.getEmail(), user.isSensei());
 	}
 
 	@Override
 	public boolean searchForUsernameAndPassword(String userName, String password) {
-		String sqlSearchForUser = "SELECT * "+
-							      "FROM user_info "+
-							      "WHERE (user_name) = ? ";
-		
+		String sqlSearchForUser = "select * from user_info where (user_name) = ? ";
+
 		SqlRowSet user = jdbcTemplate.queryForRowSet(sqlSearchForUser, userName);
 		if(user.next()) {
-//			String dbSalt = user.getString("salt");
 			String dbHashedPassword = user.getString("password");
-//			String givenPassword = hashMaster.computeHash(password, Base64.decode(dbSalt));
 			return dbHashedPassword.equals(password);
 		} else {
 			return false;
@@ -52,14 +44,12 @@ public class JDBCUserDAO implements UserDAO {
 
 	@Override
 	public void updatePassword(String userName, String password) {
-		jdbcTemplate.update("UPDATE user_info SET password = ? WHERE user_name = ?", password, userName);
+		jdbcTemplate.update("update user_info set password = ? where user_name = ?", password, userName);
 	}
 
 	@Override
 	public User getUserByUserName(String userName) {
-		String sqlSearchForUsername ="SELECT * "+
-		"FROM user_info "+
-		"WHERE user_name = ? ";
+		String sqlSearchForUsername ="select * from user_info where user_name = ? ";
 
 		SqlRowSet user = jdbcTemplate.queryForRowSet(sqlSearchForUsername, userName); 
 		User thisUser = new User();
@@ -69,20 +59,19 @@ public class JDBCUserDAO implements UserDAO {
 
 		return thisUser;
 	}
-	
+
 	@Override
 	public User getProfileByUserName(String userName) {
-		String sqlProfileByUserName = "select * from user_info " + 
-									  "where user_name = ?";
+		String sqlProfileByUserName = "select * from user_info where user_name = ?";
 		SqlRowSet result = jdbcTemplate.queryForRowSet(sqlProfileByUserName, userName);
-		
+
 		User user = new User();
-		
+
 		while(result.next()) 
 		{
 			user = mapRowToUser(result);
 		}
-		
+
 		return user;
 	}
 
@@ -90,6 +79,24 @@ public class JDBCUserDAO implements UserDAO {
 	public void updateImageName(String userName, String imageName) {
 		jdbcTemplate.update("update user_info set profile_image = ? where user_name = ?", imageName, userName);
 	}	
+
+	@Override
+	public void updateProfile(User user, String userName) {
+		String updateProfile = "update user_info set first_name = ?, last_name = ?, bio = ?, email = ?, phone = ?, interests = ? " + 
+							   "where user_name = ?";
+		jdbcTemplate.update(updateProfile, user.getFirstName(), user.getLastName(), user.getBio(), user.getEmail(), user.getPhone(), user.getInterests(), userName);	
+	}
+
+	@Override
+	public List<User> getSenseisBySubject(String className) {
+		String sqlProfileBySubject = "select subject_name, user_info.user_name from user_info " + 
+									 "join user_subjects on user_info.user_name = user_subjects.user_name " + 
+									 "join subjects on user_subjects.subject_id = subjects.subject_id " + 
+									 "where is_sensei = true and subject_name = ?";
+		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlProfileBySubject, className);
+
+		return mapRowSetToUser(results);
+	}
 
 	private User mapRowToUser(SqlRowSet results) {
 		User user = new User();
@@ -104,29 +111,10 @@ public class JDBCUserDAO implements UserDAO {
 		user.setPhone(results.getString("phone"));
 		user.setProfileImage(results.getString("profile_image"));
 		user.setInterests(results.getString("interests"));
-		
+
 		return user;
 	}
 
-	@Override
-	public void updateProfile(User user, String userName) {
-		String updateProfile = "update user_info " + 
-				"set first_name = ?, last_name = ?, bio = ?, email = ?, phone = ?, interests = ?" + 
-				" where user_name = ?";
-		 jdbcTemplate.update(updateProfile, user.getFirstName(), user.getLastName(), user.getBio(), user.getEmail(), user.getPhone(), user.getInterests(), userName);	
-	}
-
-	@Override
-	public List<User> getSenseisBySubject(String className) {
-		String sqlProfileBySubject = "Select subject_name, user_info.user_name from user_info " + 
-				"join user_subjects on user_info.user_name = user_subjects.user_name " + 
-				"join subjects on user_subjects.subject_id = subjects.subject_id " + 
-				"where is_sensei = true and subject_name = ?";
-		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlProfileBySubject, className);
-		
-		return mapRowSetToUser(results);
-	}
-	
 	private List<User> mapRowSetToUser(SqlRowSet results){
 		List<User> userList = new ArrayList<User>();
 		while(results.next()) {

@@ -15,11 +15,9 @@
 <script
 	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
-<c:url var="formUpdate"
-	value="/users/${currentUser.userName}/updateSubject" />
-<c:url var="formAction" value="/users/${currentUser.userName}" />
-<c:url var="form" value="/uploadFile" />
-<c:url var="formA" value="/users/${currentUser.userName}/createSubject" />
+<c:url var="formAction" value="/user/${userProfile.userName}" >
+<c:param name="userName">${userProfile.userName}</c:param>
+</c:url>
 
 <section class="myContainer">
 	<div class="container-fluid senseiInfo"
@@ -27,7 +25,7 @@
 		<div class="row">
 			<div class="col-md-12">
 				<h2 class="profileName">
-					<c:out value="${profile.firstName} ${profile.lastName}" />
+					<c:out value="${userProfile.firstName} ${userProfile.lastName}" />
 				</h2>
 			</div>
 		</div>
@@ -37,47 +35,45 @@
 		<div class="row bioRow">
 			<div class="col-md-3">
 				<div id="profilePic">
-					<c:url var="imgUrl" value="/image/${profile.profileImage}" />
+					<c:url var="imgUrl" value="/image/${userProfile.profileImage}" />
 					<img src="${imgUrl}" />
 					<c:if test="${not empty message}">
   						  ${message} 
 					</c:if>
 				</div>
 			</div>
-			<div class="col-md-2">
-				<div></div>
-				<div class="col-md-6">
-					<div class="userSections">
-						<div class="userInfoLabels">
-							<b>Bio Info: </b>
-						</div>
-						<div>
-							<c:out value="${profile.bio}" />
-						</div>
+			<div class="col-md-6">
+				<div class="userSections">
+					<div class="userInfoLabels">
+						<b>Bio Info: </b>
 					</div>
-					<div class="userSections">
-						<div class="userInfoLabels">
-							<b>Email: </b>
-						</div>
+					<div>
+						<c:out value="${userProfile.bio}" />
+					</div>
+				</div>
+				<div class="userSections">
+					<div class="userInfoLabels">
+						<b>Email: </b>
+					</div>
 
-						<div>
-							<c:out value="${profile.email}" />
-						</div>
+					<div>
+						<c:out value="${userProfile.email}" />
 					</div>
-					<div class="userSections">
-						<div class="userInfoLabels">
-							<b>Phone #: </b>
-						</div>
-						<div>
-							<c:out value="${profile.phone}" />
-						</div>
+				</div>
+				<div class="userSections">
+					<div class="userInfoLabels">
+						<b>Phone #: </b>
 					</div>
+					<div>
+						<c:out value="${userProfile.phone}" />
+					</div>
+				</div>
 					<div class="userSections">
 						<div class="userInfoLabels">
 							<b>Panda Rating: </b>
 						</div>
 						<div class="pandaFaces">
-							<c:forEach begin="1" end="${profile.rating}">
+							<c:forEach begin="1" end="${userProfile.rating}">
 								<img class="panda" src="../img/rating.png" width="6%">
 							</c:forEach>
 							<a>&emsp;(out of 5)</a>
@@ -158,11 +154,11 @@
 					</p>
 				</div>
 			</div>
-			<c:forEach items="${subject}" var="lesson">
+			<c:forEach items="${review}" var="review">
 				<div class="row subjectRow">
 					<div class="col-md-3" id="classContent">
 						<p>
-							<c:out value="${review.rating}" />
+							<c:out value="${review.pandaRating}" />
 						</p>
 
 					</div>
@@ -172,10 +168,16 @@
 						</p>
 
 					</div>
+					<div class="col-md-3" id="classContent">
+						<p>
+							<c:out value="${review.review}" />
+						</p>
+
+					</div>
 					<div class="col-md-9" id="classContent">
 						<p>
 							<div class="pandaFaces">
-						<c:forEach begin="1" end="${review.panda_rating}">
+						<c:forEach begin="1" end="${review.pandaRating}">
 							<img class="panda" src="../img/rating.png" width="6%">
 						</c:forEach>
 						<a>&emsp;(out of 5)</a>
@@ -184,6 +186,12 @@
 					</div>
 				</div>
 			</c:forEach>
+			<form action="${formAction}" method="POST">
+				<input type="hidden" name="CSRF_TOKEN" value="${CSRF_TOKEN}" />
+				<div class="modal-footer d-flex justify-content-center">
+					<button class="btn btn-deep-orange" type="submit">Review</button>
+				</div>
+			</form>
 		</div>
 	</div>
 </section>

@@ -22,14 +22,15 @@ public class JDBCReviewDAO implements ReviewDAO{
 	}
 
 	@Override
-	public void saveReview(Review review) {
-		String sqlSaveReview ="insert into reviews (reviewee, reviewer, panda_rating, review) "
-				+ " values (?, ?, ?, ?)";
+	public void saveReview(Review review) 
+	{
+		String sqlSaveReview ="insert into reviews (reviewee, reviewer, panda_rating, review) values (?, ?, ?, ?)";
 		jdbcTemplate.update(sqlSaveReview, review.getReviewee(), review.getReviewer(), review.getPandaRating(), review.getReview());
 	}
 
 	@Override
-	public List<Review> getReviewsForUser(String userName) {
+	public List<Review> getReviewsForUser(String userName) 
+	{
 		List<Review> reviews = new ArrayList<Review>();
 		String getAllReviews ="select * from reviews where reviewee = ?";
 		SqlRowSet result = jdbcTemplate.queryForRowSet(getAllReviews, userName);
@@ -38,12 +39,12 @@ public class JDBCReviewDAO implements ReviewDAO{
 		{
 			reviews.add(mapRowToReviews(result));
 		}
-
 		
 		return reviews;
 	}
 
-	private Review mapRowToReviews(SqlRowSet result) {
+	private Review mapRowToReviews(SqlRowSet result) 
+	{
 		Review review = new Review();
 		review.setReviewId(result.getInt("review_id"));
 		review.setReviewee(result.getString("reviewee"));
@@ -53,5 +54,4 @@ public class JDBCReviewDAO implements ReviewDAO{
 		
 		return review;
 	}
-
 }

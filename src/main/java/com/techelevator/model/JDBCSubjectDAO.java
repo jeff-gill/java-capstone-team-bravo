@@ -23,13 +23,12 @@ public class JDBCSubjectDAO implements SubjectDAO
 	public void saveSubject(Subject subject) 
 	{
 		String sqlSaveSubject = "insert into subjects (subject_name, location, event_date, event_start_time, event_end_time, cost, available_slots, description) "
-				+ "values (?, ?, ?, ?, ?, ?, ?, ?) returning class_id";
+							  + "values (?, ?, ?, ?, ?, ?, ?, ?) returning class_id";
 
 		int classId = jdbcTemplate.queryForObject(sqlSaveSubject, Integer.class, subject.getSubjectName(), subject.getLocation(), subject.getDate(), subject.getStartTime(), 
 												  subject.getEndTime(), subject.getCost(), subject.getAvailableSlots(), subject.getDescription());
 		subject.setClassId(classId);
 	}
-
 
 	@Override
 	public List<Subject> searchSubject(String subjectName) 
@@ -50,10 +49,10 @@ public class JDBCSubjectDAO implements SubjectDAO
 	public void updateSubject(Subject subject, int classId) 
 	{
 		String sqlUpdateSubject = "update subjects set subject_name = ?, location = ? , event_date = ? , event_start_time = ?, "
-				+ "event_end_time = ?, cost = ?, available_slots = ?, description = ? where class_id = ?";
+								+ "event_end_time = ?, cost = ?, available_slots = ?, description = ? where class_id = ?";
 
 		jdbcTemplate.update(sqlUpdateSubject, subject.getSubjectName(), subject.getLocation(), subject.getDate(), subject.getStartTime(), 
-				subject.getEndTime(), subject.getCost(), subject.getAvailableSlots(), subject.getDescription(), classId);	
+							subject.getEndTime(), subject.getCost(), subject.getAvailableSlots(), subject.getDescription(), classId);	
 	}
 
 	@Override
@@ -117,33 +116,4 @@ public class JDBCSubjectDAO implements SubjectDAO
 
 		return subject;
 	}
-	//	
-	//	private Subject getSubject(String subjectName)
-	//	{
-	//		Subject subjects = null;
-	//		String sqlFindIdOfSubject = "select * from subjects where subject_name = ?";
-	//		SqlRowSet result = jdbcTemplate.queryForRowSet(sqlFindIdOfSubject, subjectName);
-	//		
-	//		while (result.next())
-	//		{
-	//			subjects = mapRowToSubject(result);
-	//		}
-	//		
-	//		return subjects;
-	//	}
-
-	private List<Subject> mapRowSetToSubject(SqlRowSet results)
-	{
-		List<Subject> subjectList = new ArrayList<Subject>();
-
-		while(results.next()) 
-		{
-			subjectList.add(mapRowToSubject(results));
-		}
-
-		return subjectList;
-	}
-
-
-
 }

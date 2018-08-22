@@ -11,10 +11,12 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.Date;
+import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
 import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
@@ -296,32 +298,48 @@ public class UserController {
 		return "redirect:/messages/" + userName;
 	}
 	
-	@RequestMapping(path="/review/{reviewee}", method=RequestMethod.GET)
-	public String displayReviewForm(@PathVariable String reviewee, HttpSession session) {
-		
-		
-		
+	@RequestMapping(path="/user/review", method=RequestMethod.GET)
+	public String displayReviewForm(@PathVariable String userName, HttpSession session, HttpServletRequest request) 
+	{	
 		return "review";
 	}
 	
-	@RequestMapping(path="/review/{reviewee}", method=RequestMethod.POST) 
-	public String submitReview(@PathVariable String reviewee, HttpSession session,
-								@RequestParam String reviewer,
-								@RequestParam int pandaRating,
-								@RequestParam String review) {
-		
-		session.setAttribute("currentUser", reviewer);
+	@RequestMapping(path="/user/review", method=RequestMethod.POST) 
+	public String submitReview(@PathVariable String userName, HttpSession session, @RequestParam String reviewee, @RequestParam int pandaRating, @RequestParam String review) 
+	{	
+		session.setAttribute("currentUser", userName);
 		
 		Review r = new Review();
 		r.setReviewee(reviewee);
-		r.setReviewer(reviewer);
+		r.setReviewer(userName);
 		r.setPandaRating(pandaRating);
 		r.setReview(review);
 		
 		reviewDAO.saveReview(r);
 		
-		return "redirect:/users/{reviewee}";
+		return "redirect:/user/{userName}";
 	}
 	
+	@RequestMapping(path="/user/{userName}", method=RequestMethod.GET)
+	public String displayProfile(@PathVariable String userName, ModelMap map) 
+	{	
+		User user = userDAO.getUserByUserName(userName);
+		map.addAttribute("userProfile", user);
+		List<Subject> subject = subjectDAO.getAllSubjects(userName);
+		map.addAttribute("subject", subject);
+		List<Review> review = reviewDAO.getReviewsForUser(userName);
+		map.addAttribute("review", review);
+		
+		return "viewProfile";
+	}
 	
+	@RequestMapping(path="/user/{userName}", method=RequestMethod.POST)
+	public String postReview(@PathVariable String userName) 
+	{	
+//		String reveiweeName = request.getParameter("userName");
+//		User user = userDAO.getProfileByUserName(reveiweeName);
+//		request.setAttribute("userProfile", user);
+		
+		return "redirect:/review/{userName}";
+	}
 }	

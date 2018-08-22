@@ -15,18 +15,14 @@
 <script
 	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
-<c:url var="formUpdate"
-	value="/users/${currentUser.userName}/updateSubject" />
-<c:url var="formAction" value="/users/${currentUser.userName}" />
-<c:url var="form" value="/uploadFile" />
-<c:url var="formA" value="/users/${currentUser.userName}/createSubject" />
-
+<c:url var="formAction" value="/user/review" >
+<c:param name="userName">${userProfile.userName}</c:param>
+</c:url>
 
 <section>
 	<div>
 		<h2 class="profileName">
-			<b><c:out
-					value="${currentUser.firstName} ${currentUser.lastName}" /></b>
+			<b><c:out value="${currentUser.firstName} ${currentUser.lastName}" /></b>
 		</h2>
 	</div>
 	<div class="container-fluid">
@@ -44,52 +40,43 @@
 
 			<div class="row messageInputs">
 				<div class="col-md-1"></div>
-				<div class="col-md-2">Sensei Name:</div>
+				<div class="col-md-2">User Name:</div>
 				<div class="col-md-9">
-					<input class="messagePeople" name="senseiName" maxlength="35" />
+					<input class="messagePeople" name="reviewee" maxlength="35" />
 				</div>
 				<div class="col-md-1"></div>
 			</div>
 			<div class="row messageInputs">
 				<div class="col-md-1"></div>
-				<div class="col-md-2">Class Subject:</div>
+				<div class="col-md-2">Review:</div>
 				<div class="col-md-9">
-					<input class="messageSubject" name="subjectName" maxlength="55" />
+					<textarea class="messageBody" name="review" maxlength="360"></textarea>
 				</div>
 				<div class="col-md-1"></div>
 			</div>
 			<div class="row messageInputs">
 				<div class="col-md-1"></div>
-				<div class="col-md-2">Message Body:</div>
-				<div class="col-md-9">
-					<textarea class="messageBody" name="messageBody" maxlength="360"></textarea>
-				</div>
-				<div class="col-md-1"></div>
-			</div>
-			<div class="row messageInputs">
-				<div class="col-md-1"></div>
-				<div class="col-md-3">Please give your Sensei a Panda Rating:</div>
+				<div class="col-md-3">Please choose a Panda Rating:</div>
 				<div class="col-md-8">
-					<label> <input type="radio" name="panda" /> <img
-						src="../img/rating.png" width="6%">1
-					</label> <label> <input type="radio" name="panda" /> <img
-						src="../img/rating.png" width="6%">2
-					</label><label> <input type="radio" name="panda" /> <img
-						src="../img/rating.png" width="6%">3
-					</label><label> <input type="radio" name="panda" /> <img
-						src="../img/rating.png" width="6%">4
-					</label><label> <input type="radio" name="panda" /> <img
-						src="../img/rating.png" width="6%">5
+					<label> <input type="radio" name="pandaRating" /> 
+					<img src="../img/rating.png" width="6%">1
+					</label> 
+					<label> <input type="radio" name="pandaRating" /> 
+					<img src="../img/rating.png" width="6%">2
 					</label>
-
-
-
-
+					<label> <input type="radio" name="pandaRating" /> 
+					<img src="../img/rating.png" width="6%">3
+					</label>
+					<label> <input type="radio" name="pandaRating" /> 
+					<img src="../img/rating.png" width="6%">4
+					</label>
+					<label> <input type="radio" name="pandaRating" /> 
+					<img src="../img/rating.png" width="6%">5
+					</label>
 				</div>
 				<div class="col-md-1"></div>
 			</div>
 			<div class="row messageInputs">
-
 				<div class="col-md-7"></div>
 				<div class="col-md-4">
 					<div id="messageSubmit">
@@ -98,7 +85,6 @@
 							type="submit" value="Send Message" />
 					</div>
 				</div>
-
 				<div class="col-md-1"></div>
 			</div>
 		</form>
