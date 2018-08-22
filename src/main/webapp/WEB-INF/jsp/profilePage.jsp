@@ -244,7 +244,7 @@
 			<div class="col-md-6">
 				<div class="userSections">
 					<div class="userInfoLabels">
-						<b>Bio Info: </b>
+						<p><b>Bio Info: </b></p>
 					</div>
 					<div>
 						<c:out value="${profile.bio}" />

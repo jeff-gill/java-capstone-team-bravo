@@ -45,7 +45,7 @@
 					<h1 id="sensaiMotto">wonder. learn. connect. teach. repeat.</h1>
 					<div id="navSearchBar">
 						<input type="text" name="navSearch" id="navSearchText"
-							placeholder="Search for a subject..." /> <input
+							placeholder="Search for sensei or subject..." /> <input
 							class="formSubmitButton" type="submit" value="Submit" />
 					</div>
 				</div>
