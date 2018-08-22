@@ -135,7 +135,7 @@ div.signupContainer {
 }
 
 * /
-	/* profile modal */    
+	/* profile modal */     
 
 .updateButton {
 	background-color: #bab758 !important;
@@ -198,7 +198,7 @@ div.signupContainer {
 	display: block;
 	vertical-align: middle;
 	padding-top: 10px;
-    padding-bottom: 10px;
+	padding-bottom: 10px;
 }
 
 .messagesList:nth-child(odd) {
@@ -317,7 +317,7 @@ a {
 	text-decoration: none !important;
 }
 
-.updateButton /* messaging */   
+.updateButton /* messaging */    
 
 div.col-md-12.privateMessages {
 	font-size: 48px;
@@ -414,8 +414,23 @@ div.row.messageListInputs {
 	display: table;
 }
 
-.btn-group button:not (:last-child ) {
-	border-right: none; /* Prevent double borders */
+.btn-group
+ 
+button
+:not
+ 
+(
+:last-child
+ 
+)
+{
+border-right
+:
+ 
+none
+; /* Prevent double borders */
+
+
 }
 
 /* Add a background color on hover */
@@ -425,13 +440,37 @@ div.row.messageListInputs {
 	font-weight: strong;
 }
 
-label > input{ /* HIDE RADIO */
-  visibility: hidden; /* Makes input not-clickable */
-  position: absolute; /* Remove input from document flow */
+label>input { /* HIDE RADIO */
+	visibility: hidden; /* Makes input not-clickable */
+	position: absolute; /* Remove input from document flow */
 }
-label > input + img{ /* IMAGE STYLES */
-  cursor:pointer;
-  border:2px solid transparent;
+
+label>input+img { /* IMAGE STYLES */
+	cursor: pointer;
+	border: 2px solid transparent;
 }
-label > input:checked + img{ /* (RADIO CHECKED) IMAGE STYLES */
-  border:2px solid #f00;
+
+label>input:checked+img { /* (RADIO CHECKED) IMAGE STYLES */
+	border: 2px solid #f00;
+}
+
+div.pandaRatingBar {
+	display: flex;
+
+	align-content: flex-start;
+}
+
+label.pandaRating {
+
+	align-content: flex-start;
+}
+
+label.pandaRating img{
+	width: 50%; 
+	font-size: 14px;
+	align-item: center
+}
+
+label.pandaRating figcaption{
+	padding-left: 28px;
+}
