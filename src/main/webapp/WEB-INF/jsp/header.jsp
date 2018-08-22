@@ -29,7 +29,7 @@
 
 </head>
 <body>
-	<header>
+	<header class="header">
 		<c:url var="homePageHref" value="/" />
 		<div class="container-fluid">
 			<div class="row">
