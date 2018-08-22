@@ -463,6 +463,8 @@ div.pandaRatingBar {
 label.pandaRating {
 
 	align-content: flex-start;
+	align-items: center;
+	text-align: center;
 }
 
 label.pandaRating img{
@@ -471,6 +473,3 @@ label.pandaRating img{
 	align-item: center
 }
 
-label.pandaRating figcaption{
-	padding-left: 28px;
-}
