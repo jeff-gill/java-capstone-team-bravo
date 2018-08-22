@@ -14,7 +14,7 @@
 <script
 	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
-<c:url value="/${currentUser.userName}/review" var="reviewPageURL" >
+<c:url value="/${currentUser.userName}/profile" var="reviewPageURL" >
 <c:param name="userName">${userProfile.userName}</c:param>
 </c:url>
 
@@ -163,7 +163,7 @@
 					</div>
 					<div class="col-md-3" id="classContent">
 						<p>
-							<c:out value="${review.reviewee}" />
+							<c:out value="${review.reviewer}" />
 						</p>
 
 					</div>

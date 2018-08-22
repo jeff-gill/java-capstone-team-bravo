@@ -60,7 +60,7 @@
 				<div class="col-md-3">Please choose a Panda Rating:</div>
 				<div class="col-md-5 pandaRatingBar">
 					<label class="pandaRating"> <input type="radio"
-						name="pandaRating" /> <img src="../img/rating.png"><figcaption>1</figcaption></figure>
+						name="pandaRating" /> <figure><img src="../img/rating.png"><figcaption>1</figcaption></figure>
 					</label> <label class="pandaRating"> <input type="radio"
 						name="pandaRating" /> <figure><img src="../img/rating.png"><figcaption>2</figcaption></figure>
 					</label> <label class="pandaRating"> <input type="radio"

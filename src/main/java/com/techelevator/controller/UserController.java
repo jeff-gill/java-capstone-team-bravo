@@ -339,7 +339,7 @@ public class UserController {
 		map.addAttribute("userProfile", user);
 		List<Subject> subject = subjectDAO.getAllSubjects(userName);
 		map.addAttribute("subject", subject);
-		List<Review> review = reviewDAO.getReviewsForUser(userName);
+		List<Review> review = reviewDAO.getReviewsForUser(selectedUser);
 		map.addAttribute("review", review);
 		
 		return "viewProfile";
