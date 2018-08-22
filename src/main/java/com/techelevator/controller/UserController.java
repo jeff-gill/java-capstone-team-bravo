@@ -317,13 +317,14 @@ public class UserController {
 		
 		reviewDAO.saveReview(r);
 		
-		return "redirect:/user/{userName}";
+		return "redirect:/{userName}/profile";
 	}
 	
-	@RequestMapping(path="/user/{userName}", method=RequestMethod.GET)
-	public String displayProfile(@PathVariable String userName, ModelMap map) 
+	@RequestMapping(path="/{userName}/profile", method=RequestMethod.GET)
+	public String displayProfile(@PathVariable String userName, ModelMap map, HttpServletRequest request) 
 	{	
-		User user = userDAO.getUserByUserName(userName);
+		String selectedUser = request.getParameter("userName");
+		User user = userDAO.getUserByUserName(selectedUser);
 		map.addAttribute("userProfile", user);
 		List<Subject> subject = subjectDAO.getAllSubjects(userName);
 		map.addAttribute("subject", subject);
@@ -333,7 +334,7 @@ public class UserController {
 		return "viewProfile";
 	}
 	
-	@RequestMapping(path="/user/{userName}", method=RequestMethod.POST)
+	@RequestMapping(path="/{userName}/profile", method=RequestMethod.POST)
 	public String postReview(@PathVariable String userName) 
 	{	
 //		String reveiweeName = request.getParameter("userName");
