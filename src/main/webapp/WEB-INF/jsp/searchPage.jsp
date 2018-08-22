@@ -30,6 +30,12 @@
 		<div class="row button">
 			<div class="col-md-2" id="classContent">
 				<p>
+					<a class="classInfoLabels"> <b>Subject: </b></a>
+				</p>
+
+			</div>
+			<div class="col-md-2" id="classContent">
+				<p>
 					<a class="classInfoLabels"> <b>Profile Picture: </b></a>
 				</p>
 
@@ -40,17 +46,12 @@
 				</p>
 
 			</div>
-			<div class="col-md-4" id="classContent">
-				<p>
-					<a class="classInfoLabels"> <b>Profile Bio: </b></a>
-				</p>
-			</div>
-			<div class="col-md-3" id="classContent">
+			<div class="col-md-2" id="classContent">
 				<p>
 					<a class="classInfoLabels"> <b>Email: </b></a>
 				</p>
 			</div>
-			<div class="col-md-3" id="classContent">
+			<div class="col-md-4" id="classContent">
 				<p>
 					<a class="classInfoLabels"> <b>Panda Rating: </b></a>
 				</p>
@@ -58,6 +59,12 @@
 		</div>
 		<c:forEach items="${subject}" var="lesson">
 			<div class="row subjectRow">
+				<div class="col-md-2" id="classContent">
+					<p>
+						<c:out value="${lesson.subjectName}" />
+					</p>
+
+				</div>
 				<div class="col-md-2" id="classContent">
 					<div id="profilePicThumb">
 						<c:url var="imgUrl" value="/image/${profile.profileImage}" />
@@ -73,17 +80,12 @@
 					</p>
 
 				</div>
-				<div class="col-md-4" id="classContent">
-					<p>
-						<c:out value="${profile.bio}" />
-					</p>
-				</div>
 				<div class="col-md-2" id="classContent">
 					<p>
 						<fmt:formatDate value="${profile.email}" pattern="MM-dd-yyyy" />
 					</p>
 				</div>
-				<div class="col-md-3" id="classContent">
+				<div class="col-md-2" id="classContent">
 					<div class="pandaFaces">
 						<c:forEach begin="1" end="${profile.rating}">
 							<img class="panda" src="../img/rating.png" width="6%">
@@ -91,7 +93,7 @@
 						<a>&emsp;(out of 5)</a>
 					</div>
 				</div>
-				<div class="col-md-1" id="classContent">
+				<div class="col-md-2" id="classContent">
 					<input class="formSubmitButton" type="submit" value="Profile Page">
 				</div>
 			</div>
