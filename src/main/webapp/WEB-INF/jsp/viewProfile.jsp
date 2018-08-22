@@ -5,8 +5,7 @@
 
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<script defer
-	src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"
+<script defer src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"
 	integrity="sha384-4oV5EgaV02iISL2ban6c/RmotsABqE4yZxZLcYMAdG7FAPsyHYAPpywE9PJo+Khy"
 	crossorigin="anonymous"></script>
 
@@ -16,6 +15,9 @@
 	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
 <c:url var="formAction" value="/${currentUser.userName}/profile" >
+<c:param name="userName">${userProfile.userName}</c:param>
+</c:url>
+<c:url value="/${currentUser.userName}/review" var="reviewPageURL" >
 <c:param name="userName">${userProfile.userName}</c:param>
 </c:url>
 
@@ -175,25 +177,24 @@
 
 					</div>
 					<div class="col-md-9" id="classContent">
+						<div class="pandaFaces">
 						<p>
-							<div class="pandaFaces">
 						<c:forEach begin="1" end="${review.pandaRating}">
 							<img class="panda" src="../img/rating.png" width="6%">
 						</c:forEach>
 						<a>&emsp;(out of 5)</a>
-					</div>
 						</p>
+						</div>
 					</div>
 				</div>
 			</c:forEach>
-			<form action="${formAction}" method="POST">
+			<form action="${reviewPageURL}" method="POST">
 				<input type="hidden" name="CSRF_TOKEN" value="${CSRF_TOKEN}" />
 				<div class="modal-footer d-flex justify-content-center">
 					<button class="btn btn-deep-orange" type="submit">Review</button>
 				</div>
 			</form>
 		</div>
-	</div>
 </section>
 
 <c:import url="/WEB-INF/jsp/footer.jsp" />

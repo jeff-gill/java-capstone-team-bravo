@@ -298,17 +298,21 @@ public class UserController {
 		return "redirect:/messages/" + userName;
 	}
 	
-	@RequestMapping(path="/user/review", method=RequestMethod.GET)
-	public String displayReviewForm(@PathVariable String userName, HttpSession session, HttpServletRequest request) 
+	@RequestMapping(path="/{userName}/review", method=RequestMethod.GET)
+	public String displayReviewForm(@PathVariable String userName, HttpSession session, HttpServletRequest request, ModelMap map) 
 	{	
+		String selectedUser = request.getParameter("userName");
+		User user = userDAO.getUserByUserName(selectedUser);
+		map.addAttribute("userProfile", user);
+		
 		return "review";
 	}
 	
-	@RequestMapping(path="/user/review", method=RequestMethod.POST) 
+	@RequestMapping(path="/{userName}/review", method=RequestMethod.POST) 
 	public String submitReview(@PathVariable String userName, HttpSession session, @RequestParam String reviewee, @RequestParam int pandaRating, @RequestParam String review) 
 	{	
 		session.setAttribute("currentUser", userName);
-		
+
 		Review r = new Review();
 		r.setReviewee(reviewee);
 		r.setReviewer(userName);
@@ -341,6 +345,6 @@ public class UserController {
 //		User user = userDAO.getProfileByUserName(reveiweeName);
 //		request.setAttribute("userProfile", user);
 		
-		return "redirect:/review/{userName}";
+		return "redirect:/{userName}/review";
 	}
 }	

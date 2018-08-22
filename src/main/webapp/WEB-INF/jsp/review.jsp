@@ -5,8 +5,7 @@
 
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<script defer
-	src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"
+<script defer src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"
 	integrity="sha384-4oV5EgaV02iISL2ban6c/RmotsABqE4yZxZLcYMAdG7FAPsyHYAPpywE9PJo+Khy"
 	crossorigin="anonymous"></script>
 
@@ -15,7 +14,7 @@
 <script
 	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
-<c:url var="formAction" value="/review/${userProfile.userName}" >
+<c:url var="formAction" value="/${currentUser.userName}/review" >
 <c:param name="userName">${userProfile.userName}</c:param>
 </c:url>
 
@@ -81,8 +80,8 @@
 				<div class="col-md-4">
 					<div id="messageSubmit">
 						<input class="messageSubmitButton" type="reset"
-							value="Clear Message"> <input class="messageSubmitButton"
-							type="submit" value="Send Message" />
+							value="Clear Review"> <input class="messageSubmitButton"
+							type="submit" value="Submit Review" />
 					</div>
 				</div>
 				<div class="col-md-1"></div>
