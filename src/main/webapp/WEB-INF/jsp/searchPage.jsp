@@ -30,27 +30,25 @@
 		<div class="row button">
 			<div class="col-md-2" id="classContent">
 				<p>
-					<a class="classInfoLabels"> <b>Subject: </b></a>
-				</p>
-
-			</div>
-			<div class="col-md-2" id="classContent">
-				<p>
 					<a class="classInfoLabels"> <b>Profile Picture: </b></a>
 				</p>
 
 			</div>
-			<div class="col-md-2" id="classContent">
+			<div class="col-md-3" id="classContent">
 				<p>
-					<a class="classInfoLabels"> <b>User Name: </b></a>
+					<a class="classInfoLabels"> <b>User Name & Email: </b></a>
 				</p>
 
 			</div>
-			<div class="col-md-2" id="classContent">
+
+			<div class="col-md-3" id="classContent">
 				<p>
-					<a class="classInfoLabels"> <b>Email: </b></a>
+					<a class="classInfoLabels"> <b>Subject & Class Date: </b></a>
 				</p>
+
 			</div>
+
+
 			<div class="col-md-4" id="classContent">
 				<p>
 					<a class="classInfoLabels"> <b>Panda Rating: </b></a>
@@ -60,12 +58,6 @@
 		<c:forEach items="${subject}" var="lesson">
 			<div class="row subjectRow">
 				<div class="col-md-2" id="classContent">
-					<p>
-						<c:out value="${lesson.subjectName}" />
-					</p>
-
-				</div>
-				<div class="col-md-2" id="classContent">
 					<div id="profilePicThumb">
 						<c:url var="imgUrl" value="/image/${profile.profileImage}" />
 						<img src="${imgUrl}" />
@@ -74,18 +66,24 @@
 					</c:if>
 					</div>
 				</div>
-				<div class="col-md-2" id="classContent">
+				<div class="col-md-3" id="classContent">
 					<p>
 						<c:out value="${profile.userName}" />
 					</p>
+					<p>
+						<fmt:formatDate value="${profile.email}" />
+					</p>
 
 				</div>
-				<div class="col-md-2" id="classContent">
+				<div class="col-md-3" id="classContent">
 					<p>
-						<fmt:formatDate value="${profile.email}" pattern="MM-dd-yyyy" />
+						<c:out value="${lesson.subjectName}" />
+					</p>
+					<p>
+						<c:out value="${lesson.date}" />
 					</p>
 				</div>
-				<div class="col-md-2" id="classContent">
+				<div class="col-md-3" id="classContent">
 					<div class="pandaFaces">
 						<c:forEach begin="1" end="${profile.rating}">
 							<img class="panda" src="../img/rating.png" width="6%">
@@ -93,15 +91,11 @@
 						<a>&emsp;(out of 5)</a>
 					</div>
 				</div>
-				<div class="col-md-2" id="classContent">
+				<div class="col-md-1" id="classContent">
 					<input class="formSubmitButton" type="submit" value="Profile Page">
 				</div>
 			</div>
 		</c:forEach>
-		<div class="row">
-			<div class="col-md-5"></div>
-			<div class="col-md-7"></div>
-		</div>
 	</div>
 </section>
 
