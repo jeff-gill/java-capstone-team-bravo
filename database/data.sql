@@ -153,7 +153,20 @@ insert into user_subjects (class_id, user_name) values (8, 'tommyBoy');
 insert into user_subjects (class_id, user_name) values (1, 'lukeSkywalker');
 
 insert into reviews (reviewee, reviewer, panda_rating, review) values ('lukeSkywalker', 'YoungSon', 4, 'Great jedi knight, ok sword fighter');
-
+insert into reviews (reviewee, reviewer, panda_rating, review) values ('royalTenenbaum', 'YoungSon', 1, 'Constantly smoked cigarettes, and I felt like he was always shooting from the hip');
+insert into reviews (reviewee, reviewer, panda_rating, review) values ('steveZissou', 'YoungSon', 5, 'Passionate, artistic, fantastic sense of fashion');
+insert into reviews (reviewee, reviewer, panda_rating, review) values ('bobRoss', 'YoungSon', 4, 'Count me as one more happy little tree');
+insert into reviews (reviewee, reviewer, panda_rating, review) values ('splinter', 'YoungSon', 2, 'Very wise, greater martial artists, but at the end of the day, he is just another rat');
+insert into reviews (reviewee, reviewer, panda_rating, review) values ('gordonRamsey', 'YoungSon', 1, 'They guy is just an @$$hole');
+insert into reviews (reviewee, reviewer, panda_rating, review) values ('freecare', 'YoungSon', 5, 'Loved taking freecares classes');
+insert into reviews (reviewee, reviewer, panda_rating, review) values ('tommyBoy', 'YoungSon', 3, 'Very nice guy, but hes a walking trainwreck');
+insert into reviews (reviewee, reviewer, panda_rating, review) values ('fullcloth', 'YoungSon', 4, 'Loved it, would take this class again and again and again and again');
+insert into reviews (reviewee, reviewer, panda_rating, review) values ('clearcomfort', 'YoungSon', 1, 'Avoid this sensei at all cost, wish I would have chosen steveZissou. I nearly drowned');
+insert into reviews (reviewee, reviewer, panda_rating, review) values ('easycolor', 'YoungSon', 5, 'I was floating. It was amazing. Thank you easycolor');
+insert into reviews (reviewee, reviewer, panda_rating, review) values ('wholecanvas', 'YoungSon', 2, 'Very angry painter, angry trees everywhere');
+insert into reviews (reviewee, reviewer, panda_rating, review) values ('lordgenius', 'goodyear', 5, 'He could beat splinter up, go with splinter all the way');
+insert into reviews (reviewee, reviewer, panda_rating, review) values ('lukeSkywalker', 'goodyear', 1, 'Always complaining and crying about his dad');
+insert into reviews (reviewee, reviewer, panda_rating, review) values ('tommyBoy', 'YoungSon', 5, 'Not sure I learned anything, but had a great time');
 
 
 
