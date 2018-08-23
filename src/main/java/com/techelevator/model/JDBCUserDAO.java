@@ -75,8 +75,13 @@ public class JDBCUserDAO implements UserDAO {
 
 	@Override
 	public List<User> getSenseisBySubject(String subjectName) {
-		String sqlProfileBySubject = "select user_info.* from user_info join user_subjects on user_info.user_name = user_subjects.user_name " + 
-									 "join subjects on user_subjects.class_id = subjects.class_id where is_sensei = true and subject_name ilike ?";
+		String sqlProfileBySubject = "select UI.user_name, UI.email, UI.profile_image, avg(R.panda_rating), S.subject_name from user_info as UI " + 
+				"join reviews as R on UI.user_name = R.reviewee " + 
+				"join user_subjects as US on UI.user_name = US.user_name " + 
+				"join subjects as S on US.class_id = S.class_id " + 
+				"where UI.is_sensei = true and UI.user_name ilike ?" + 
+				"group by UI.user_name, UI.email,UI.profile_image, S.subject_name "; 
+		
 		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlProfileBySubject, "%" + subjectName + "%");
 
 		return mapRowSetToUser(results);
