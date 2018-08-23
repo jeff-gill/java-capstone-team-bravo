@@ -19,6 +19,7 @@
 <c:url var="formSearch" value="/users/search">
 	<c:param name="subjectName">${subject}</c:param>
 </c:url>
+<c:url var="formSubmitButton" value="/users/${profile.userName}" />
 
 <section class="myContainer">
 	<div class="container-fluid"
@@ -99,8 +100,8 @@
 						<a>&emsp;(out of 5)</a>
 					</div>
 				</div>
-				<div class="col-md-1" id="classContent">
-					<input class="formSubmitButton" type="submit" value="Profile Page">
+				<div class="col-md-1 btn-group">
+					<a href="../users/${searchInfo.userName}"><button>Go To Profile</button>
 				</div>
 			</div>
 		</c:forEach>
