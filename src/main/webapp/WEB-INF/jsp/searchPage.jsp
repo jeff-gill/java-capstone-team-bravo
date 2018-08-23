@@ -85,13 +85,13 @@
 					</p>
 
 				</div>
-				<c:forEach items="${subject}" var="subject">
+				
 					<div class="col-md-3" id="classContent">
 						<p>
 							<c:out value="${searchInfo.subjectName}" />
 						</p>
 					</div>
-				</c:forEach>
+				
 				<div class="col-md-3" id="classContent">
 					<div class="pandaFaces">
 						<c:forEach begin="1" end="${searchInfo.rating}">

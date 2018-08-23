@@ -152,6 +152,9 @@ insert into user_subjects (class_id, user_name) values (7, 'lordgenius');
 insert into user_subjects (class_id, user_name) values (8, 'tommyBoy');
 insert into user_subjects (class_id, user_name) values (1, 'lukeSkywalker');
 
+insert into reviews (reviewee, reviewer, panda_rating, review) values ('lukeSkywalker', 'YoungSon', 4, 'Great jedi knight, ok sword fighter');
+
+
 
 
 
