@@ -177,7 +177,7 @@ public class UserController {
 	@RequestMapping(path="/users/{userName}", method=RequestMethod.GET)
 	public String profilePage(Map<String, User> model, @PathVariable String userName, HttpSession session, ModelMap map) 
 	{
-		model.put("profile", userDAO.getProfileByUserName(userName));
+		model.put("profile", userDAO.getUserByUserName(userName));
 		map.addAttribute("subject", subjectDAO.getAllSubjects(userName));
 		int averagePandas = reviewDAO.averagePandaRating(userName);
 		map.addAttribute("pandas", averagePandas);
@@ -188,7 +188,7 @@ public class UserController {
 	@RequestMapping(path="/users/{userName}/updateSubject", method=RequestMethod.GET)
 	public String updateSubject(Map<String, User> model, @PathVariable String userName, HttpSession session, ModelMap map) 
 	{
-		model.put("profile", userDAO.getProfileByUserName(userName));
+		model.put("profile", userDAO.getUserByUserName(userName));
 		map.addAttribute("subject",subjectDAO.getAllSubjects(userName));
 		return "profilePage";
 	}
@@ -196,7 +196,7 @@ public class UserController {
 	@RequestMapping(path="/users/{userName}/createSubject", method=RequestMethod.GET)
 	public String createSubject(Map<String, User> model, @PathVariable String userName, HttpSession session, ModelMap map) 
 	{
-		model.put("profile", userDAO.getProfileByUserName(userName));
+		model.put("profile", userDAO.getUserByUserName(userName));
 		map.addAttribute("subject",subjectDAO.getAllSubjects(userName));
 		return "profilePage";
 	}
@@ -353,7 +353,7 @@ public class UserController {
 	public String postReview(@PathVariable String userName, HttpServletRequest request) 
 	{	
 		String profileName = request.getParameter("userName");
-		User user = userDAO.getProfileByUserName(profileName);
+		User user = userDAO.getUserByUserName(profileName);
 		request.setAttribute("userProfile", user);
 		
 		return "redirect:/{userName}/review?userName=" + profileName;
@@ -367,7 +367,7 @@ public class UserController {
 		String subjectName = request.getParameter("subjectName");
 		List<User> senseisViaSubject = userDAO.getSenseisBySubject(subjectName);
 		map.addAttribute("senseis", senseisViaSubject);
-		User user = userDAO.getProfileByUserName(profileName);
+		User user = userDAO.getUserByUserName(profileName);
 		request.setAttribute("userProfile", user);
 		List<Subject> subject = subjectDAO.searchSubject(subjectName);
 		request.setAttribute("subject", subject);
