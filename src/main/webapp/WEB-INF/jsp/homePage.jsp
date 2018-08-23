@@ -5,85 +5,18 @@
 <head>
 <title>Sensei</title>
 
-<link rel="stylesheet"
-	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
-<script
-	src="http://cdn.jsdelivr.net/jquery.validation/1.15.0/jquery.validate.min.js"></script>
-<script
-	src="https://cdn.jsdelivr.net/jquery.timeago/1.4.1/jquery.timeago.min.js"></script>
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+<script src="http://cdn.jsdelivr.net/jquery.validation/1.15.0/jquery.validate.min.js"></script>
+<script src="https://cdn.jsdelivr.net/jquery.timeago/1.4.1/jquery.timeago.min.js"></script>
 <link rel="stylesheet" href="css/site.css">
 
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<script defer
-	src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"
+<script defer src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"
 	integrity="sha384-4oV5EgaV02iISL2ban6c/RmotsABqE4yZxZLcYMAdG7FAPsyHYAPpywE9PJo+Khy"
 	crossorigin="anonymous"></script>
 <link rel="stylesheet" href="style.css">
-
-<script type="text/javascript">
-	$(document).ready(function () {
-		$.validator.addMethod('capitals', function(thing){
-			return thing.match(/[A-Z]/);
-		});
-		$("form").validate({
-			
-			rules : {
-				userName : {
-					required : true
-				},
-				password : {
-					required : true,
-					minlength: 10,
-					capitals: true,
-				}
-			},
-			messages : {			
-				password: {
-					minlength: "Password too short, it must be at least 10 characters",
-					capitals: "Field must contain a capital letter",
-				}
-			},
-			errorClass : "error"
-		});
-	});
-</script>
-<script type="text/javascript">
-	$(document).ready(function () {
-		$.validator.addMethod('capitals', function(thing){
-			return thing.match(/[A-Z]/);
-		});
-		$("formAct").validate({
-			
-			rules : {
-				userName : {
-					required : true
-				},
-				password : {
-					required : true,
-					minlength: 10,
-					capitals: true,
-				},
-				confirmPassword : {
-					required : true,		
-					equalTo : "#password"  
-				}
-			},
-			messages : {			
-				password: {
-					minlength: "Password too short, make it at least 10 characters",
-					capitals: "Field must contain a capital letter",
-				},
-				confirmPassword : {
-					equalTo : "Passwords do not match"
-				}
-			},
-			errorClass : "error"
-		});
-	});
-</script>
 
 <section class="myContainer">
 	<div class="container-fluid">
