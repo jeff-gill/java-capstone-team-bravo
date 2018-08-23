@@ -471,3 +471,7 @@ label.pandaRating img {
 .pandaFaces img {
 	width: 4%;
 }
+
+.searchTerm {
+	padding-bottom: 35px;
+}
