@@ -7,6 +7,4 @@ public interface MessageDAO {
 	public void saveMessage(Message message);
 	
 	public List<Message> getMessagesForUser(String userName);
-	
-	public Message getMessageById(int messageId);
 }

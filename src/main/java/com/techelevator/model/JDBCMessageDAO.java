@@ -45,21 +45,6 @@ public class JDBCMessageDAO implements MessageDAO
 		return messages;
 	}
 
-	@Override
-	public Message getMessageById(int messageId) 
-	{	
-		Message message = new Message();
-		String sqlGetMessageById = "select * from messaging where message_id = ?";
-		SqlRowSet result = jdbcTemplate.queryForRowSet(sqlGetMessageById, messageId);
-		
-		while(result.next()) 
-		{
-			message = mapRowToMessage(result);
-		}
-		
-		return message;
-	}
-
 	private Message mapRowToMessage(SqlRowSet results) 
 	{
 		Message message = new Message();

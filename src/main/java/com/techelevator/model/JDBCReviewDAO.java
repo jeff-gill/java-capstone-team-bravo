@@ -1,8 +1,5 @@
 package com.techelevator.model;
 
-import java.beans.Statement;
-import java.sql.ResultSet;
-
 import java.util.ArrayList;
 import java.util.List;
 

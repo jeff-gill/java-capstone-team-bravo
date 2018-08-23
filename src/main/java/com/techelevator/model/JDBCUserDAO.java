@@ -4,23 +4,25 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.sql.DataSource;
-import org.bouncycastle.util.encoders.Base64;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
+
 import com.techelevator.security.PasswordHasher;
 
 @Component
 public class JDBCUserDAO implements UserDAO {
 
 	private JdbcTemplate jdbcTemplate;
-	private PasswordHasher hashMaster;
+//	private PasswordHasher hashMaster;
 
 	@Autowired
-	public JDBCUserDAO(DataSource dataSource, PasswordHasher hashMaster) {
+	public JDBCUserDAO(DataSource dataSource //PasswordHasher hashMaster
+			) {
 		this.jdbcTemplate = new JdbcTemplate(dataSource);
-		this.hashMaster = hashMaster;
+//		this.hashMaster = hashMaster;
 	}
 
 	@Override
@@ -42,10 +44,10 @@ public class JDBCUserDAO implements UserDAO {
 		}
 	}
 
-	@Override
-	public void updatePassword(String userName, String password) {
-		jdbcTemplate.update("update user_info set password = ? where user_name = ?", password, userName);
-	}
+//	@Override
+//	public void updatePassword(String userName, String password) {
+//		jdbcTemplate.update("update user_info set password = ? where user_name = ?", password, userName);
+//	}
 
 	@Override
 	public User getUserByUserName(String userName) {
@@ -61,38 +63,20 @@ public class JDBCUserDAO implements UserDAO {
 	}
 
 	@Override
-	public User getProfileByUserName(String userName) {
-		String sqlProfileByUserName = "select * from user_info where user_name = ?";
-		SqlRowSet result = jdbcTemplate.queryForRowSet(sqlProfileByUserName, userName);
-
-		User user = new User();
-
-		while(result.next()) 
-		{
-			user = mapRowToUser(result);
-		}
-
-		return user;
-	}
-
-	@Override
 	public void updateImageName(String userName, String imageName) {
 		jdbcTemplate.update("update user_info set profile_image = ? where user_name = ?", imageName, userName);
 	}	
 
 	@Override
 	public void updateProfile(User user, String userName) {
-		String updateProfile = "update user_info set first_name = ?, last_name = ?, bio = ?, email = ?, phone = ?, interests = ? " + 
-							   "where user_name = ?";
+		String updateProfile = "update user_info set first_name = ?, last_name = ?, bio = ?, email = ?, phone = ?, interests = ? where user_name = ?";
 		jdbcTemplate.update(updateProfile, user.getFirstName(), user.getLastName(), user.getBio(), user.getEmail(), user.getPhone(), user.getInterests(), userName);	
 	}
 
 	@Override
 	public List<User> getSenseisBySubject(String subjectName) {
-		String sqlProfileBySubject = "select user_info.* from user_info " + 
-									 "join user_subjects on user_info.user_name = user_subjects.user_name " + 
-									 "join subjects on user_subjects.class_id = subjects.class_id " + 
-									 "where is_sensei = true and subject_name ilike ?";
+		String sqlProfileBySubject = "select user_info.* from user_info join user_subjects on user_info.user_name = user_subjects.user_name " + 
+									 "join subjects on user_subjects.class_id = subjects.class_id where is_sensei = true and subject_name ilike ?";
 		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlProfileBySubject, "%" + subjectName + "%");
 
 		return mapRowSetToUser(results);
@@ -100,8 +84,7 @@ public class JDBCUserDAO implements UserDAO {
 	
 	@Override
 	public List<User> getSenseis() {
-		String sqlGetSenseis = "select * from user_info " + 
-				"where is_sensei = ?";
+		String sqlGetSenseis = "select * from user_info where is_sensei = ?";
 		SqlRowSet results =jdbcTemplate.queryForRowSet(sqlGetSenseis, true);
 		
 		return mapRowSetToUser(results);
@@ -110,7 +93,7 @@ public class JDBCUserDAO implements UserDAO {
 	private User mapRowToUser(SqlRowSet results) {
 		User user = new User();
 		user.setUserName(results.getString("user_name"));
-//		user.setPassword(results.getString("password"));
+		user.setPassword(results.getString("password"));
 		user.setFirstName(results.getString("first_name"));
 		user.setLastName(results.getString("last_name"));
 		user.setBio(results.getString("bio"));
@@ -125,11 +108,10 @@ public class JDBCUserDAO implements UserDAO {
 
 	private List<User> mapRowSetToUser(SqlRowSet results){
 		List<User> userList = new ArrayList<User>();
+		
 		while(results.next()) {
 			userList.add(mapRowToUser(results));
 		}
 		return userList;
 	}
-
-
 }

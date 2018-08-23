@@ -98,7 +98,6 @@ public class JDBCSubjectDAOIntegrationTest
 		Date date = formatter.parse("10-10-2018");
 		Subject subjects = getSubject(SUBJECT_NAME, "Nowhere special", date, "1:00", "2:00", 12.00f, 4, "All I want for Christmas is my two front teeth");
 		subjectDAO.saveSubject(subjects);
-		
 		Subject sub = subjectDAO.getSubjectById(subjects.getClassId());
 		
 		assertNotNull(sub);
@@ -120,7 +119,6 @@ public class JDBCSubjectDAOIntegrationTest
 		DateFormat formatter = new SimpleDateFormat("MM-dd-yyyy");
 		Date date = formatter.parse("10-10-2018");
 		Subject subjects = getSubject(SUBJECT_NAME, "Nowhere special", date, "1:00", "2:00", 12.00f, 4, "All I want for Christmas is my two front teeth");
-		subjectDAO.saveSubject(subjects);
 		subjectDAO.deleteSubject(subjects.getClassId());
 		subjects = subjectDAO.getSubjectById(subjects.getClassId());
 		
@@ -139,15 +137,15 @@ public class JDBCSubjectDAOIntegrationTest
 		assertNotNull(subjects.getClassId());
 	}
 	
-//	@Test
-//	public void test_get_all_subjects() throws ParseException
-//	{
-//		List<Subject> results = subjectDAO.getAllSubjects();
-//		
-//		assertNotNull(results);
-//		assertTrue(results.size() >= 1);
-//	}
-	
+	@Test
+	public void test_get_all_subjects() throws ParseException
+	{
+		String userName = "lordgenius";
+		List<Subject> results = subjectDAO.getAllSubjects(userName);
+		
+		assertNotNull(results);
+		assertTrue(results.size() >= 1);
+	}
 	
 	private void assertSubjectsAreEqual(Subject expected, Subject actual) 
 	{

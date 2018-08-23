@@ -8,11 +8,9 @@ public interface UserDAO {
 
 	public boolean searchForUsernameAndPassword(String userName, String password);
 
-	public void updatePassword(String userName, String password);
+//	public void updatePassword(String userName, String password);
 
 	public User getUserByUserName(String userName);
-	
-	public User getProfileByUserName(String userName);
 	
 	public void updateImageName(String userName, String imageName);
 	
@@ -21,7 +19,4 @@ public interface UserDAO {
 	public List<User> getSenseisBySubject(String subjectName);
 	
 	public List<User> getSenseis();
-	
-	
-
 }
