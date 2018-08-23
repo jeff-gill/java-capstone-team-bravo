@@ -2,6 +2,8 @@ package com.techelevator.model;
 
 import java.util.Date;
 
+import javax.validation.constraints.Size;
+
 public class Subject {
 	
 	private int classId;
@@ -11,6 +13,7 @@ public class Subject {
 	private String startTime;
 	private String endTime;
 	private float cost;
+	@Size(min=1, max=10, message="Password too short, must be at least 10")
 	private int availableSlots;
 	private String description;
 	

@@ -7,7 +7,6 @@ import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotBlank;
 
 public class User {
-	private String userName;
 	
 	@Size(min=10, message="Password too short, must be at least 10")
 	@Pattern.List({
@@ -15,40 +14,24 @@ public class User {
 		@Pattern(regexp=".*[A-Z].*", message="Must have a capital")
 	})
 
+	private String userName;
 	@NotBlank(message="Password field is required.")
 	private String password;
-	
-	private String role;
-	
 	private String confirmPassword;
-	
 	@NotBlank(message="First name field is required.")
 	private String firstName;
-	
 	@NotBlank(message="Last name field is required.")
 	private String lastName;
-	
 	@NotBlank(message="Bio field is required.")
 	private String bio;
-	
 	private int rating;
-	
-	
 	private boolean sensei;
-	
 	private String profileImage;
-	
-	private String salt;
-	
 	@NotBlank(message="Email address is required.")
 	@Email(message="Valid email address is required.")
 	private String email;
-	
 	private String phone;
-	
 	private String interests;
-	
-	//Added isSensei and salt getters and setters
 	
 	public String getInterests() {
 		return interests;
@@ -67,12 +50,6 @@ public class User {
 	}
 	public void setPhone(String phone) {
 		this.phone = phone;
-	}
-	public String getSalt() {
-		return salt;
-	}
-	public void setSalt(String salt) {
-		this.salt = salt;
 	}
 	public boolean isSensei() {
 		return sensei;
@@ -112,18 +89,6 @@ public class User {
 	}
 	public String getUserName() {
 		return userName;
-	}
-	/**
-	 * @return the role
-	 */
-	public String getRole() {
-		return role;
-	}
-	/**
-	 * @param role the role to set
-	 */
-	public void setRole(String role) {
-		this.role = role;
 	}
 	public void setUserName(String userName) {
 		this.userName = userName;
