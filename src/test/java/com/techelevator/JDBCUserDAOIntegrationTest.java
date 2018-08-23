@@ -17,6 +17,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.SingleConnectionDataSource;
 
+import com.techelevator.model.JDBCSubjectDAO;
 import com.techelevator.model.JDBCUserDAO;
 import com.techelevator.model.Subject;
 import com.techelevator.model.User;
@@ -102,7 +103,7 @@ public class JDBCUserDAOIntegrationTest
 	
 	@Test
 	public void test_get_senseis_by_subject()
-	{
+	{		
 		List<User> results = userDAO.getSenseisBySubject("Sword Fighting");
 		
 		assertNotNull(results);
