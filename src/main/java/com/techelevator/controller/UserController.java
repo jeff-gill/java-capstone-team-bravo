@@ -362,18 +362,15 @@ public class UserController {
 	@RequestMapping(path="/users/search", method=RequestMethod.GET)
 	public String displaySearch(ModelMap map, HttpServletRequest request) 
 	{	
-		
-		String profileName= request.getParameter("userName");
 		String subjectName = request.getParameter("subjectName");
 		List<User> senseisViaSubject = userDAO.getSenseisBySubject(subjectName);
 		map.addAttribute("senseis", senseisViaSubject);
-		User user = userDAO.getUserByUserName(profileName);
-		request.setAttribute("userProfile", user);
+//		User user = userDAO.getUserByUserName();
+//		request.setAttribute("userProfile", user);
 		List<Subject> subject = subjectDAO.searchSubject(subjectName);
 		request.setAttribute("subject", subject);
-		int averagePandas = reviewDAO.averagePandaRating(user.getUserName());
-		map.addAttribute("pandas", averagePandas);
-		
+//		int averagePandas = reviewDAO.averagePandaRating(userName);
+//		map.addAttribute("pandas", averagePandas);
 		
 		return "searchPage";
 	}

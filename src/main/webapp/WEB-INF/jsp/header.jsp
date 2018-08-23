@@ -42,30 +42,21 @@
 				</div>
 				<div class="col-md-1"></div>
 				<c:url var="searchPage" value="/users/search" >
-					<c:param name="userName">${userProfile.userName }</c:param>
-					<%-- <c:param name="subjectName">${subject.subjectName }</c:param> --%>
+					<c:param name="subjectName">${subject}</c:param>
 				</c:url>
 				<form action = "${searchPage}" method="GET">
 				<div class="col-md-5" id="mottoContainer">
-				
-				
 
 					<h1 id="sensaiMotto">wonder. learn. connect. teach. repeat.</h1>
 					<div id="navSearchBar">
-						<input type="text" name="userName" id="navSearchText"
-							placeholder="Search for sensei..." /> <input
-							class="formSubmitButton" type="submit" value="userName" />
-					</div>
-					<div id="navSearchBar">
 						<input type="text" name="subjectName" id="navSearchText"
 							placeholder="Search for subject..." /> <input
-							class="formSubmitButton" type="submit" value="subjectName" />
+							class="formSubmitButton" type="submit" value="Subject Name" />
 					</div>
 				</div>
 				</form>
 			</div>
 		</div>
-
 
 		<a href="${homePageHref}"><img src="${imgSrc}"
 			class="img-responsive" /></a>

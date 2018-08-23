@@ -14,8 +14,7 @@
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
 <c:url var="formSearch" value="/users/search" >
-<c:param name="userName">${userProfile.userName }</c:param>
-<%-- <c:param name="subjectName">${subject.subjectName }</c:param> --%>
+<c:param name="subjectName">${subject}</c:param>
 </c:url>
 
 <section class="myContainer">
@@ -54,6 +53,7 @@
 		</div>
 		
 		<c:forEach items="${senseis}" var="searchInfo">
+		<input type="hidden" name="userName" value="${searchInfo.userName}" />
 			<div class="row subjectRow">
 				<div class="col-md-2" id="classContent">
 					<div id="profilePicThumb">
@@ -83,7 +83,7 @@
 				</c:forEach>
 				<div class="col-md-3" id="classContent">
 					<div class="pandaFaces">
-						<c:forEach begin="1" end="${pandas}">
+						<c:forEach begin="1" end="${pandaRating}">
 							<img class="panda" src="../img/rating.png" width="6%">
 						</c:forEach>
 						<a>&emsp;(out of 5)</a>
