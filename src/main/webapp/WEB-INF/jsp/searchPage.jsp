@@ -27,7 +27,7 @@
 		<div class="row searchTerm">
 			<div class="col-md-12">
 				<h1>
-				Results for <i><b>"${param.subjectName}"</b></i> search.
+					Results for <i><b>"${param.subjectName}"</b></i> search.
 				</h1>
 			</div>
 		</div>
@@ -48,7 +48,7 @@
 
 			</div>
 
-			<div class="col-md-3" id="classContent">
+			<div class="col-md-2" id="classContent">
 				<p>
 					<a class="classInfoLabels"> <b>Subject: </b></a>
 				</p>
@@ -56,23 +56,23 @@
 			</div>
 
 
-			<div class="col-md-4" id="classContent">
+			<div class="col-md-3" id="classContent">
 				<p>
 					<a class="classInfoLabels"> <b>Panda Rating: </b></a>
 				</p>
 			</div>
 		</div>
-
+		<input type="hidden" name="userName" value="${searchInfo.userName}" />
 		<c:forEach items="${senseis}" var="searchInfo">
-			<input type="hidden" name="userName" value="${searchInfo.userName}" />
 			<div class="row subjectRow">
 				<div class="col-md-2" id="classContent">
+
 					<div id="profilePicThumb">
 						<c:url var="imgUrl" value="/image/${searchInfo.profileImage}" />
-						<img src="${imgUrl}" />
-						<c:if test="${not empty message}">
-  						  ${message} 
-					</c:if>
+						<c:if test="${not empty imgUrl}">
+							<img src="${imgUrl}"
+								onerror="arguments[0].currentTarget.style.display='none'" />
+						</c:if>
 					</div>
 				</div>
 
@@ -85,13 +85,13 @@
 					</p>
 
 				</div>
-				
-					<div class="col-md-3" id="classContent">
-						<p>
-							<c:out value="${searchInfo.subjectName}" />
-						</p>
-					</div>
-				
+
+				<div class="col-md-2" id="classContent">
+					<p>
+						<c:out value="${searchInfo.subjectName}" />
+					</p>
+				</div>
+
 				<div class="col-md-3" id="classContent">
 					<div class="pandaFaces">
 						<c:forEach begin="1" end="${searchInfo.rating}">
@@ -100,8 +100,11 @@
 						<a>&emsp;(out of 5)</a>
 					</div>
 				</div>
-				<div class="col-md-1 btn-group">
-					<a href="../users/${searchInfo.userName}"><button>Go To Profile</button>
+				<div class="col-md-1 btn-group" id="classContent">
+					<c:url value="/${currentUser.userName}/profile" var="reviewPageURL">
+						<c:param name="userName">${searchInfo.userName}</c:param>
+					</c:url>
+					<a href="${reviewPageURL}"><button>Go To Profile</button>
 				</div>
 			</div>
 		</c:forEach>

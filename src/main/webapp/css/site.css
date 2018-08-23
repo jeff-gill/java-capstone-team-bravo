@@ -202,13 +202,16 @@ div.signupContainer {
 	}
 }
 
-.subjectRow {
+div.subjectRow {
 	display: block;
 	vertical-align: middle;
 }
 
-.subjectRow:nth-child(odd) {
+div.subjectRow:nth-child(odd) {
 	background-color: #f7f7f7;
+	border-bottom: solid lightgray;
+	margin: 5px;
+	padding: 10px;
 }
 
 .messagesList {
@@ -475,3 +478,4 @@ label.pandaRating img {
 .searchTerm {
 	padding-bottom: 35px;
 }
+
