@@ -135,3 +135,30 @@ insert into user_info (user_name, password, first_name, last_name, bio, is_sense
 insert into user_info (user_name, password, first_name, last_name, bio, is_sensei, email, phone, profile_image,  interests) values('whitesociety',  'Qwerty1234', 'Sierra', 'ROGERS', 'Lorem ipsum dolor amet migas retro shabby chic, hot chicken vice hell of health goth before they sold out irony. Retro pop-up raclette cornhole YOLO lomo. Gluten-free waistcoat la croix, skateboard organic pabst dreamcatcher pok pok adaptogen direct trade wayfarers art party', FALSE, 'Sierra@ROGERS.com', ' 710-146-5649', 'grasshopper', 'Camping');
 insert into user_info (user_name, password, first_name, last_name, bio, is_sensei, email, phone, profile_image,  interests) values('wholeactivity',  'Qwerty1234', 'Sharda', 'GRAY', 'Lorem ipsum dolor amet migas retro shabby chic, hot chicken vice hell of health goth before they sold out irony. Retro pop-up raclette cornhole YOLO lomo. Gluten-free waistcoat la croix, skateboard organic pabst dreamcatcher pok pok adaptogen direct trade wayfarers art party', FALSE, 'Sharda@GRAY.com', ' 591-811-0190', 'grasshopper', 'Candle Making');
 insert into user_info (user_name, password, first_name, last_name, bio, is_sensei, email, phone, profile_image,  interests) values('oldstory',  'Qwerty1234', 'Dena', 'HUGHES', 'Lorem ipsum dolor amet migas retro shabby chic, hot chicken vice hell of health goth before they sold out irony. Retro pop-up raclette cornhole YOLO lomo. Gluten-free waistcoat la croix, skateboard organic pabst dreamcatcher pok pok adaptogen direct trade wayfarers art party', FALSE, 'Dena@HUGHES.com', ' 341-075-6126', 'grasshopper', 'Jumping Jacks');
+
+insert into user_subjects (class_id, user_name) values (2, 'royalTenenbaum');
+insert into user_subjects (class_id, user_name) values (3, 'tommyBoy');
+insert into user_subjects (class_id, user_name) values (4, 'steveZissou');
+insert into user_subjects (class_id, user_name) values (5, 'lukeSkywalker');
+insert into user_subjects (class_id, user_name) values (6, 'bobRoss');
+insert into user_subjects (class_id, user_name) values (7, 'splinter');
+insert into user_subjects (class_id, user_name) values (8, 'gordonRamsey');
+insert into user_subjects (class_id, user_name) values (2, 'freecare');
+insert into user_subjects (class_id, user_name) values (3, 'fullcloth');
+insert into user_subjects (class_id, user_name) values (4, 'clearcomfort');
+insert into user_subjects (class_id, user_name) values (5, 'easycolor');
+insert into user_subjects (class_id, user_name) values (6, 'wholecanvas');
+insert into user_subjects (class_id, user_name) values (7, 'lordgenius');
+insert into user_subjects (class_id, user_name) values (8, 'tommyBoy');
+insert into user_subjects (class_id, user_name) values (1, 'lukeSkywalker');
+
+
+
+
+
+
+
+
+
+
+
