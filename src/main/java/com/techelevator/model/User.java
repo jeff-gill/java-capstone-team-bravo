@@ -32,7 +32,16 @@ public class User {
 	private String email;
 	private String phone;
 	private String interests;
+	private String subjectName;
 	
+	
+	
+	public String getSubjectName() {
+		return subjectName;
+	}
+	public void setSubjectName(String subjectName) {
+		this.subjectName = subjectName;
+	}
 	public String getInterests() {
 		return interests;
 	}

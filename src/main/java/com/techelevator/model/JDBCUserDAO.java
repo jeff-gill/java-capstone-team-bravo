@@ -75,13 +75,13 @@ public class JDBCUserDAO implements UserDAO {
 
 	@Override
 	public List<User> getSenseisBySubject(String subjectName) {
-		String sqlProfileBySubject = "select UI.user_name, UI.email, UI.profile_image, avg(R.panda_rating), S.subject_name from user_info as UI " + 
+		String sqlProfileBySubject = "select UI.user_name, UI.email, UI.profile_image, round(avg(R.panda_rating), 0) as rating, S.subject_name from user_info as UI " + 
 									 "join reviews as R on UI.user_name = R.reviewee join user_subjects as US on UI.user_name = US.user_name " + 
 									 "join subjects as S on US.class_id = S.class_id where UI.is_sensei = true and S.subject_name ilike ?" + 
 									 "group by UI.user_name, UI.email,UI.profile_image, S.subject_name "; 
 		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlProfileBySubject, "%" + subjectName + "%");
 
-		return mapRowSetToUser(results);
+		return mapRowSetToSenseiSubject(results);
 	}
 	
 	@Override
@@ -90,6 +90,26 @@ public class JDBCUserDAO implements UserDAO {
 		SqlRowSet results =jdbcTemplate.queryForRowSet(sqlGetSenseis, true);
 		
 		return mapRowSetToUser(results);
+	}
+	
+	private User mapSenseiToSubject(SqlRowSet results) {
+		User user = new User();
+		user.setUserName(results.getString("user_name"));
+		user.setEmail(results.getString("email"));
+		user.setProfileImage(results.getString("profile_image"));
+		user.setRating(results.getInt("rating"));
+		user.setSubjectName(results.getString("subject_name"));
+		
+		return user;
+	}
+	
+	private List<User> mapRowSetToSenseiSubject(SqlRowSet results){
+		List<User> userList = new ArrayList<User>();
+		
+		while(results.next()) {
+			userList.add(mapSenseiToSubject(results));
+		}
+		return userList;
 	}
 
 	private User mapRowToUser(SqlRowSet results) {
