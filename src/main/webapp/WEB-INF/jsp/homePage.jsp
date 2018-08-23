@@ -23,7 +23,7 @@
 	crossorigin="anonymous"></script>
 <link rel="stylesheet" href="style.css">
 
-<!-- <script type="text/javascript">
+<script type="text/javascript">
 	$(document).ready(function () {
 		$.validator.addMethod('capitals', function(thing){
 			return thing.match(/[A-Z]/);
@@ -36,7 +36,34 @@
 				},
 				password : {
 					required : true,
-					minlength: 15,
+					minlength: 10,
+					capitals: true,
+				}
+			},
+			messages : {			
+				password: {
+					minlength: "Password too short, it must be at least 10 characters",
+					capitals: "Field must contain a capital letter",
+				}
+			},
+			errorClass : "error"
+		});
+	});
+</script>
+<script type="text/javascript">
+	$(document).ready(function () {
+		$.validator.addMethod('capitals', function(thing){
+			return thing.match(/[A-Z]/);
+		});
+		$("formAct").validate({
+			
+			rules : {
+				userName : {
+					required : true
+				},
+				password : {
+					required : true,
+					minlength: 10,
 					capitals: true,
 				},
 				confirmPassword : {
@@ -46,7 +73,7 @@
 			},
 			messages : {			
 				password: {
-					minlength: "Password too short, make it at least 15 characters",
+					minlength: "Password too short, make it at least 10 characters",
 					capitals: "Field must contain a capital letter",
 				},
 				confirmPassword : {
@@ -56,7 +83,7 @@
 			errorClass : "error"
 		});
 	});
-</script> -->
+</script>
 
 <section class="myContainer">
 	<div class="container-fluid">
@@ -101,7 +128,6 @@
 				<div class="form-group">
 					<input type="radio" value="true" name="sensei" /> Sensei <input
 						type="radio" value="false" name="sensei" /> Grasshopper
-					<form:errors path="activityLevel" cssClass="error" />
 				</div>
 				<c:url var="formAct" value="/" />
 				<form method="POST" action="${formAct}">

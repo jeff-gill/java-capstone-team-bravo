@@ -2,12 +2,17 @@ package com.techelevator.model;
 
 import java.time.LocalDate;
 
+import org.hibernate.validator.constraints.NotBlank;
+
 public class Message {
 	
 	private int messageId;
+	@NotBlank(message="To field is required.")
 	private String senderName;
 	private String receiverName;
+	@NotBlank(message="Subject field is required.")
 	private String messageSubject;
+	@NotBlank(message="Message body is required.")
 	private String messageBody;
 	private LocalDate date;
 	

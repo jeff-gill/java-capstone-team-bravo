@@ -1,11 +1,15 @@
 package com.techelevator.model;
 
+import org.hibernate.validator.constraints.NotBlank;
+
 public class Review {
 	
 	private int reviewId;
 	private String reviewee;
 	private String reviewer;
+	@NotBlank(message="Panda Rating is required.")
 	private int pandaRating;
+	@NotBlank(message="Review field is required.")
 	private String review;
 	
 	
