@@ -87,13 +87,13 @@
 				<c:forEach items="${subject}" var="subject">
 					<div class="col-md-3" id="classContent">
 						<p>
-							<c:out value="${subject.subjectName}" />
+							<c:out value="${searchInfo.subjectName}" />
 						</p>
 					</div>
 				</c:forEach>
 				<div class="col-md-3" id="classContent">
 					<div class="pandaFaces">
-						<c:forEach begin="1" end="${pandaRating}">
+						<c:forEach begin="1" end="${searchInfo.rating}">
 							<img class="panda" src="../img/rating.png" width="6%">
 						</c:forEach>
 						<a>&emsp;(out of 5)</a>
